@@ -21,6 +21,7 @@ export class NavButtons extends React.Component {
     }
 
     render() {
+        console.log(this.props.loggedIn)
           if (this.props.loggedIn) {
             return (
                 <span>
@@ -44,7 +45,7 @@ export class NavButtons extends React.Component {
                     <div className='col-xs-12 col-md-2'>
                         <div className='box-navigation'>
                             <p className='username-heading'><Link to={`/profile/${this.props.profileId}`}>{this.props.username}</Link></p>
-                            <Link className='round-button' to={`/new-post`}> + </Link>
+                            <Link className='round-button' to={`/create-post`}> + </Link>
                         </div>
                     </div>
                 </span>
@@ -70,7 +71,7 @@ export class NavButtons extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    loggedIn: state.auth.user !== null
+    loggedIn: state.auth.currenUser !== null
 })
 
 export default connect(mapStateToProps)(NavButtons)

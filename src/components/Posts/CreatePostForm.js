@@ -1,7 +1,16 @@
 import React from 'react'
+import {Field, reduxForm, focus} from 'redux-form';
+import {Link, Redirect} from 'react-router-dom';
 
-export default class CreatePostForm extends React.Component {
+import TextArea from '../Inputs/TextArea'
+import Input from '../Inputs/Input'
+import {isNumber, isTrimmed, required, nonEmpty, validValue} from '../validators/validators'
 
+export class CreatePostForm extends React.Component {
+
+  onSubmit(values) {
+       console.log(values)
+    }
     render() {
         return (
             <div className='box create-post'>
@@ -17,43 +26,44 @@ export default class CreatePostForm extends React.Component {
                   <Field component={Input} placeholder='Hawaii' type="text" name="destination" validate={[required, nonEmpty]} />
                   <label htmlFor="lodging">Where did you Stay</label>
                   <Field
-                      component={Input}
-                      type="textarea"
+                      component={TextArea}
+                      type="text"
                       name="lodging"
                       placeholder='Tell us about the place(s) you stayed! Be as detailed and descriptive as possible!'
                   />
                   <label htmlFor="dining">Where did you eat?</label>
                   <Field
-                      component={Input}
-                      type="textarea"
+                      component={TextArea}
+                      className='textarea'
+                      type="textbox"
                       name="dining"
                       placeholder='Tell us about the place(s) you ate! Be as detailed and descriptive as possible!'
                   />
                   <label htmlFor="sites">Where did you eat?</label>
                   <Field
-                      component={Input}
-                      type="textarea"
+                      component={TextArea}
+                      type="textbox"
                       name="sites"
                       placeholder='Tell us about the sites you saw! (e.g. Statue of Liberty, Empire State Building) Be as detailed and descriptive as possible!'
                   />
                   <label htmlFor="sites">What sites did you see?</label>
                   <Field
-                      component={Input}
-                      type="textarea"
+                      component={TextArea}
+                      type="textbox"
                       name="sites"
                       placeholder='Tell us about the sites you saw! (e.g. Statue of Liberty, Empire State Building, Museums) Be as detailed and descriptive as possible!'
                   />
                   <label htmlFor="activities">What activities did you do?</label>
                   <Field
-                      component={Input}
-                      type="textarea"
+                      component={TextArea}
+                      type="textbox"
                       name="activities"
                       placeholder='Tell us about the activities that you did! (e.g. Guided Tours, Hiking, Safaris, Zip-Lining ) Be as detailed and descriptive as possible!'
                   />
                   <label htmlFor="advice">Advice for other travels</label>
                   <Field
-                      component={Input}
-                      type="textarea"
+                      component={TextArea}
+                      type="textbox"
                       name="advice"
                       placeholder='Use this section to give other travels advice and tips about traveling to this destination. (e.g. favorite or least favorite things, things to avoid, things you would have done differently or the same )'
                   />
@@ -63,11 +73,28 @@ export default class CreatePostForm extends React.Component {
                       type="number"
                       name="rating"
                       placeholder='Rate your trip on a scale of 1 to 10!'
-                      validate={[required, nonEmpty]}
-
+                      validate={[required, nonEmpty, isNumber, validValue]}
+                  />
+                  <button
+                      type="submit"
+                      disabled={this.props.pristine || this.props.submitting}>
+                      Create Post
+                  </button>
+                  <button
+                      disabled={this.props.submitting}>
+                      <Link to={'/'}>
+                      Cancel
+                      </Link>
+                  </button>
                   </form>
             </div>
 
         )
     }
 }
+
+export default reduxForm({
+    form: 'create-post',
+    onSubmitFail: (errors, dispatch) =>
+        dispatch(focus('create-post', Object.keys(errors)[0]))
+})(CreatePostForm);

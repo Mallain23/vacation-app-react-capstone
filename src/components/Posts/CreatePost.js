@@ -1,5 +1,6 @@
 import React from 'react'
-import CrearePostForm from './CreateCardForm'
+import CreatePostForm from './CreatePostForm'
+
 export default class CreatePost extends React.Component {
 
     render() {

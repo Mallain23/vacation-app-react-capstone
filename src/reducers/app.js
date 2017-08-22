@@ -41,7 +41,7 @@ export default (state=initialState, action) => {
   if (action.type === actions.TOGGLE_LOGIN) {
       console.log(state)
       return Object.assign({}, state, {
-        showLogin: !state.showLogin
+        showLogin: !state.showLogin,
       });
   }
   return state
