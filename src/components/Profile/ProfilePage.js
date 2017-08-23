@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 
+import UsersPosts from './UsersPosts'
 import './ProfilePage.css'
 
 export class ProfilePage extends React.Component {
@@ -27,6 +28,9 @@ export class ProfilePage extends React.Component {
                             </div>
                         </div>
                     </div>
+                    <div className='row user-posts'>
+                        <UsersPosts posts={this.props.posts} username={this.props.username} />
+                    </div>
                 </div>
             </div>
         )
@@ -36,14 +40,16 @@ export class ProfilePage extends React.Component {
 const mapStateToProps = (state, props) => {
     let profileId = props.match.params.profileId
 
-    let profileArray = state.users.find(user => user.profileId.toString() === profileId)
+    let posts = state.app.posts.filter(post => post.profileId.toString() === profileId)
+    let profileObj = state.app.users.find(user => user.profileId.toString() === profileId)
 
-    let {bio, avatar, username } = profileArray
+    let {bio, avatar, username} = profileObj
 
     return {
         bio,
         username,
-        avatar
+        avatar,
+        posts
       };
 }
 

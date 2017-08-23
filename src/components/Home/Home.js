@@ -5,13 +5,14 @@ import Post from './Post'
 
 export class Home extends React.Component {
 
+
     render() {
 
        let posts = this.props.posts.map((post, index) => {
-         console.log(post)
+
         return  <div key={index}  className='col-xs-12 col-sm6 col-md-3'>
             <div className='post-box' key={index}>
-                <Post key={index} heading={post.heading} profileId={post.profileId} content={post.content} name={post.name} />
+                <Post key={index} postId={post.postId} heading={post.heading} username={post.username} profileId={post.profileId} content={post.content} name={post.name} />
             </div>
          </div>
        })
@@ -26,7 +27,9 @@ export class Home extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    posts: state.posts
+
+      posts: state.app.posts,
+
 })
 
 export default connect(mapStateToProps)(Home)

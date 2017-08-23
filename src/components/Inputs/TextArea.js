@@ -3,7 +3,7 @@ import React from 'react';
 export default class TextArea extends React.Component {
     componentDidUpdate(prevProps) {
         if (!prevProps.meta.active && this.props.meta.active) {
-            this.textarea.focus();
+            this.input.focus();
         }
     }
 
@@ -19,8 +19,9 @@ export default class TextArea extends React.Component {
                 <div className="form-warning">{this.props.meta.warning}</div>
             );
         }
-
+          console.log(this.props)
         return (
+
             <div className="form-input">
                 <label htmlFor={this.props.input.name}>
                     {this.props.label}
@@ -32,7 +33,7 @@ export default class TextArea extends React.Component {
                     placeholder={this.props.placeholder}
                     id={this.props.input.name}
                     type={this.props.type}
-                    value={this.input}
+                  
                     ref={input => (this.input = input)}
                 />
                 {error}

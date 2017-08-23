@@ -6,15 +6,27 @@ import TextArea from '../Inputs/TextArea'
 import Input from '../Inputs/Input'
 import {isNumber, isTrimmed, required, nonEmpty, validValue} from '../validators/validators'
 
-export class CreatePostForm extends React.Component {
+export class PostForm extends React.Component {
 
-  onSubmit(values) {
+    onSubmit(values) {
        console.log(values)
+    }
+    componentDidMount() {
+      console.log(this.props.Id)
+      if (this.props.postId) {
+        this.handleInitialize()
+      }
+    }
+    handleInitialize() {
+      const initData ={
+      'title': this.props.heading,
+      'dining': this.props.content
+    }
+    this.props.initialize(initData)
     }
     render() {
         return (
-            <div className='box create-post'>
-              <h1 className='form-heading'>Create New Post</h1>
+
               <form
                   className="create-post-form"
                   onSubmit={this.props.handleSubmit(values =>
@@ -23,10 +35,11 @@ export class CreatePostForm extends React.Component {
                   <label htmlFor="title">Title of Post</label>
                   <Field component={Input} placeholder='My amazing trip two week trip to Hawaii!' type="text" name="title" validate={[required, nonEmpty]} />
                   <label htmlFor="destination">Where did you go?</label>
-                  <Field component={Input} placeholder='Hawaii' type="text" name="destination" validate={[required, nonEmpty]} />
-                  <label htmlFor="lodging">Where did you Stay</label>
+                  <Field component={Input} placeholder='Location (Can be City/State/Country)' type="text" name="destination" validate={[required, nonEmpty]} />
+                  <label htmlFor="lodging">Where did you Stay?</label>
                   <Field
                       component={TextArea}
+                      writing={"The Rennasiance Inn"}
                       type="text"
                       name="lodging"
                       placeholder='Tell us about the place(s) you stayed! Be as detailed and descriptive as possible!'
@@ -38,13 +51,6 @@ export class CreatePostForm extends React.Component {
                       type="textbox"
                       name="dining"
                       placeholder='Tell us about the place(s) you ate! Be as detailed and descriptive as possible!'
-                  />
-                  <label htmlFor="sites">Where did you eat?</label>
-                  <Field
-                      component={TextArea}
-                      type="textbox"
-                      name="sites"
-                      placeholder='Tell us about the sites you saw! (e.g. Statue of Liberty, Empire State Building) Be as detailed and descriptive as possible!'
                   />
                   <label htmlFor="sites">What sites did you see?</label>
                   <Field
@@ -87,14 +93,12 @@ export class CreatePostForm extends React.Component {
                       </Link>
                   </button>
                   </form>
-            </div>
-
         )
     }
 }
 
-export default reduxForm({
+export default PostForm = reduxForm({
     form: 'create-post',
     onSubmitFail: (errors, dispatch) =>
         dispatch(focus('create-post', Object.keys(errors)[0]))
-})(CreatePostForm);
+})(PostForm);

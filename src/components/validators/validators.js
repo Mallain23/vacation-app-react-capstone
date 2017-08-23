@@ -1,6 +1,6 @@
 export const required = value => (value ? undefined : 'Required');
 
-export const isNumber = value => (typeof value  === 'number' ? undefined : 'Must be a number');
+export const isNumber = value => (parseInt(value)  !== NaN ? undefined : 'Must be a number');
 
 export const nonEmpty = value =>
     value.trim() !== '' ? undefined : 'Cannot be empty';

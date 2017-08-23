@@ -1,5 +1,6 @@
 import React from 'react'
-import CreatePostForm from './CreatePostForm'
+import PostForm from './PostForm'
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 export default class CreatePost extends React.Component {
 
@@ -8,8 +9,9 @@ export default class CreatePost extends React.Component {
             <div className='container'>
                 <div className='row'>
                     <div className='col-xs-12 col-lg-8'>
-                        <div className='create-card'>
-                            <CreatePostForm/>
+                        <div className='box create-post'>
+                            <h1 className='form-heading'>Create New Post</h1>
+                            <PostForm />
                         </div>
                     </div>
                 </div>
