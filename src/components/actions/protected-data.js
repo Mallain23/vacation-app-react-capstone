@@ -13,6 +13,12 @@ export const fetchProtectedDataError = error => ({
     error
 });
 
+export const ADD_NEW_POST = 'ADD_NEW_POST'
+export const addNewPost = post =>({
+    type: ADD_NEW_POST,
+    post
+})
+
 export const fetchPosts = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     return fetch(`${API_BASE_URL}/protected/posts`, {
@@ -30,3 +36,23 @@ export const fetchPosts = () => (dispatch, getState) => {
             dispatch(fetchProtectedDataError(err));
         });
 };
+
+export const createPost = (values) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  console.log(values)
+  return fetch(`${API_BASE_URL}/protected/posts`, {
+      method: 'POST',
+      headers: {
+          Authorization: `Bearer ${authToken}`,
+          'content-type': 'application/json'
+      },
+      body: JSON.stringify(values)
+  })
+      .then(res => normalizeResponseErrors(res))
+      .then(res => res.json())
+      .then(data => dispatch(addNewPost(data)))
+
+      .catch(err => {
+          dispatch(fetchProtectedDataError(err));
+  });
+}

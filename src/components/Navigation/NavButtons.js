@@ -22,36 +22,9 @@ export class NavButtons extends React.Component {
 
     render() {
 
-          if (this.props.loggedIn) {
+        if(!this.props.loggedIn) {
+
             return (
-                <span>
-                    <div className='col-xs-12 col-md-2'>
-                        <div className='box-navigation'>
-                            <div className='dropdown'>
-                                <a href="javascript:void(0)" className="dropbtn nav-links">Sort Posts</a>
-                                <div className="dropdown-items">
-                                    <DropdownLink value='Most Recent'id='most-recent'/>
-                                    <DropdownLink value='Most Visited'id='most-visited'/>
-                                    <DropdownLink value='Highest Rated'id='highest-rated'/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='col-xs-12 col-md-5'>
-                        <div className='box'>
-                            <NavInput />
-                        </div>
-                    </div>
-                    <div className='col-xs-12 col-md-2'>
-                        <div className='box-navigation'>
-                            <span className='username-heading'><Link to={`/profile/${this.props.profileId}`}>{this.props.username}</Link></span>
-                            <Link className='round-button' to={`/create-post`}> + </Link>
-                        </div>
-                    </div>
-                </span>
-            )
-          }
-          return (
               <span>
                  <div className='col-xs-12 col-md-4'>
                      <Link className='nav-links' to='/home#overview'>Overview</Link>
@@ -66,16 +39,41 @@ export class NavButtons extends React.Component {
                     </div>
                 </div>
              </span>
+            )
+        }
+        console.log(this.props.username)
+        return (
+             <span>
+                 <div className='col-xs-12 col-md-2'>
+                     <div className='box-navigation'>
+                         <div className='dropdown'>
+                             <a href="javascript:void(0)" className="dropbtn nav-links">Sort Posts</a>
+                             <div className="dropdown-items">
+                                 <DropdownLink value='Most Recent'id='most-recent'/>
+                                 <DropdownLink value='Most Visited'id='most-visited'/>
+                                 <DropdownLink value='Highest Rated'id='highest-rated'/>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div className='col-xs-12 col-md-5'>
+                         <NavInput />
+                 </div>
+                 <div className='col-xs-12 col-md-3'>
+                        <Link className='nav-links' to={`/profile/${this.props.profileId}`}>{this.props.currentUser.username}</Link>
+                        <Link className='round-button' to='/create-post'> + </Link>
+                  </div>
+             </span>
         )
     }
 }
 
+
 const mapStateToProps = state => {
-  let loggedIn = state.auth.currentUser
-  console.log(state)
+
   return {
-      loggedIn,
-      username: state.auth.currentUser,
+      loggedIn: state.auth.currentUser !== null,
+      currentUser: state.auth.currentUser,
       profileId: state.app.auth.profileId
   }
 }
