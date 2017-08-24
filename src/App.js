@@ -14,8 +14,44 @@ import EditPost from './components/Posts/EditPost'
 import ViewPost from './components/Posts/ViewPost'
 import CreatePost from './components/Posts/CreatePost'
 
+import {refreshAuthToken} from './components/actions/auth';
+
 
 export class App extends React.Component {
+    componentDidMount() {
+        if (this.props.hasAuthToken) {
+      // Try to get a fresh auth token if we had an existing one in
+      // localStorage
+            this.props.dispatch(refreshAuthToken());
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.loggedIn && !this.props.loggedIn) {
+      // When we are logged in, refresh the auth token periodically
+            this.startPeriodicRefresh();
+        }
+        else if (!nextProps.loggedIn && this.props.loggedIn) {
+      // Stop refreshing when we log out
+            this.stopPeriodicRefresh();
+        }
+    }
+
+    componentWillUnmount() {
+        this.stopPeriodicRefresh();
+    }
+
+    startPeriodicRefresh() {
+        this.refreshInterval = setInterval(() => this.props.dispatch(refreshAuthToken()), 60 * 60 * 1000);
+    };
+
+    stopPeriodicRefresh() {
+        if (!this.refreshInterval) {
+            return;
+    }
+
+    clearInterval(this.refreshInterval);
+    }
 
     render() {
         return (
@@ -37,9 +73,15 @@ export class App extends React.Component {
 //<Route exact path='/' component={LandingPage} />
 
 const mapStateToProps = state => {
-    console.log(state)
+    const {currentUser} = state.auth;
     return {
-    isLoggedIn: state.app.auth.user !== null
-  }
-}
+        loggedIn: currentUser !== null,
+        username: currentUser ? state.auth.currentUser.username : '',
+        name: currentUser
+            ? `${currentUser.firstName} ${currentUser.lastName}`
+            : '',
+        protectedData: state.protectedData.data
+    };
+};
+
 export default withRouter(connect(mapStateToProps)(App));

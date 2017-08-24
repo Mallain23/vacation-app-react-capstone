@@ -1,13 +1,25 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom';
+import {fetchPosts} from '../actions/protected-data';
 
 import Post from './Post'
 
 export class Home extends React.Component {
 
+    componentDidMount() {
+        if (!this.props.loggedIn) {
+           return;
+       }
+
+       this.props.dispatch(fetchPosts());
+    }
 
     render() {
-
+       if (!this.props.loggedIn) {
+            return <Redirect to="/" />;
+        }
+        console.log(this.props.posts)
        let posts = this.props.posts.map((post, index) => {
 
         return  <div key={index}  className='col-xs-12 col-sm6 col-md-3'>
@@ -26,10 +38,16 @@ export class Home extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
-
-      posts: state.app.posts,
-
-})
+const mapStateToProps = state => {
+    const {currentUser} = state.auth;
+    return {
+        loggedIn: currentUser !== null,
+        username: currentUser ? state.auth.currentUser.username : '',
+        name: currentUser
+            ? `${currentUser.firstName} ${currentUser.lastName}`
+            : '',
+        posts: state.protectedData.posts
+    };
+};
 
 export default connect(mapStateToProps)(Home)

@@ -13,7 +13,7 @@ export class EditPost extends React.Component {
                     <div className='col-xs-12 col-lg-8'>
                         <div className='box edit-post'>
                             <h1 className='form-heading'>Edit Post</h1>
-                            <PostForm {...this.props}/>
+                            <PostForm {...this.props} isEditting={true}/>
                         </div>
                     </div>
                 </div>
