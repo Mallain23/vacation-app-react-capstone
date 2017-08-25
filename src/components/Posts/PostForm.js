@@ -1,49 +1,70 @@
 import React from 'react'
 import {Field, reduxForm, focus} from 'redux-form';
-import {Link, Redirect} from 'react-router-dom';
+import {Link, Redirect, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux'
 
 import TextArea from '../Inputs/TextArea'
 import Input from '../Inputs/Input'
+import {fetchSelectedPost} from '../actions/protected-data'
 import {isNumber, isTrimmed, required, nonEmpty, validValue} from '../validators/validators'
-import {createPost} from '../actions/protected-data'
+import {createPost, editPost} from '../actions/protected-data'
 
 export class PostForm extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+    componentDidMount() {
+        if (this.props.isEditting) {
+              let postId = this.props.match.params.postId
+              this.props.dispatch(fetchSelectedPost(postId))
+
+              .then(postObj => this.handleInitialize(postObj.post))
+          }
+      }
+
+
+    handleInitialize(postObj) {
+        this.props.initialize(postObj)
+    }
+
+    renderButtonText() {
+      return this.props.isEditting ? 'Edit Post' : 'Create Post'
+    }
 
     onSubmit(values) {
-        console.log(values)
-        if (!this.props.isEddting) {
-          let newValueObj = Object.assign({}, values, {username: this.props.username, name: this.props.name})
-          console.log(newValueObj)
-           this.props.dispatch(createPost(newValueObj))
+        console.log('made it', this.props.isEditting)
+        if (!this.props.isEditting) {
+            console.log(this.props.username)
+            let newValueObj = Object.assign({}, values, {username: this.props.username, name: this.props.name})
+              return this.props.dispatch(createPost(newValueObj))
 
-           .then(() => {
+            .then((postObj) => {
+              console.log(this.props, postObj)
+              this.props.history.push(`/post/${postObj.post.postId}`)
+          })
 
-            this.context.history.push(`/post/${this.props.postId}`)
-    })
-  }
-}
-    componentDidMount() {
+        }
 
-      if (this.props.postId) {
-        this.handleInitialize()
-      }
+        this.props.dispatch(editPost(values))
+
+        .then((postObj) => {
+
+          this.props.history.push(`/post/${postObj.post.postId}`)
+
+        })
+
     }
-    handleInitialize() {
-      const initData ={
-      'title': this.props.heading,
-      'dining': this.props.content
-    }
-    this.props.initialize(initData)
-    }
+
+
     render() {
+        console.log(this.props.handleSubmit)
         return (
 
               <form
                   className="create-post-form"
-                  onSubmit={this.props.handleSubmit(values =>
-                      this.onSubmit(values)
-                  )}>
+                  onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
+                  >
                   <label htmlFor="title">Title of Post</label>
                   <Field component={Input} placeholder='My amazing trip two week trip to Hawaii!' type="text" name="title" validate={[required, nonEmpty]} />
                   <label htmlFor="destination">Where did you go?</label>
@@ -91,12 +112,12 @@ export class PostForm extends React.Component {
                       type="number"
                       name="rating"
                       placeholder='Rate your trip on a scale of 1 to 10!'
-                      validate={[required, nonEmpty, isNumber, validValue]}
+                      validate={[required, isNumber, validValue]}
                   />
                   <button
                       type="submit"
                       disabled={this.props.pristine || this.props.submitting}>
-                      Create Post
+                      {this.renderButtonText()}
                   </button>
                   <button
                       disabled={this.props.submitting}>
@@ -109,18 +130,9 @@ export class PostForm extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
-console.log(state)
-return {
-  username: state.auth.currentUser.username,
-  name: `${state.auth.currentUser.firstName} ${state.auth.currentUser.lastName}`,
-  postId: state.protectedData.newlyAddedPost.postId
-}
-}
-const postForm = connect(mapStateToProps)(PostForm)
 
 export default PostForm = reduxForm({
     form: 'create-post',
     onSubmitFail: (errors, dispatch) =>
         dispatch(focus('create-post', Object.keys(errors)[0]))
-})(postForm);
+})(PostForm);

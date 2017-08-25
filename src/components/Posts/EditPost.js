@@ -5,8 +5,9 @@ import {connect} from 'react-redux'
 
 export class EditPost extends React.Component {
 
+
     render() {
-      console.log(this.props.postId)
+
         return (
             <div className='container'>
                 <div className='row'>
@@ -22,16 +23,11 @@ export class EditPost extends React.Component {
     }
 }
 
-const mapStateToProps = (state, props) => {
-    let postId = props.match.params.postId
 
-    let postObj = state.app.posts.find(post => postId === post.postId.toString())
+const mapStateToProps = state => ({
 
-    return {
-      content: postObj.content,
-      heading: postObj.heading,
-      postId
-    }
-};
+  username: state.auth.currentUser.username,
+  name: `${state.auth.currentUser.firstName} ${state.auth.currentUser.lastName}`
+})
 
 export default connect(mapStateToProps)(EditPost)

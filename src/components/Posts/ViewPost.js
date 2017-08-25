@@ -6,6 +6,12 @@ import LargePost from './LargePost'
 import Aside from './Aside'
 
 export class ViewPost extends React.Component {
+    constructor(props) {
+        super(props)
+
+    }
+
+
     render() {
         return(
             <div className='container'>
@@ -13,36 +19,18 @@ export class ViewPost extends React.Component {
                     <div className='col-xs-12 col-lg-8'>
                         <div className='card-inner'>
                             <div className='box'>
-                                <div className='row'>
-                                    <div className='col-xs-12 col-md-3'>
-                                        <Link to={`/profiles/${this.props.profileId}`}>{this.props.profileLogo}</Link>
-                                    </div>
+
                                     <LargePost {...this.props} />
-                                </div>
                             </div>
                         </div>
                     </div>
-                    <Aside/>
+                    <Aside {...this.props}/>
                 </div>
             </div>
         )
     }
 }
 
-const mapStateToProps = (state, props) => {
 
-  let selectedPost = state.app.posts.find(post => {
-   return post.postId.toString() === props.match.params.postId
-  })
-  console.log(selectedPost)
-  let {heading, content, name, profileId, profileLogo } = selectedPost
-  return {
-     profileId,
-     profileLogo,
-     heading,
-     content,
-     name
-   }
-}
 
-export default connect(mapStateToProps)(ViewPost)
+export default connect()(ViewPost)

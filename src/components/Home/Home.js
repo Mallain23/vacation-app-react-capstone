@@ -24,7 +24,7 @@ export class Home extends React.Component {
 
         return  <div key={index}  className='col-xs-12 col-sm6 col-md-3'>
             <div className='post-box' key={index}>
-                <Post key={index} postId={post.postId} heading={post.heading} username={post.username} profileId={post.profileId} content={post.content} name={post.name} />
+                <Post key={index} postId={post.postId} title={post.title} username={post.username} profileId={post.profileId} destination={post.destination} name={post.name} title={post.title}/>
             </div>
          </div>
        })
