@@ -10,6 +10,7 @@ import LandingPage from './components/LandingPage/LandingPage'
 import Home from './components/Home/Home'
 import ProfilePage from './components/Profile/ProfilePage'
 import EditPost from './components/Posts/EditPost'
+import SearchResults from './components/Home/SearchResults'
 // import Profile from './components/Profile/ProfilePage'
 import ViewPost from './components/Posts/ViewPost'
 import CreatePost from './components/Posts/CreatePost'
@@ -59,9 +60,10 @@ export class App extends React.Component {
         return (
 
                 <div>
-                  <Navigation />
+                  <Route path='/' component={Navigation} />
                   <Route exact path='/' component={LandingPage} />
                   <Route exact path='/welcome' component={Home} />
+                  <Route exact path='/search' component={SearchResults} />
                   <Route exact path='/profile/:profileId' component={ProfilePage} />
                   <Route exact path='/create-post' component={CreatePost} />
                   <Route exact path='/post/:postId' component={ViewPost} />

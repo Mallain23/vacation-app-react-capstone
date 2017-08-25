@@ -57,7 +57,7 @@ export class NavButtons extends React.Component {
                      </div>
                  </div>
                  <div className='col-xs-12 col-md-5'>
-                         <NavInput />
+                         <NavInput {...this.props}/>
                  </div>
                  <div className='col-xs-12 col-md-3'>
                         <Link className='nav-links' to={`/profile/${this.props.profileId}`}>{this.props.currentUser.username}</Link>

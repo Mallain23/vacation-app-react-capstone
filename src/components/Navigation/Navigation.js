@@ -17,7 +17,7 @@ export default class Navigation extends React.Component {
                             <h1 className='nav-app-title'><Link to='/'>Vacay Away</Link></h1>
                         </div>
                     </div>
-                    <NavButtons />
+                    <NavButtons {...this.props} />
                 </div>
             </div>
         </nav>

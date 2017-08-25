@@ -7,17 +7,18 @@ export const fetchProtectedDataSuccess = data => ({
     data
 });
 
-export const FETCH_RELATED_POSTS_SUCCESS = 'FETCH_RELATED_POSTS'
-export const fetchRelatedPostsSuccess = data => ({
-    type: FETCH_RELATED_POSTS_SUCCESS,
-    data
-})
-
 export const FETCH_PROTECTED_DATA_ERROR = 'FETCH_PROTECTED_DATA_ERROR';
 export const fetchProtectedDataError = error => ({
     type: FETCH_PROTECTED_DATA_ERROR,
     error
 });
+
+export const SEARCH_FOR_POSTS_SUCCESS = 'SEARCH_FOR_POSTS_SUCCESS'
+export const searchForPostsSuccess = data => ({
+    type: SEARCH_FOR_POSTS_SUCCESS,
+    data
+})
+
 
 export const ADD_NEW_POST = 'ADD_NEW_POST'
 export const addNewPost = post =>({
@@ -55,20 +56,20 @@ export const fetchPosts = () => (dispatch, getState) => {
         });
 };
 
-export const fetchRelatedPosts = (amount, destination) => (dispatch, getState) => {
+export const searchForPosts = (destination, amount) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
+    let URL = `${API_BASE_URL}/protected/destination/?destination=${destination}&amount=${amount}`;
 
-    return fetch(`${API_BASE_URL}/protected/posts/?amount=${amount}&destination=${destination}`, {
+    return fetch(URL, {
         method: 'GET',
         headers: {
-            // Provide our auth token as credentials
             Authorization: `Bearer ${authToken}`
       }
   })
       .then(res => normalizeResponseErrors(res))
       .then(res => res.json())
       .then(data => {
-        dispatch(fetchRelatedPostsSuccess(data))})
+        dispatch(searchForPostsSuccess(data))})
       .catch(err => {
           dispatch(fetchProtectedDataError(err));
       });
@@ -76,7 +77,7 @@ export const fetchRelatedPosts = (amount, destination) => (dispatch, getState) =
 
 export const createPost = values => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
-  console.log(values)
+
   return fetch(`${API_BASE_URL}/protected/posts`, {
       method: 'POST',
       headers: {
@@ -96,7 +97,7 @@ export const createPost = values => (dispatch, getState) => {
 
 export const editPost = values => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
-  console.log('here')
+
   return fetch(`${API_BASE_URL}/protected/posts`, {
       method: 'PUT',
       headers: {

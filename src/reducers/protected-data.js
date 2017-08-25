@@ -4,15 +4,15 @@ import {
     ADD_NEW_POST,
     UPDATE_CURRENT_POST,
     UPDATE_VIEW_USER_DATA,
-    FETCH_RELATED_POSTS_SUCCESS
+    SEARCH_FOR_POSTS_SUCCESS
 } from '../components/actions/protected-data';
 
 const initialState = {
     posts: [],
+    searchResultPosts: [],
     newlyAddedPost: {},
     currentPost: {},
     viewUser: {},
-    relatedPosts: [],
     sliceIndex: 0,
     error: null
 };
@@ -25,13 +25,13 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, {
             posts: action.data,
             error: null
-      });
+        });
     }
 
-    else if (action.type === FETCH_RELATED_POSTS_SUCCESS) {
-          console.log(action.data)
+    else if (action.type === SEARCH_FOR_POSTS_SUCCESS) {
+
           return Object.assign({}, state, {
-              relatedPosts: action.data,
+              searchResultPosts: action.data,
               error: null
           })
     }
