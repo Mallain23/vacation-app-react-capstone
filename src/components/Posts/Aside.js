@@ -11,7 +11,7 @@ export class Aside extends React.Component {
 
         this.props.dispatch(fetchSelectedPost(postId))
         .then(({ post }) => this.props.dispatch(searchForPosts(post.destination, 6)))
-    }
+    };
 
     render() {
 

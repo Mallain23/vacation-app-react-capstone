@@ -1,36 +1,29 @@
 import React from 'react'
 import {Field, reduxForm, focus} from 'redux-form';
-import {Link, Redirect, withRouter} from 'react-router-dom';
-import {connect} from 'react-redux'
 
 import {editProfile} from '../actions/profile'
 import {fetchSelectedUser} from '../actions/protected-data'
 import { required, nonEmpty } from '../validators/validators'
 import TextArea from '../Inputs/TextArea'
 import Input from '../Inputs/Input'
+import ImageInput from './ImageInput'
 
 import './ProfilePage.css'
 
 export class EditProfile extends React.Component {
 
     componentDidMount() {
-
-              this.props.dispatch(fetchSelectedUser(this.props.username))
-
-              .then(profileObj => {
-              
-                  this.handleInitialize(profileObj.user)
-                })
-          }
-
+        this.props.dispatch(fetchSelectedUser(this.props.username))
+        .then(({ user }) => this.handleInitialize(user))
+    };
 
     handleInitialize(postObj) {
         this.props.initialize(postObj)
-    }
+    };
 
     onSubmit (values) {
         this.props.dispatch(editProfile(values))
-    }
+    };
 
     render() {
 
@@ -54,6 +47,13 @@ export class EditProfile extends React.Component {
                         type="text"
                         name="bio"
                         placeholder='Tell us about yourself!'
+                    />
+                    <label htmlFor="favorite">Favorite Destination</label>
+                    <Field
+                        component={TextArea}
+                        type="text"
+                        name="favorite"
+                        placeholder="Where is your favorite travel destination?"
                     />
                     <button
                         type="submit"

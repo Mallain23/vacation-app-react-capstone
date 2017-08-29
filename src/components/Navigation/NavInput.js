@@ -8,21 +8,20 @@ import './Navigation.css'
 
 export class NavInput extends React.Component {
     constructor(props) {
-
           super(props)
 
           this.handleSubmit = this.handleSubmit.bind(this)
-    }
+    };
 
     handleSubmit(e) {
         e.preventDefault()
 
         let destination = this.input.value
         this.input.value = '';
-        
+
         this.props.dispatch(searchForPosts(destination, 20))
         .then(() => this.props.history.push('../search'))
-    }
+    };
 
     render() {
         return (
@@ -31,7 +30,7 @@ export class NavInput extends React.Component {
                 <button className='hide'></button>
             </form>
         )
-    }
-}
+    };
+};
 
 export default connect()(NavInput)

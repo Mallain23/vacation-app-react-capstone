@@ -18,7 +18,7 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-    
+
     if (action.type === FETCH_PROTECTED_DATA_SUCCESS) {
       //  let posts = action.data.length > 16 ? action.data.slice(sliceIndex * 16, (state.sliceIndex * 16) + 16) : action.data
 
@@ -51,7 +51,7 @@ export default function reducer(state = initialState, action) {
     }
 
     else if (action.type === UPDATE_VIEW_USER_DATA) {
-          console.log(action.user)
+    
           return Object.assign({}, state, {
             viewUser: action.user
           })

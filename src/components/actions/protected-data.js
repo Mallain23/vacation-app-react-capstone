@@ -1,6 +1,7 @@
 import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 import {getUsersPosts} from './profile'
+import { SubmissionError } from 'redux-form';
 
 export const FETCH_PROTECTED_DATA_SUCCESS = 'FETCH_PROTECTED_DATA_SUCCESS';
 export const fetchProtectedDataSuccess = data => ({
@@ -19,7 +20,6 @@ export const searchForPostsSuccess = data => ({
     type: SEARCH_FOR_POSTS_SUCCESS,
     data
 })
-
 
 export const ADD_NEW_POST = 'ADD_NEW_POST'
 export const addNewPost = post =>({
@@ -71,56 +71,79 @@ export const searchForPosts = (searchTerm, amount) => (dispatch, getState) => {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${authToken}`
-      }
-  })
-      .then(res => normalizeResponseErrors(res))
-      .then(res => res.json())
-      .then(data => {
-        dispatch(searchForPostsSuccess(data))})
-      .catch(err => {
-          dispatch(fetchProtectedDataError(err));
-      });
+        }
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(data => dispatch(searchForPostsSuccess(data)))
+    .catch(err => dispatch(fetchProtectedDataError(err)));
 };
 
 export const createPost = values => (dispatch, getState) => {
-  const authToken = getState().auth.authToken;
+    const authToken = getState().auth.authToken;
 
-  return fetch(`${API_BASE_URL}/protected/posts`, {
-      method: 'POST',
-      headers: {
-          Authorization: `Bearer ${authToken}`,
-          'content-type': 'application/json'
-      },
-      body: JSON.stringify(values)
-  })
-      .then(res => normalizeResponseErrors(res))
-      .then(res => res.json())
-      .then(data => dispatch(addNewPost(data)))
-
-      .catch(err => {
-          dispatch(fetchProtectedDataError(err));
-  });
+    return fetch(`${API_BASE_URL}/protected/posts`, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${authToken}`,
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(values)
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(data => dispatch(addNewPost(data)))
+    .catch(err => {
+        const {reason, message, location} = err;
+        if (reason === 'ValidationError') {
+             return Promise.reject(
+                 new SubmissionError({
+                     [location]: message
+                 })
+             );
+        }
+        return Promise.reject(
+            new SubmissionError({
+                _error: 'Error Submitting Post Data'
+            })
+        );
+    });
 }
 
 export const editPost = values => (dispatch, getState) => {
-  const authToken = getState().auth.authToken;
+    const authToken = getState().auth.authToken;
 
-  return fetch(`${API_BASE_URL}/protected/posts`, {
-      method: 'PUT',
-      headers: {
-          Authorization: `Bearer ${authToken}`,
-          'content-type': 'application/json'
-      },
-      body: JSON.stringify(values)
-  })
-      .then(res => normalizeResponseErrors(res))
-      .then(res => res.json())
-      .then(data => dispatch(editPostSuccess(data)))
+    return fetch(`${API_BASE_URL}/protected/posts`, {
+        method: 'PUT',
+        headers: {
+            Authorization: `Bearer ${authToken}`,
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(values)
+    })
 
-      .catch(err => {
-          dispatch(fetchProtectedDataError(err));
-  });
-}
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(data => dispatch(editPostSuccess(data)))
+
+    .catch(err => {
+        const {reason, message, location} = err;
+
+        if (reason === 'ValidationError') {
+             return Promise.reject(
+                 new SubmissionError({
+                     [location]: message
+                 })
+             );
+        }
+
+        return Promise.reject(
+            new SubmissionError({
+                _error: 'Error Submitting Post Data'
+            })
+        );
+    });
+};
 
 export const fetchSelectedPost = postId => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
@@ -143,7 +166,7 @@ export const fetchSelectedPost = postId => (dispatch, getState) => {
 
 export const deletePost = (postId, username) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
-    console.log(postId)
+
     return fetch(`${API_BASE_URL}/protected/posts/${postId}`, {
         method: 'DELETE',
         headers: {
@@ -154,27 +177,24 @@ export const deletePost = (postId, username) => (dispatch, getState) => {
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then(() => dispatch(getUsersPosts(username)))
-    .catch(err => {
-        dispatch(fetchProtectedDataError(err));
-    });
+    .catch(err => dispatch(fetchProtectedDataError(err)));
 }
 
 
 export const fetchSelectedUser = user => (dispatch, getState) => {
-  const authToken = getState().auth.authToken;
-  console.log(user)
-  return fetch(`${API_BASE_URL}/users/userdata/${user}/${null}`, {
-      method: 'GET',
-      headers: {
-          Authorization: `Bearer ${authToken}`,
-          'content-type': 'application/json'
-      }
-    })
-      .then(res => normalizeResponseErrors(res))
-      .then(res => res.json())
-      .then(data => dispatch(updateViewUserData(data)))
+    const authToken = getState().auth.authToken;
 
-      .catch(err => {
-          dispatch(fetchProtectedDataError(err));
-  });
-}
+    return fetch(`${API_BASE_URL}/users/userdata/${user}/${null}`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${authToken}`,
+            'content-type': 'application/json'
+        }
+    })
+
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(data => dispatch(updateViewUserData(data)))
+
+    .catch(err => dispatch(fetchProtectedDataError(err)));
+};

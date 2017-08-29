@@ -8,7 +8,9 @@ export function ManagePost (props) {
     if (!props.isLoggedIn) {
         return <Redirect to={'/'} />
     }
+
     let formHeading = props.isEditing ?  "Edit Form" : "Create Form";
+
     return (
         <div className='container'>
             <div className='row'>
@@ -21,7 +23,7 @@ export function ManagePost (props) {
             </div>
         </div>
     )
-}
+};
 
 const mapStateToProps = state => {
     const { username, firstName, lastName, profileId } = state.auth.currentUser

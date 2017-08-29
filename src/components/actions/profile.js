@@ -1,5 +1,6 @@
 import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
+import {SubmissionError} from 'redux-form';
 import {fetchProtectedDataError, FETCH_PROTECTED_DATA_ERROR } from './protected-data'
 
 export const TOGGLE_EDIT_PROFILE = 'TOGGLE_EDIT_PROFILE';
@@ -10,6 +11,16 @@ export const toggleEditProfile = () => ({
 export const TOGGLE_EDIT_POST = 'TOGGLE_EDIT_POST'
 export const toggleEditPost = () => ({
     type: TOGGLE_EDIT_POST
+});
+
+export const SET_EDIT_POST_TO_FALSE = 'SET_EDIT_POST_TO_FALSE'
+export const setEditPostToFalse = () => ({
+    type: SET_EDIT_POST_TO_FALSE
+});
+
+export const SET_EDIT_PROFILE_TO_FALSE = 'SET_EDIT_PROFILE_TO_FALSE'
+export const setEditProfileToFalse = () => ({
+    type: SET_EDIT_PROFILE_TO_FALSE
 });
 
 export const GET_USER_PROFILE_SUCCESS = 'GET_USER_PROFILE_SUCCESS'
@@ -75,7 +86,7 @@ export const getUsersPosts = username => (dispatch, getState) => {
 export const EDIT_PROFILE = 'EDIT-PROFILE'
 export const editProfile = values => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
-    console.log(values)
+
     return fetch(`${API_BASE_URL}/users`, {
         method: 'PUT',
         headers: {
@@ -84,11 +95,25 @@ export const editProfile = values => (dispatch, getState) => {
           },
           body: JSON.stringify(values)
     })
-        .then(res => normalizeResponseErrors(res))
-        .then(res => res.json())
-        .then(data => {
-          dispatch(editProfileSuccess(data))})
-        .catch(err => {
-            dispatch(fetchProtectedDataError(err));
-        });
-}
+
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(data => dispatch(editProfileSuccess(data)))
+    .then(() => console.log('Submitted with values', values))
+    .catch(err => {
+        const {reason, message, location} = err;
+        if (reason === 'ValidationError') {
+               return Promise.reject(
+                   new SubmissionError({
+                       [location]: message
+                   })
+               );
+        }
+
+        return Promise.reject(
+            new SubmissionError({
+                _error: 'Error Submitting Profile Data'
+            })
+        );
+    });
+};

@@ -13,9 +13,8 @@ export class Post extends React.Component {
     }
 
     renderAdditionalButtons() {
-
-        if (this.props.allowEdit) {
-            let { postId } = this.props
+        const { allowEdit } = this.props
+        if (allowEdit) {
 
             return (
                 <span>
@@ -28,31 +27,29 @@ export class Post extends React.Component {
 
     handleDeleteClick(e) {
         e.preventDefault()
-        let { postId, username } = this.props
+        const{ postId, username } = this.props
 
         this.props.dispatch(deletePost(postId, username))
-    }
+    };
 
     handleEditClick(e) {
         e.preventDefault()
-        let { postId } = this.props
+        const { postId } = this.props
         this.refs.btn.setAttribute("disabled", "disabled");
 
         this.props.dispatch(toggleEditPost())
         this.props.history.push(`/edit/${postId}`)
-    }
+    };
 
     render() {
-        const { title, profileId, name, destination, postId } = this.props
-
-        console.log(this.props)
+        const { title, profileId, destination, postId, username } = this.props
 
         return (
             <article className='box'>
                 <div className='inner-box'>
                     <hr/>
                     <h1 className='post-heading'>{title}</h1>
-                    <p className='font-accent'>by  <Link to={`/profile/${profileId}`}>{name}</Link></p>
+                    <p className='font-accent'>by  <Link to={`/profile/${profileId}`}>{username}</Link></p>
                     <p className='post-destination'>{destination}</p>
                     <div className='box-bottom'>
                         <Link to={`/post/${postId}`} className='oval-button'>Read</Link>
@@ -61,15 +58,16 @@ export class Post extends React.Component {
                 </div>
             </article>
         )
-    }
-}
+    };
+};
 
 const mapStateToProps = state => {
-    const { username } = state.auth.currentUser
+
+    const { editPost } = state.profile
 
     return {
-        username,
-        editPost: state.profile.editPost
+        currentUser: state.auth.currentUser,
+        editPost
     };
 };
 

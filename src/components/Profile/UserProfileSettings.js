@@ -16,13 +16,14 @@ export class UserProfileSettings extends React.Component {
     handleEdit(e) {
         e.preventDefault()
         this.props.dispatch(toggleEditProfile())
-    }
+    };
 
     handleLogOut(e) {
        this.props.dispatch(setCurrentUser(null));
        this.props.dispatch(setAuthToken(null));
        clearAuthToken();
-    }
+    };
+
     render() {
         return (
             <div className='user-profile-settings'>
@@ -32,15 +33,13 @@ export class UserProfileSettings extends React.Component {
                 <a onClick={this.handleLogOut} className="logout profile-settings">Log Out</a>
             </div>
         )
-    }
-}
+    };
+};
 
-const mapStateToProps = state => {
+const mapStateToProps = state => ({
 
-    return {
-        currentUser: state.auth.currentUser.username,
-        viewUser: state.profile.username
-  }
-}
+    currentUser: state.auth.currentUser.username,
+    viewUser: state.profile.username
+})
 
 export default connect(mapStateToProps)(UserProfileSettings)

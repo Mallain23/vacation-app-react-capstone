@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import DropdownLink from './DropdownLink'
 import NavInput from './NavInput'
 import {toggleLogin} from '../actions/users'
-import {toggleEditProfile} from '../actions/profile'
+import {toggleEditProfile, setEditPostToFalse, setEditProfileToFalse } from '../actions/profile'
 import { setCurrentUser, setAuthToken } from '../actions/auth'
 import {clearAuthToken} from '../local-storage';
 
@@ -15,29 +15,42 @@ export class NavButtons extends React.Component {
     constructor (props) {
         super(props)
 
-        this.handleClick = this.handleClick.bind(this)
-        this.handleEditClick = this.handleEditClick.bind(this)
-        this.handleLogOut = this.handleLogOut.bind(this)
-    }
+        this.handleLoginClick = this.handleLoginClick.bind(this)
+        this.handleLogOutClick = this.handleLogOutClick.bind(this)
+        this.handleCreatePostClick = this.handleCreatePostClick.bind(this)
+        this.handleEditProfileClick = this.handleEditProfileClick.bind(this)
+    };
 
-    handleClick (e) {
+
+    handleLoginClick (e) {
       e.preventDefault()
       this.props.dispatch(toggleLogin());
-    }
+    };
 
-    handleEditClick(e) {
+    handleLogOutClick (e) {
+       e.preventDefault()
+       this.props.dispatch(setCurrentUser(null));
+       this.props.dispatch(setAuthToken(null));
+
+       clearAuthToken();
+    };
+
+    handleEditProfileClick (e) {
       e.preventDefault()
       const {profileId} = this.props.currentUser
 
       this.props.dispatch(toggleEditProfile())
-      this.props.history.push(`../profile/${profileId}`)
-    }
+      this.props.dispatch(setEditPostToFalse());
 
-    handleLogOut(e) {
-       e.preventDefault()
-       this.props.dispatch(setCurrentUser(null));
-       this.props.dispatch(setAuthToken(null));
-       clearAuthToken();
+      this.props.history.push(`../profile/${profileId}`)
+    };
+
+    handleCreatePostClick (e) {
+      e.preventDefault()
+      this.props.dispatch(setEditPostToFalse());
+      this.props.dispatch(setEditProfileToFalse());
+
+      this.props.history.push(`../create-post`)
     }
 
     render() {
@@ -55,7 +68,7 @@ export class NavButtons extends React.Component {
                  <div className='col-xs-12 col-md-2'>
                     <div className='right-nav-buttons'>
                          <Link className='nav-links' to='/#signup'>Signup</Link>
-                         <a className='nav-links' onClick={this.handleClick}>Login</a>
+                         <a className='nav-links' onClick={this.handleLoginClick}>Login</a>
                     </div>
                 </div>
              </span>
@@ -83,11 +96,11 @@ export class NavButtons extends React.Component {
                     <div className='dropdown'>
                         <a href="javascript:void(0)" className="dropbtn nav-links">{this.props.currentUser.username}</a>
                         <div className="dropdown-items">
-                            <a className='nav-links' onClick={this.handleEditClick} id='edit-profile'> Edit Profile</a>
-                            <a className='log-out' onClick={this.handleLogOut} id='log-out'>Log Out</a>
+                            <a className='nav-links' onClick={this.handleEditProfileClick} id='edit-profile'> Edit Profile</a>
+                            <a className='log-out' onClick={this.handleLogOutClick} id='log-out'>Log Out</a>
                         </div>
                     </div>
-                    <Link className='round-button' to='/create-post'> + </Link>
+                    <a onClick={this.handleCreatePostClick} className='round-button'> + </a>
                 </div>
              </span>
         )

@@ -10,11 +10,8 @@ export class LargePost extends React.Component {
         let postId = this.props.match.params.postId
 
         this.props.dispatch(fetchSelectedPost(postId))
-
-        .then(postObj => {
-            this.props.dispatch(fetchSelectedUser(postObj.post.username))
-        })
-    }
+        .then(({post}) => this.props.dispatch(fetchSelectedUser(post.username)))
+    };
 
     render() {
 
@@ -40,7 +37,7 @@ export class LargePost extends React.Component {
                     <h1 className='large-post-title'>{title}</h1>
                     <p className='font-accent'>by  <Link to={`/profile/${profileId}`}>{name}</Link></p>
                     <p className='large-post-destination'>Destination: {destination}</p>
-                    <p className='large-post-lodging'>Lodgin: {lodging}</p>
+                    <p className='large-post-lodging'>Lodging: {lodging}</p>
                     <p className='large-post-dining'>Dining: {dining}</p>
                     <p className='large-post-sites'>Sites: {sites}</p>
                     <p className='large-post-activities'>Activities: {activities}</p>
@@ -53,7 +50,7 @@ export class LargePost extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-  console.log(state.protectedData)
+
   return Object.assign({}, state.protectedData.currentPost, state.protectedData.viewUser)
 }
 

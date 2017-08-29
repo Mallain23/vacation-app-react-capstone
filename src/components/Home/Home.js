@@ -1,25 +1,32 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom';
-import {fetchPosts} from '../actions/protected-data';
 
+import {fetchPosts} from '../actions/protected-data';
+import { setEditPostToFalse, setEditProfileToFalse } from '../actions/profile';
 import Post from './Post'
 
 export class Home extends React.Component {
 
     componentDidMount() {
+
         return this.props.loggedIn ? this.props.dispatch(fetchPosts()) : ''
+    };
 
-    }
-
+    componentWillUnmount() {
+      this.props.dispatch(setEditPostToFalse());
+      this.props.dispatch(setEditProfileToFalse());
+    };
+    
     render() {
-       if (!this.props.loggedIn) {
+        const { loggedIn, posts, history } = this.props
 
+        if (!loggedIn) {
             return <Redirect to="/" />;
         }
-        console.log("hi")
-       let posts = this.props.posts.map(({destination, postId, title, username, profileId, name}, index) => {
-            console.log(this.props)
+
+       const formattedPosts = posts.map(({destination, postId, title, username, profileId, name}, index) => {
+
             return  <div key={index}  className='col-xs-12 col-sm6 col-md-3'>
                 <div className='post-box' key={index}>
                     <Post key={index}
@@ -29,7 +36,7 @@ export class Home extends React.Component {
                     username={username}
                     profileId={profileId}
                     name={name}
-                    history={this.props.history}
+                    history={history}
                       />
                 </div>
              </div>
@@ -38,19 +45,20 @@ export class Home extends React.Component {
         return (
             <div className='container'>
                 <div className='row main'>
-                    {posts}
+                    {formattedPosts}
                 </div>
             </div>
         )
-    }
-}
+    };
+};
 
 const mapStateToProps = state => {
-    const {currentUser} = state.auth;
+    const { currentUser } = state.auth;
+    const { posts } = state.protectedData
 
     return {
         loggedIn: currentUser !== null,
-        posts: state.protectedData.posts
+        posts
     };
 };
 

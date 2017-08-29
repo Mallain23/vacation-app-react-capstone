@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {BrowserRouter as Router, Route, Link, Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 
 import EditProfile from './EditProfile';
 import UserProfile from './UserProfile';
@@ -11,27 +11,24 @@ import { getUserProfile } from '../actions/profile'
 import './ProfilePage.css'
 
 export class ProfilePage extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
-
 
     renderProfileComponent() {
-        return this.props.editProfile ? <EditProfile username={this.props.currentUser.username} /> : <UserProfile />
+        const { username } = this.props.currentUser
+        return this.props.editProfile ? <EditProfile username={username} /> : <UserProfile />
     };
 
     componentWillMount() {
           let profileId = this.props.match.params.profileId
           this.props.dispatch(getUserProfile(profileId))
-    }
+    };
+
     render() {
         if (!this.props.loggedIn) {
           return <Redirect to={'/'}/>
         }
-        
-        let profileSettings
-        profileSettings = this.props.currentUser.username === this.props.username ? <UserProfileSettings /> : ''
+
+        const { username, currentUser, avatar } = this.props
+        const profileSettings = currentUser.username === username ? <UserProfileSettings /> : ''
 
         return (
             <div className='user-profile'>
@@ -43,7 +40,7 @@ export class ProfilePage extends React.Component {
                         </div>
                         <div className='col-xs-12 col-md-8 user-profile-right'>
                             <div className='box'>
-                                <img src={this.props.avatar} className='profile-avatar avatar-large'/>
+                                <img src={avatar} className='profile-avatar avatar-large'/>
                                 {profileSettings}
                                 {this.renderProfileComponent()}
                             </div>
@@ -59,17 +56,16 @@ export class ProfilePage extends React.Component {
 };
 
 const mapStateToProps = state => {
-    console.log(state.profile)
-    let {bio, avatar, username, posts} = state.profile.currentProfile
+
+    let { avatar, username } = state.profile.currentProfile
+    let { editProfile } = state.profile
 
     return {
         currentUser: state.auth.currentUser,
         loggedIn: state.auth.currentUser !== null,
-        bio,
         username,
         avatar,
-        posts,
-        editProfile: state.profile.editProfile
+        editProfile
       };
 }
 

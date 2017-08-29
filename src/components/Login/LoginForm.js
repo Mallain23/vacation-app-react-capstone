@@ -11,7 +11,7 @@ export class LoginForm extends React.Component {
 
         this.handleClick = this.handleClick.bind(this)
     }
-    
+
     onSubmit(values) {
         return this.props.dispatch(login(values.username, values.password));
     }
@@ -20,7 +20,7 @@ export class LoginForm extends React.Component {
     }
 
     render() {
-        console.log(this.props)
+
         let error;
         if (this.props.error) {
             error = (
