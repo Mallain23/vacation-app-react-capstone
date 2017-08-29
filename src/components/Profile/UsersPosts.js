@@ -3,16 +3,26 @@ import {connect} from 'react-redux'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import Post from '../Home/Post'
 
-export default class UserPosts extends React.Component {
+export class UserPosts extends React.Component {
   render() {
+      let userPosts
 
-      let userPosts = this.props.posts.map((post, index) => {
-          return <div key={index}  className='col-xs-12 col-sm6 col-md-3'>
+      if (this.props.posts) {
+          let editProp
+          userPosts = this.props.posts.map((post, index) => {
+              editProp = post.username === this.props.currentUser ? true : false
+              return <div key={index}  className='col-xs-12 col-sm6 col-md-3'>
                     <div className='post-box' key={index}>
-                        <Post key={index} postId={post.postId} heading={post.heading} username={this.props.username} profileId={post.profileId} content={post.content} name={post.name} />
+                        <Post allowEdit={editProp}
+                              key={index} postId={post.postId}
+                              {...this.props}
+                              username={this.props.username}
+                              profileId={post.profileId}
+                              name={post.name} />
                     </div>
                 </div>
-        });
+          });
+      }
 
         return (
             <div className="users-posts">
@@ -21,3 +31,13 @@ export default class UserPosts extends React.Component {
         )
     }
 }
+
+
+const mapStateToProps = state => ({
+
+    posts: state.profile.usersPosts,
+    currentUser: state.auth.currentUser.username
+
+})
+
+export default connect(mapStateToProps)(UserPosts)

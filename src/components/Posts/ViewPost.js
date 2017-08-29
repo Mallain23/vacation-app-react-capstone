@@ -1,36 +1,34 @@
 import React from 'react'
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
 
 import LargePost from './LargePost'
 import Aside from './Aside'
 
-export class ViewPost extends React.Component {
-    constructor(props) {
-        super(props)
+export function ViewPost (props) {
 
+    if (!props.isLoggedIn) {
+        return <Redirect to={'/'} />
     }
 
-
-    render() {
-        return(
-            <div className='container'>
-                <div className='row main'>
-                    <div className='col-xs-12 col-lg-8'>
-                        <div className='card-inner'>
-                            <div className='box'>
-
-                                    <LargePost {...this.props} />
-                            </div>
+    return (
+        <div className='container'>
+            <div className='row main'>
+                <div className='col-xs-12 col-lg-8'>
+                    <div className='card-inner'>
+                        <div className='box'>
+                           <LargePost {...props}/>
                         </div>
                     </div>
-                    <Aside {...this.props}/>
                 </div>
+                <Aside {...props} />
             </div>
-        )
-    }
+        </div>
+    )
 }
 
+const mapStateToProps = state => ({
+    isLoggedIn: state.auth.currentUser !== null
+})
 
-
-export default connect()(ViewPost)
+export default connect(mapStateToProps)(ViewPost)

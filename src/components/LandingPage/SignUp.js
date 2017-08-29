@@ -3,7 +3,7 @@ import RegistrationForm from './RegistrationForm'
 
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux'
-import {toggleLogin} from '../actions/app'
+import { toggleLogin } from '../actions/users'
 
 export class SignUp extends React.Component {
     constructor(props) {

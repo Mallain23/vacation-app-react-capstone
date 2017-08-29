@@ -1,10 +1,13 @@
 import React from 'react'
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import DropdownLink from './DropdownLink'
 import NavInput from './NavInput'
-import {toggleLogin} from '../actions/app'
+import {toggleLogin} from '../actions/users'
+import {toggleEditProfile} from '../actions/profile'
+import { setCurrentUser, setAuthToken } from '../actions/auth'
+import {clearAuthToken} from '../local-storage';
 
 import './Navigation.css'
 
@@ -13,11 +16,28 @@ export class NavButtons extends React.Component {
         super(props)
 
         this.handleClick = this.handleClick.bind(this)
+        this.handleEditClick = this.handleEditClick.bind(this)
+        this.handleLogOut = this.handleLogOut.bind(this)
     }
 
     handleClick (e) {
       e.preventDefault()
       this.props.dispatch(toggleLogin());
+    }
+
+    handleEditClick(e) {
+      e.preventDefault()
+      const {profileId} = this.props.currentUser
+
+      this.props.dispatch(toggleEditProfile())
+      this.props.history.push(`../profile/${profileId}`)
+    }
+
+    handleLogOut(e) {
+       e.preventDefault()
+       this.props.dispatch(setCurrentUser(null));
+       this.props.dispatch(setAuthToken(null));
+       clearAuthToken();
     }
 
     render() {
@@ -41,7 +61,7 @@ export class NavButtons extends React.Component {
              </span>
             )
         }
-        console.log(this.props.username)
+
         return (
              <span>
                  <div className='col-xs-12 col-md-2'>
@@ -50,8 +70,8 @@ export class NavButtons extends React.Component {
                              <a href="javascript:void(0)" className="dropbtn nav-links">Sort Posts</a>
                              <div className="dropdown-items">
                                  <DropdownLink value='Most Recent'id='most-recent'/>
-                                 <DropdownLink value='Most Visited'id='most-visited'/>
-                                 <DropdownLink value='Highest Rated'id='highest-rated'/>
+                                 <DropdownLink value='Most Visited Destinations'id='most-visited'/>
+                                 <DropdownLink value='Highest Rated Destinations'id='highest-rated'/>
                              </div>
                          </div>
                      </div>
@@ -60,9 +80,15 @@ export class NavButtons extends React.Component {
                          <NavInput {...this.props}/>
                  </div>
                  <div className='col-xs-12 col-md-3'>
-                        <Link className='nav-links' to={`/profile/${this.props.profileId}`}>{this.props.currentUser.username}</Link>
-                        <Link className='round-button' to='/create-post'> + </Link>
-                  </div>
+                    <div className='dropdown'>
+                        <a href="javascript:void(0)" className="dropbtn nav-links">{this.props.currentUser.username}</a>
+                        <div className="dropdown-items">
+                            <a className='nav-links' onClick={this.handleEditClick} id='edit-profile'> Edit Profile</a>
+                            <a className='log-out' onClick={this.handleLogOut} id='log-out'>Log Out</a>
+                        </div>
+                    </div>
+                    <Link className='round-button' to='/create-post'> + </Link>
+                </div>
              </span>
         )
     }
@@ -70,12 +96,12 @@ export class NavButtons extends React.Component {
 
 
 const mapStateToProps = state => {
+    let { currentUser } = state.auth
 
-  return {
-      loggedIn: state.auth.currentUser !== null,
-      currentUser: state.auth.currentUser,
-      profileId: state.app.auth.profileId
-  }
-}
+    return {
+        loggedIn: currentUser !== null,
+        currentUser: currentUser
+    };
+};
 
 export default connect(mapStateToProps)(NavButtons)

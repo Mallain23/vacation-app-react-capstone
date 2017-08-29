@@ -18,7 +18,8 @@ export class NavInput extends React.Component {
         e.preventDefault()
 
         let destination = this.input.value
-
+        this.input.value = '';
+        
         this.props.dispatch(searchForPosts(destination, 20))
         .then(() => this.props.history.push('../search'))
     }

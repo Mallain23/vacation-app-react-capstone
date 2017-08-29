@@ -5,13 +5,13 @@ import {loadAuthToken} from './local-storage';
 import authReducer from './reducers/auth';
 import protectedDataReducer from './reducers/protected-data';
 import {setAuthToken} from './components/actions/auth';
-import appReducer from './reducers/app'
+import profileReducer from './reducers/profile'
 
 const reducers = combineReducers({
   form: formReducer,
-  app: appReducer,
   auth: authReducer,
-  protectedData: protectedDataReducer
+  protectedData: protectedDataReducer,
+  profile: profileReducer
 })
 
 const store = createStore(reducers, applyMiddleware(thunk));

@@ -1,8 +1,10 @@
-import {SET_AUTH_TOKEN, SET_CURRENT_USER} from '../components/actions/auth';
+import {SET_AUTH_TOKEN, SET_CURRENT_USER,} from '../components/actions/auth';
+import {TOGGLE_LOGIN} from '../components/actions/users'
 
 const initialState = {
     authToken: null, // authToken !== null does not mean it has been validated
-    currentUser: null
+    currentUser: null,
+    showLogin: false
 };
 
 export default function reducer(state = initialState, action) {
@@ -19,5 +21,12 @@ export default function reducer(state = initialState, action) {
             currentUser: action.currentUser
         });
     }
+
+    else if (action.type ===  TOGGLE_LOGIN) {
+        return Object.assign({}, state, {
+          showLogin: !state.showLogin
+        })
+    }
+
     return state;
 };

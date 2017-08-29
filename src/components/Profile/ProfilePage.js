@@ -1,15 +1,38 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Link, Redirect} from 'react-router-dom'
 
-import UsersPosts from './UsersPosts'
+import EditProfile from './EditProfile';
+import UserProfile from './UserProfile';
+import UsersPosts from './UsersPosts';
+import UserProfileSettings from './UserProfileSettings'
+import { getUserProfile } from '../actions/profile'
+
 import './ProfilePage.css'
 
 export class ProfilePage extends React.Component {
     constructor(props) {
         super(props)
     }
+
+
+
+    renderProfileComponent() {
+        return this.props.editProfile ? <EditProfile username={this.props.currentUser.username} /> : <UserProfile />
+    };
+
+    componentWillMount() {
+          let profileId = this.props.match.params.profileId
+          this.props.dispatch(getUserProfile(profileId))
+    }
     render() {
+        if (!this.props.loggedIn) {
+          return <Redirect to={'/'}/>
+        }
+        
+        let profileSettings
+        profileSettings = this.props.currentUser.username === this.props.username ? <UserProfileSettings /> : ''
+
         return (
             <div className='user-profile'>
                 <div className='container'>
@@ -21,15 +44,13 @@ export class ProfilePage extends React.Component {
                         <div className='col-xs-12 col-md-8 user-profile-right'>
                             <div className='box'>
                                 <img src={this.props.avatar} className='profile-avatar avatar-large'/>
-                                <div className='profile-info'>
-                                    <h1 className='profile-name'>{this.props.username}</h1>
-                                    <p className='user-bio'>{this.props.bio}</p>
-                                </div>
+                                {profileSettings}
+                                {this.renderProfileComponent()}
                             </div>
                         </div>
                     </div>
                     <div className='row user-posts'>
-                        <UsersPosts posts={this.props.posts} username={this.props.username} />
+                        <UsersPosts {...this.props} />
                     </div>
                 </div>
             </div>
@@ -37,19 +58,18 @@ export class ProfilePage extends React.Component {
     }
 };
 
-const mapStateToProps = (state, props) => {
-    let profileId = props.match.params.profileId
-
-    let posts = state.app.posts.filter(post => post.profileId.toString() === profileId)
-    let profileObj = state.app.users.find(user => user.profileId.toString() === profileId)
-
-    let {bio, avatar, username} = profileObj
+const mapStateToProps = state => {
+    console.log(state.profile)
+    let {bio, avatar, username, posts} = state.profile.currentProfile
 
     return {
+        currentUser: state.auth.currentUser,
+        loggedIn: state.auth.currentUser !== null,
         bio,
         username,
         avatar,
-        posts
+        posts,
+        editProfile: state.profile.editProfile
       };
 }
 

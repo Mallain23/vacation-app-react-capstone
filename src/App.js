@@ -9,11 +9,9 @@ import Navigation from './components/Navigation/Navigation'
 import LandingPage from './components/LandingPage/LandingPage'
 import Home from './components/Home/Home'
 import ProfilePage from './components/Profile/ProfilePage'
-import EditPost from './components/Posts/EditPost'
 import SearchResults from './components/Home/SearchResults'
-// import Profile from './components/Profile/ProfilePage'
 import ViewPost from './components/Posts/ViewPost'
-import CreatePost from './components/Posts/CreatePost'
+import ManagePost from './components/Posts/ManagePost'
 
 import {refreshAuthToken} from './components/actions/auth';
 
@@ -21,8 +19,6 @@ import {refreshAuthToken} from './components/actions/auth';
 export class App extends React.Component {
     componentDidMount() {
         if (this.props.hasAuthToken) {
-      // Try to get a fresh auth token if we had an existing one in
-      // localStorage
             this.props.dispatch(refreshAuthToken());
         }
     }
@@ -56,35 +52,29 @@ export class App extends React.Component {
 
     render() {
 
-
         return (
-
                 <div>
                   <Route path='/' component={Navigation} />
                   <Route exact path='/' component={LandingPage} />
                   <Route exact path='/welcome' component={Home} />
                   <Route exact path='/search' component={SearchResults} />
                   <Route exact path='/profile/:profileId' component={ProfilePage} />
-                  <Route exact path='/create-post' component={CreatePost} />
+                  <Route exact path='/create-post' component={ManagePost} />
                   <Route exact path='/post/:postId' component={ViewPost} />
-                  <Route exact path='/edit/:postId' component={EditPost} />
+                  <Route exact path='/edit/:postId' component={ManagePost} />
                 </div>
-
         )
     }
 }
-// <Route exact path='/' component={Home} />
-//<Route exact path='/' component={LandingPage} />
 
 const mapStateToProps = state => {
     const {currentUser} = state.auth;
     return {
-        loggedIn: currentUser !== null,
-        username: currentUser ? state.auth.currentUser.username : '',
-        name: currentUser
-            ? `${currentUser.firstName} ${currentUser.lastName}`
-            : '',
-        protectedData: state.protectedData.data
+        loggedIn: currentUser !== null
+        // username: currentUser ? state.auth.currentUser.username : '',
+        // name: currentUser
+        //     ? `${currentUser.firstName} ${currentUser.lastName}`
+        //     : ''
     };
 };
 

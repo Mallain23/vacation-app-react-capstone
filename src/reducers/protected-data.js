@@ -2,10 +2,10 @@ import {
     FETCH_PROTECTED_DATA_SUCCESS,
     FETCH_PROTECTED_DATA_ERROR,
     ADD_NEW_POST,
-    UPDATE_CURRENT_POST,
+    FETCH_SELECTED_POST_SUCCESS,
     UPDATE_VIEW_USER_DATA,
-    SEARCH_FOR_POSTS_SUCCESS
-} from '../components/actions/protected-data';
+    SEARCH_FOR_POSTS_SUCCESS,
+    EDIT_POST_SUCCESS } from '../components/actions/protected-data';
 
 const initialState = {
     posts: [],
@@ -18,7 +18,7 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-
+    
     if (action.type === FETCH_PROTECTED_DATA_SUCCESS) {
       //  let posts = action.data.length > 16 ? action.data.slice(sliceIndex * 16, (state.sliceIndex * 16) + 16) : action.data
 
@@ -36,14 +36,15 @@ export default function reducer(state = initialState, action) {
           })
     }
 
-    else if (action.type === ADD_NEW_POST) {
+    else if (action.type === ADD_NEW_POST || action.type === EDIT_POST_SUCCESS) {
+
         return Object.assign({}, state, {
               newlyAddedPost: action.post
         })
     }
 
-    else if (action.type === UPDATE_CURRENT_POST) {
-        console.log(action.post)
+    else if (action.type === FETCH_SELECTED_POST_SUCCESS) {
+
         return Object.assign({}, state, {
             currentPost: action.post
         })

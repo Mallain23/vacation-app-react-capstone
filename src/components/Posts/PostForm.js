@@ -5,64 +5,62 @@ import {connect} from 'react-redux'
 
 import TextArea from '../Inputs/TextArea'
 import Input from '../Inputs/Input'
-import {fetchSelectedPost} from '../actions/protected-data'
 import {isNumber, isTrimmed, required, nonEmpty, validValue} from '../validators/validators'
-import {createPost, editPost} from '../actions/protected-data'
+import {createPost, editPost, fetchSelectedPost} from '../actions/protected-data'
+import {toggleEditPost} from '../actions/profile'
 
 export class PostForm extends React.Component {
     constructor(props) {
         super(props)
+
+        this.handleCancel = this.handleCancel.bind(this)
     }
 
     componentDidMount() {
-        if (this.props.isEditting) {
+        if (this.props.isEditing) {
               let postId = this.props.match.params.postId
               this.props.dispatch(fetchSelectedPost(postId))
 
               .then(postObj => this.handleInitialize(postObj.post))
           }
-      }
-
+      };
 
     handleInitialize(postObj) {
         this.props.initialize(postObj)
-    }
+    };
 
     renderButtonText() {
-      return this.props.isEditting ? 'Edit Post' : 'Create Post'
-    }
+      return this.props.isEditing ? 'Edit Post' : 'Create Post'
+    };
 
     onSubmit(values) {
-        console.log('made it', this.props.isEditting)
-        if (!this.props.isEditting) {
-            console.log(this.props.username)
-            let newValueObj = Object.assign({}, values, {username: this.props.username, name: this.props.name})
-              return this.props.dispatch(createPost(newValueObj))
+        if (!this.props.isEditing) {
 
-            .then((postObj) => {
-              console.log(this.props, postObj)
-              this.props.history.push(`/post/${postObj.post.postId}`)
-          })
+            const { username, name, profileId } = this.props
+            let newValueObj = Object.assign({}, values, {
+                  username,
+                  name,
+                  profileId
+            });
 
+            return this.props.dispatch(createPost(newValueObj))
+            .then(({post}) => this.props.history.push(`/post/${post.postId}`));
         }
 
         this.props.dispatch(editPost(values))
+        .then(({post}) => this.props.history.push(`/post/${post.postId}`));
+    };
 
-        .then((postObj) => {
-
-          this.props.history.push(`/post/${postObj.post.postId}`)
-
-        })
-
-    }
-
+    handleCancel() {
+        this.props.dispatch(toggleEditPost())
+    };
 
     render() {
-        console.log(this.props.handleSubmit)
+        console.log(this.props)
         return (
 
               <form
-                  className="create-post-form"
+                  className="manage-post-form"
                   onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
                   >
                   <label htmlFor="title">Title of Post</label>
@@ -120,7 +118,8 @@ export class PostForm extends React.Component {
                       {this.renderButtonText()}
                   </button>
                   <button
-                      disabled={this.props.submitting}>
+                      disabled={this.props.submitting}
+                      onClick={this.handleCancel}>
                       <Link to={'/'}>
                       Cancel
                       </Link>
@@ -128,11 +127,10 @@ export class PostForm extends React.Component {
                   </form>
         )
     }
-}
-
+};
 
 export default PostForm = reduxForm({
-    form: 'create-post',
+    form: 'manage-post',
     onSubmitFail: (errors, dispatch) =>
-        dispatch(focus('create-post', Object.keys(errors)[0]))
+        dispatch(focus('manage-post', Object.keys(errors)[0]))
 })(PostForm);

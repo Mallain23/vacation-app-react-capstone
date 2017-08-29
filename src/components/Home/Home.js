@@ -8,26 +8,33 @@ import Post from './Post'
 export class Home extends React.Component {
 
     componentDidMount() {
-        if (!this.props.loggedIn) {
-           return;
-       }
+        return this.props.loggedIn ? this.props.dispatch(fetchPosts()) : ''
 
-       this.props.dispatch(fetchPosts());
     }
 
     render() {
        if (!this.props.loggedIn) {
+
             return <Redirect to="/" />;
         }
-        console.log(this.props.posts)
-       let posts = this.props.posts.map((post, index) => {
+        console.log("hi")
+       let posts = this.props.posts.map(({destination, postId, title, username, profileId, name}, index) => {
+            console.log(this.props)
+            return  <div key={index}  className='col-xs-12 col-sm6 col-md-3'>
+                <div className='post-box' key={index}>
+                    <Post key={index}
+                    destination={destination}
+                    postId={postId}
+                    title={title}
+                    username={username}
+                    profileId={profileId}
+                    name={name}
+                    history={this.props.history}
+                      />
+                </div>
+             </div>
+        })
 
-        return  <div key={index}  className='col-xs-12 col-sm6 col-md-3'>
-            <div className='post-box' key={index}>
-                <Post key={index} postId={post.postId} title={post.title} username={post.username} profileId={post.profileId} destination={post.destination} name={post.name} title={post.title}/>
-            </div>
-         </div>
-       })
         return (
             <div className='container'>
                 <div className='row main'>
@@ -40,12 +47,9 @@ export class Home extends React.Component {
 
 const mapStateToProps = state => {
     const {currentUser} = state.auth;
+
     return {
         loggedIn: currentUser !== null,
-        username: currentUser ? state.auth.currentUser.username : '',
-        name: currentUser
-            ? `${currentUser.firstName} ${currentUser.lastName}`
-            : '',
         posts: state.protectedData.posts
     };
 };

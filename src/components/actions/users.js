@@ -4,7 +4,6 @@ import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 
 export const registerUser = user => dispatch => {
-    console.log(user)
     return fetch(`${API_BASE_URL}/users`, {
         method: 'POST',
         headers: {
@@ -26,3 +25,8 @@ export const registerUser = user => dispatch => {
             }
         });
 };
+
+export const TOGGLE_LOGIN = 'TOGGLE_LOGIN'
+export const toggleLogin = () => ({
+    type: TOGGLE_LOGIN
+});

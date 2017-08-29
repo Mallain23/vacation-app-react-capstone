@@ -1,5 +1,6 @@
 import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
+import {getUsersPosts} from './profile'
 
 export const FETCH_PROTECTED_DATA_SUCCESS = 'FETCH_PROTECTED_DATA_SUCCESS';
 export const fetchProtectedDataSuccess = data => ({
@@ -26,9 +27,15 @@ export const addNewPost = post =>({
     post
 })
 
-export const UPDATE_CURRENT_POST = 'UPDATE_CURRENT_POST'
-export const updateCurrentPost = post => ({
-    type: UPDATE_CURRENT_POST,
+export const EDIT_POST_SUCCESS = 'EDIT_POST_SUCCESS'
+export const editPostSuccess = post => ({
+    type: EDIT_POST_SUCCESS,
+    post
+})
+
+export const FETCH_SELECTED_POST_SUCCESS = 'FETCH_SELECTED_POST_SUCCESS'
+export const fetchSelectedPostSuccess = post => ({
+    type: FETCH_SELECTED_POST_SUCCESS,
     post
 })
 
@@ -56,9 +63,9 @@ export const fetchPosts = () => (dispatch, getState) => {
         });
 };
 
-export const searchForPosts = (destination, amount) => (dispatch, getState) => {
+export const searchForPosts = (searchTerm, amount) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
-    let URL = `${API_BASE_URL}/protected/destination/?destination=${destination}&amount=${amount}`;
+    let URL = `${API_BASE_URL}/protected/search/?searchTerm=${searchTerm}&amount=${amount}`;
 
     return fetch(URL, {
         method: 'GET',
@@ -108,7 +115,7 @@ export const editPost = values => (dispatch, getState) => {
   })
       .then(res => normalizeResponseErrors(res))
       .then(res => res.json())
-      .then(data => dispatch(addNewPost(data)))
+      .then(data => dispatch(editPostSuccess(data)))
 
       .catch(err => {
           dispatch(fetchProtectedDataError(err));
@@ -127,15 +134,14 @@ export const fetchSelectedPost = postId => (dispatch, getState) => {
       })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then(data => dispatch(updateCurrentPost(data)))
-
+        .then(data => dispatch(fetchSelectedPostSuccess(data)))
         .catch(err => {
             dispatch(fetchProtectedDataError(err));
     });
 }
 
 
-export const deletePost = postId => (dispatch, getState) => {
+export const deletePost = (postId, username) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     console.log(postId)
     return fetch(`${API_BASE_URL}/protected/posts/${postId}`, {
@@ -147,8 +153,7 @@ export const deletePost = postId => (dispatch, getState) => {
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(() => dispatch(fetchPosts()))
-
+    .then(() => dispatch(getUsersPosts(username)))
     .catch(err => {
         dispatch(fetchProtectedDataError(err));
     });
@@ -158,7 +163,7 @@ export const deletePost = postId => (dispatch, getState) => {
 export const fetchSelectedUser = user => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   console.log(user)
-  return fetch(`${API_BASE_URL}/users/userdata/${user}`, {
+  return fetch(`${API_BASE_URL}/users/userdata/${user}/${null}`, {
       method: 'GET',
       headers: {
           Authorization: `Bearer ${authToken}`,
