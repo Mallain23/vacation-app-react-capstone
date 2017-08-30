@@ -3,19 +3,19 @@ import {normalizeResponseErrors} from './utils';
 import {SubmissionError} from 'redux-form';
 import {fetchProtectedDataError, FETCH_PROTECTED_DATA_ERROR } from './protected-data'
 
-export const TOGGLE_EDIT_PROFILE = 'TOGGLE_EDIT_PROFILE';
-export const toggleEditProfile = () => ({
-    type: TOGGLE_EDIT_PROFILE
-})
-
-export const TOGGLE_EDIT_POST = 'TOGGLE_EDIT_POST'
-export const toggleEditPost = () => ({
-    type: TOGGLE_EDIT_POST
+export const SET_EDIT_POST_TRUE = 'SET_EDIT_POST_TRUE'
+export const setEditPostTrue = () => ({
+    type: SET_EDIT_POST_TRUE
 });
 
 export const SET_EDIT_POST_TO_FALSE = 'SET_EDIT_POST_TO_FALSE'
 export const setEditPostToFalse = () => ({
     type: SET_EDIT_POST_TO_FALSE
+});
+
+export const SET_EDIT_PROFILE_TRUE = 'SET_EDIT_PROFILE_TRUE'
+export const setEditProfileTrue = () => ({
+    type: SET_EDIT_PROFILE_TRUE
 });
 
 export const SET_EDIT_PROFILE_TO_FALSE = 'SET_EDIT_PROFILE_TO_FALSE'
@@ -58,16 +58,14 @@ export const getUserProfile = profileId => (dispatch, getState) => {
           dispatch(getUserProfileSuccess(data))
           dispatch(getUsersPosts(data.username))
         })
-        .catch(err => {
-            dispatch(fetchProtectedDataError(err));
-        });
+        .catch(err => dispatch(fetchProtectedDataError(err)));
 }
 
 export const GET_USERS_POSTS = 'GET_USERS_POSTS';
-export const getUsersPosts = username => (dispatch, getState) => {
+export const getUsersPosts = (username, sliceIndex) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
 
-    return fetch(`${API_BASE_URL}/protected/posts/?username=${username}`, {
+    return fetch(`${API_BASE_URL}/protected/posts/${sliceIndex}/?username=${username}`, {
         method: 'GET',
         headers: {
             // Provide our auth token as credentials

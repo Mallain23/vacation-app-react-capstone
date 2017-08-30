@@ -16,24 +16,24 @@ export class Aside extends React.Component {
     render() {
 
         let formattedPosts
-        let relatedPosts
+        const { relatedPosts } = this.props
 
-        if (this.props.relatedPosts.length < 1 ) {
+        if (relatedPosts.length < 1 ) {
             formattedPosts = 'There are no related posts available'
         }
 
         else {
-            relatedPosts = this.props.relatedPosts.filter(post => {
-                return post.postId !== this.props.match.params.postId
-            })
+            const filteredPosts = relatedPosts.filter(({ postId }) => postId !== this.props.match.params.postId)
 
-            formattedPosts = relatedPosts.map(({postId, title}, index) => {
-                return <li key={index} className='related-posts'>
-                    <Link to={`/post/${postId}`}>{title}</Link>
-                  </li>
-            })
+            formattedPosts = filteredPosts.map(({postId, title}, index) => {
+                return (
+                    <li key={index} className='related-posts'>
+                      <Link to={`/post/${postId}`}>{title}</Link>
+                    </li>
+                );
+            });
         }
-
+  
         return (
             <div className='col-xs-12 col-lg-4'>
                 <p>Related Posts</p>
@@ -41,15 +41,15 @@ export class Aside extends React.Component {
                     {formattedPosts}
                 </ul>
             </div>
-        )
-    }
-}
+        );
+    };
+};
 
 const mapStateToProps = state => {
-    const {relatedPosts} = state.protectedData.searchResultPosts
+    const { searchResultPosts } = state.protectedData
 
     return {
-        relatedPosts: relatedPosts || []
+        relatedPosts: searchResultPosts || []
     }
 };
 

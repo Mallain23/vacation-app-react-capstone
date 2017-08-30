@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {deletePost} from '../actions/protected-data'
-import {toggleEditPost} from '../actions/profile'
+import {setEditPostTrue} from '../actions/profile'
 
 export class Post extends React.Component {
     constructor (props) {
@@ -37,7 +37,7 @@ export class Post extends React.Component {
         const { postId } = this.props
         this.refs.btn.setAttribute("disabled", "disabled");
 
-        this.props.dispatch(toggleEditPost())
+        this.props.dispatch(setEditPostTrue())
         this.props.history.push(`/edit/${postId}`)
     };
 
@@ -57,7 +57,7 @@ export class Post extends React.Component {
                     </div>
                 </div>
             </article>
-        )
+        );
     };
 };
 

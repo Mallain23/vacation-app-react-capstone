@@ -5,7 +5,9 @@ import {
     FETCH_SELECTED_POST_SUCCESS,
     UPDATE_VIEW_USER_DATA,
     SEARCH_FOR_POSTS_SUCCESS,
-    EDIT_POST_SUCCESS } from '../components/actions/protected-data';
+    EDIT_POST_SUCCESS,
+    INCREASE_SLICE_INDEX,
+    DECREASE_SLICE_INDEX } from '../components/actions/protected-data';
 
 const initialState = {
     posts: [],
@@ -51,7 +53,7 @@ export default function reducer(state = initialState, action) {
     }
 
     else if (action.type === UPDATE_VIEW_USER_DATA) {
-    
+
           return Object.assign({}, state, {
             viewUser: action.user
           })
@@ -63,5 +65,20 @@ export default function reducer(state = initialState, action) {
         });
     }
 
+    else if (action.type === INCREASE_SLICE_INDEX) {
+        const sliceIndex = state.sliceIndex + 1;
+
+        return Object.assign({}, state, {
+            sliceIndex
+        });
+    }
+
+    else if (action.type === DECREASE_SLICE_INDEX) {
+        const sliceIndex = state.sliceIndex - 1;
+        return Object.assign({}, state, {
+            sliceIndex
+        });
+    }
+
     return state;
-}
+};

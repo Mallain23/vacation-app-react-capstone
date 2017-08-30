@@ -6,7 +6,7 @@ import TextArea from '../Inputs/TextArea'
 import Input from '../Inputs/Input'
 import {isNumber, isTrimmed, required, nonEmpty, validValue} from '../validators/validators'
 import {createPost, editPost, fetchSelectedPost} from '../actions/protected-data'
-import {toggleEditPost} from '../actions/profile'
+import {setEditPostTrue} from '../actions/profile'
 
 export class PostForm extends React.Component {
     constructor(props) {
@@ -29,7 +29,7 @@ export class PostForm extends React.Component {
     };
 
     renderButtonText() {
-      
+
       return this.props.isEditing ? 'Edit Post' : 'Create Post'
     };
 
@@ -45,15 +45,16 @@ export class PostForm extends React.Component {
             });
 
             return this.props.dispatch(createPost(newValueObj))
-            .then(({post}) => this.props.history.push(`/post/${post.postId}`));
+            .then(({ post }) => this.props.history.push(`/post/${post.postId}`));
         }
 
         this.props.dispatch(editPost(values))
-        .then(({post}) => this.props.history.push(`/post/${post.postId}`));
+        .then(({ post }) => this.props.history.push(`/post/${post.postId}`));
     };
 
     handleCancel() {
-        this.props.dispatch(toggleEditPost())
+        this.props.dispatch(setEditPostTrue())
+        this.props.history.push(`/`);
     };
 
     render() {
@@ -118,9 +119,7 @@ export class PostForm extends React.Component {
                 <button
                     disabled={this.props.submitting}
                     onClick={this.handleCancel}>
-                    <Link to={'/'}>
                     Cancel
-                    </Link>
                 </button>
                 </form>
         )

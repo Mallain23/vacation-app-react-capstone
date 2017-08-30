@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import { setCurrentUser, setAuthToken } from '../actions/auth'
-import {toggleEditProfile} from '../actions/profile'
+import {setEditProfileTrue} from '../actions/profile'
 import {clearAuthToken} from '../local-storage';
 
 export class UserProfileSettings extends React.Component {
@@ -15,7 +15,7 @@ export class UserProfileSettings extends React.Component {
 
     handleEdit(e) {
         e.preventDefault()
-        this.props.dispatch(toggleEditProfile())
+        this.props.dispatch(setEditProfileTrue())
     };
 
     handleLogOut(e) {

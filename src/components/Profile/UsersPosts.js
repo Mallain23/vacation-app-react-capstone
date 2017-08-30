@@ -6,7 +6,7 @@ import Post from '../Home/Post'
 export function UserPosts (props) {
 
     let userPosts
-
+   
     if (props.posts) {
         const { username, currentUser, posts } = props
         const allowEdit = username === currentUser ? true : false;

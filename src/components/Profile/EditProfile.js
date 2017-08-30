@@ -62,9 +62,9 @@ export class EditProfile extends React.Component {
                     </button>
                 </form>
             </div>
-        )
-    }
-}
+        );
+    };
+};
 
 export default EditProfile = reduxForm({
     form: 'edit-profile',

@@ -5,8 +5,10 @@ import {Redirect} from 'react-router-dom'
 import EditProfile from './EditProfile';
 import UserProfile from './UserProfile';
 import UsersPosts from './UsersPosts';
+import Pagination from '../Home/Pagination'
 import UserProfileSettings from './UserProfileSettings'
 import { getUserProfile } from '../actions/profile'
+
 
 import './ProfilePage.css'
 
@@ -48,6 +50,7 @@ export class ProfilePage extends React.Component {
                     </div>
                     <div className='row user-posts'>
                         <UsersPosts {...this.props} />
+                        <Pagination />
                     </div>
                 </div>
             </div>
