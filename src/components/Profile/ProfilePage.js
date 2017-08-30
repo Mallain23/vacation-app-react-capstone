@@ -8,6 +8,7 @@ import UsersPosts from './UsersPosts';
 import Pagination from '../Home/Pagination'
 import UserProfileSettings from './UserProfileSettings'
 import { getUserProfile } from '../actions/profile'
+import { getUsersPosts } from '../actions/protected-data'
 
 
 import './ProfilePage.css'
@@ -22,6 +23,9 @@ export class ProfilePage extends React.Component {
     componentWillMount() {
           let profileId = this.props.match.params.profileId
           this.props.dispatch(getUserProfile(profileId))
+          .then(({profile: {username}}) => {
+            this.props.dispatch(getUsersPosts(username, 0))
+          })
     };
 
     render() {
@@ -50,7 +54,7 @@ export class ProfilePage extends React.Component {
                     </div>
                     <div className='row user-posts'>
                         <UsersPosts {...this.props} />
-                        <Pagination />
+                        <Pagination username={username} searchFunction={getUsersPosts} />
                     </div>
                 </div>
             </div>

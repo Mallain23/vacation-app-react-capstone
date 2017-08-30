@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import {browserHistory} from 'react-router'
 
+import {resetSliceIndex, saveSearchTerm} from '../actions/protected-data'
 import {searchForPosts} from '../actions/protected-data'
 import './Navigation.css'
 
@@ -16,10 +17,14 @@ export class NavInput extends React.Component {
     handleSubmit(e) {
         e.preventDefault()
 
-        let destination = this.input.value
+        const { sliceIndex } = this.props
+        const  searchTerm = this.input.value
+
         this.input.value = '';
 
-        this.props.dispatch(searchForPosts(destination, 20))
+        this.props.dispatch(saveSearchTerm(searchTerm));
+        this.props.dispatch(resetSliceIndex());
+        this.props.dispatch(searchForPosts(searchTerm, 20, 0))
         .then(() => this.props.history.push('../search'))
     };
 
@@ -33,4 +38,8 @@ export class NavInput extends React.Component {
     };
 };
 
-export default connect()(NavInput)
+const mapStateToProps = state => ({
+    sliceIndex: state.protectedData.sliceIndex
+})
+
+export default connect(mapStateToProps)(NavInput)

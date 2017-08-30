@@ -29,11 +29,6 @@ export const getUserProfileSuccess = profile => ({
     profile
 })
 
-export const GET_USERS_POSTS_SUCCESS = 'GET_USERS_POSTS_SUCCESS'
-export const getUsersPostsSuccess = usersPosts => ({
-    type: GET_USERS_POSTS_SUCCESS,
-    usersPosts
-})
 
 export const EDIT_PROFILE_SUCCESS = 'EDIT_PROFILE_SUCCESS'
 export const editProfileSuccess = profile => ({
@@ -54,31 +49,8 @@ export const getUserProfile = profileId => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then(data => {
-          dispatch(getUserProfileSuccess(data))
-          dispatch(getUsersPosts(data.username))
-        })
+        .then(data => dispatch(getUserProfileSuccess(data)))
         .catch(err => dispatch(fetchProtectedDataError(err)));
-}
-
-export const GET_USERS_POSTS = 'GET_USERS_POSTS';
-export const getUsersPosts = (username, sliceIndex) => (dispatch, getState) => {
-    const authToken = getState().auth.authToken;
-
-    return fetch(`${API_BASE_URL}/protected/posts/${sliceIndex}/?username=${username}`, {
-        method: 'GET',
-        headers: {
-            // Provide our auth token as credentials
-            Authorization: `Bearer ${authToken}`
-        }
-    })
-        .then(res => normalizeResponseErrors(res))
-        .then(res => res.json())
-        .then(data => {
-          dispatch(getUsersPostsSuccess(data))})
-        .catch(err => {
-            dispatch(fetchProtectedDataError(err));
-        });
 }
 
 export const EDIT_PROFILE = 'EDIT-PROFILE'

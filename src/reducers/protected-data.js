@@ -7,7 +7,9 @@ import {
     SEARCH_FOR_POSTS_SUCCESS,
     EDIT_POST_SUCCESS,
     INCREASE_SLICE_INDEX,
-    DECREASE_SLICE_INDEX } from '../components/actions/protected-data';
+    DECREASE_SLICE_INDEX,
+    RESET_SLICE_INDEX,
+    SAVE_SEARCH_TERM} from '../components/actions/protected-data';
 
 const initialState = {
     posts: [],
@@ -16,7 +18,8 @@ const initialState = {
     currentPost: {},
     viewUser: {},
     sliceIndex: 0,
-    error: null
+    error: null,
+    searchTerm: null
 };
 
 export default function reducer(state = initialState, action) {
@@ -80,5 +83,15 @@ export default function reducer(state = initialState, action) {
         });
     }
 
+    else if (action.type === RESET_SLICE_INDEX) {
+        return Object.assign({}, state, {
+            sliceIndex: 0
+        })
+    }
+    else if (action.type === SAVE_SEARCH_TERM) {
+        return Object.assign({}, state, {
+            searchTerm: action.searchTerm
+        })
+    }
     return state;
 };

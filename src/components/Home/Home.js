@@ -2,17 +2,15 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom';
 
-import {fetchPosts, increaseSliceIndex} from '../actions/protected-data';
+import {fetchPosts, increaseSliceIndex, resetSliceIndex} from '../actions/protected-data';
 import { setEditPostToFalse, setEditProfileToFalse } from '../actions/profile';
 import Post from './Post'
 import Pagination from './Pagination'
 
 export class Home extends React.Component {
 
-    componentWillMount() {
-
-      this.props.dispatch(fetchPosts(this.props.sliceIndex))
-
+    componentDidMount() {
+        this.props.dispatch(fetchPosts(this.props.sliceIndex))
     };
 
     componentWillUnmount() {
@@ -26,7 +24,7 @@ export class Home extends React.Component {
         if (!loggedIn) {
             return <Redirect to="/" />;
         }
-        console.log(posts)
+
        let formattedPosts = posts.map(({destination, postId, title, username, profileId, name}, index) => {
             return (
                <div key={index}  className='col-xs-12 col-sm6 col-md-3'>
@@ -43,14 +41,14 @@ export class Home extends React.Component {
               </div>
            );
         });
-        console.log(formattedPosts)
+
         return (
             <div className='container'>
                 <div className='row main'>
                     {formattedPosts}
                 </div>
                 <div className='row'>
-                    <Pagination />
+                    <Pagination searchFunction={fetchPosts} />
                 </div>
             </div>
         );
@@ -60,12 +58,11 @@ export class Home extends React.Component {
 const mapStateToProps = state => {
     const { currentUser } = state.auth;
     const { posts } = state.protectedData
-  
+
     return {
         loggedIn: currentUser !== null,
         posts,
         sliceIndex: state.protectedData.sliceIndex
-
     };
 };
 

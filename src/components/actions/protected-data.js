@@ -1,6 +1,5 @@
 import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
-import {getUsersPosts} from './profile'
 import { SubmissionError } from 'redux-form';
 
 export const FETCH_PROTECTED_DATA_SUCCESS = 'FETCH_PROTECTED_DATA_SUCCESS';
@@ -55,6 +54,45 @@ export const decreaseSliceIndex = () => ({
     type: DECREASE_SLICE_INDEX
 })
 
+export const RESET_SLICE_INDEX = 'RESET_SLICE_INDEX'
+export const resetSliceIndex = () => ({
+    type: RESET_SLICE_INDEX
+})
+
+export const SAVE_SEARCH_TERM = 'SAVE_SEARCH_TERM'
+export const saveSearchTerm = searchTerm => ({
+    type: SAVE_SEARCH_TERM,
+    searchTerm
+})
+
+export const GET_USERS_POSTS_SUCCESS = 'GET_USERS_POSTS_SUCCESS'
+export const getUsersPostsSuccess = usersPosts => ({
+    type: GET_USERS_POSTS_SUCCESS,
+    usersPosts
+})
+
+
+export const GET_USERS_POSTS = 'GET_USERS_POSTS';
+export const getUsersPosts = (username, sliceIndex) => (dispatch, getState) => {
+    const authToken = getState().auth.authToken;
+
+    return fetch(`${API_BASE_URL}/protected/posts/${sliceIndex}/?username=${username}`, {
+        method: 'GET',
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`
+        }
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then(data => {
+          dispatch(getUsersPostsSuccess(data))})
+        .catch(err => {
+            dispatch(fetchProtectedDataError(err));
+        });
+}
+
+
 export const fetchPosts = sliceIndex => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     return fetch(`${API_BASE_URL}/protected/posts/${sliceIndex}`, {
@@ -73,9 +111,10 @@ export const fetchPosts = sliceIndex => (dispatch, getState) => {
         });
 };
 
-export const searchForPosts = (searchTerm, amount) => (dispatch, getState) => {
+export const searchForPosts = (searchTerm, amount, searchIndex) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
-    let URL = `${API_BASE_URL}/protected/search/?searchTerm=${searchTerm}&amount=${amount}`;
+
+    let URL = `${API_BASE_URL}/protected/search/?searchTerm=${searchTerm}&amount=${amount}&searchIndex=${searchIndex}`;
 
     return fetch(URL, {
         method: 'GET',

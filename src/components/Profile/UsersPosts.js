@@ -6,12 +6,12 @@ import Post from '../Home/Post'
 export function UserPosts (props) {
 
     let userPosts
-   
+
     if (props.posts) {
         const { username, currentUser, posts } = props
         const allowEdit = username === currentUser ? true : false;
-
-        userPosts = posts.map(({ postId, username, profileId, name }, index) => {
+        console.log(posts)
+        userPosts = posts.map(({ title, destination, postId, username, profileId, name }, index) => {
 
             return <div key={index}  className='col-xs-12 col-sm6 col-md-3'>
                   <div className='post-box' key={index}>
@@ -20,6 +20,8 @@ export function UserPosts (props) {
                             {...props}
                             username={username}
                             profileId={profileId}
+                            title={title}
+                            destination={destination}
                             name={name} />
                   </div>
               </div>

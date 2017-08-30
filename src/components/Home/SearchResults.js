@@ -2,12 +2,14 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom';
 
+import Pagination from './Pagination'
 import { setEditPostToFalse, setEditProfileToFalse } from '../actions/profile';
+import {searchForPosts}  from '../actions/protected-data'
 import Post from './Post'
 
 export class SearchResults extends React.Component {
 
-    componentWillMount () {
+    componentWillUnMount () {
       this.props.dispatch(setEditPostToFalse());
       this.props.dispatch(setEditProfileToFalse());
     }
@@ -44,6 +46,7 @@ export class SearchResults extends React.Component {
             <div className='container'>
                 <div className='row main'>
                     {formattedPosts}
+                    <Pagination searchFunction={searchForPosts}  />
                 </div>
             </div>
         )
@@ -53,6 +56,7 @@ export class SearchResults extends React.Component {
 const mapStateToProps = state => {
     const {currentUser} = state.auth;
 
+    console.log(state.protectedData.searchResultPosts)
     return {
         loggedIn: currentUser !== null,
         posts: state.protectedData.searchResultPosts
