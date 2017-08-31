@@ -2,7 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import { setEditPostToFalse, setEditProfileTrue } from '../actions/profile'
+import { setEditProfileTrue } from '../actions/profile'
+import { setEditPostToFalse } from '../actions/posts'
 import { setCurrentUser, setAuthToken } from '../actions/auth'
 import {clearAuthToken} from '../local-storage';
 
@@ -44,6 +45,8 @@ export class LoggedInNav extends React.Component {
     };
 
     render() {
+        const { username } = this.props.currentUser;
+        
         return (
              <span>
                  <div className='col-xs-12 col-md-2'>
@@ -63,7 +66,7 @@ export class LoggedInNav extends React.Component {
                  </div>
                  <div className='col-xs-12 col-md-3'>
                     <div className='dropdown'>
-                        <a href="javascript:void(0)" className="dropbtn nav-links">{this.props.currentUser.username}</a>
+                        <a href="javascript:void(0)" className="dropbtn nav-links">{username}</a>
                         <div className="dropdown-items">
                             <a className='nav-links' onClick={this.handleEditProfileClick} id='edit-profile'> Edit Profile</a>
                             <a className='log-out' onClick={this.handleLogOutClick} id='log-out'>Log Out</a>
@@ -75,7 +78,6 @@ export class LoggedInNav extends React.Component {
         )
     };
 };
-
 
 const mapStateToProps = state => {
     let { currentUser } = state.auth

@@ -16,7 +16,7 @@ export function UserProfile (props) {
 
 const mapStateToProps = state => {
     let {bio, username, firstName, lastName, favorite } = state.profile.currentProfile
-  
+
     return {
           bio,
           username,

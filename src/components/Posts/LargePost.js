@@ -2,7 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux'
 
-import {fetchSelectedPost, fetchSelectedUser} from '../actions/protected-data'
+import { fetchSelectedPost } from '../actions/ajaxCallsToPostRoute'
+import {  fetchSelectedUser } from '../actions/ajaxCallsToUserRoute'
 
 export class LargePost extends React.Component {
 
@@ -10,7 +11,9 @@ export class LargePost extends React.Component {
         let postId = this.props.match.params.postId
 
         this.props.dispatch(fetchSelectedPost(postId))
-        .then(({post}) => this.props.dispatch(fetchSelectedUser(post.username)))
+        .then(({post: {username: username}}) => {
+
+          this.props.dispatch(fetchSelectedUser(username))})
     };
 
     render() {
@@ -24,7 +27,8 @@ export class LargePost extends React.Component {
                 activities,
                 advice,
                 rating,
-                name,
+                username,
+                postId,
                 avatar } = this.props
 
         return (
@@ -35,7 +39,7 @@ export class LargePost extends React.Component {
                 <div className='col-xs-12 col-md-9'>
                     <hr className='hr'/>
                     <h1 className='large-post-title'>{title}</h1>
-                    <p className='font-accent'>by  <Link to={`/profile/${profileId}`}>{name}</Link></p>
+                    <p className='font-accent'>by  <Link to={`/profile/${profileId}`}>{username}</Link></p>
                     <p className='large-post-destination'>Destination: {destination}</p>
                     <p className='large-post-lodging'>Lodging: {lodging}</p>
                     <p className='large-post-dining'>Dining: {dining}</p>
@@ -45,13 +49,13 @@ export class LargePost extends React.Component {
                     <p className='large-post-rating'>Rating: {rating}</p>
                 </div>
             </div>
-        )
-    }
-}
+        );
+    };
+};
 
 const mapStateToProps = (state, props) => {
 
-  return Object.assign({}, state.protectedData.currentPost, state.protectedData.viewUser)
-}
+  return Object.assign({}, state.postData.currentPost, state.postData.viewUser)
+};
 
 export default connect(mapStateToProps)(LargePost)

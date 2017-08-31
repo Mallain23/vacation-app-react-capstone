@@ -3,14 +3,14 @@ import {reducer as formReducer} from 'redux-form'
 import thunk from 'redux-thunk';
 import {loadAuthToken} from './local-storage';
 import authReducer from './reducers/auth';
-import protectedDataReducer from './reducers/protected-data';
+import postDataReducer from './reducers/post';
 import {setAuthToken} from './components/actions/auth';
 import profileReducer from './reducers/profile'
 
 const reducers = combineReducers({
   form: formReducer,
   auth: authReducer,
-  protectedData: protectedDataReducer,
+  postData: postDataReducer,
   profile: profileReducer
 })
 

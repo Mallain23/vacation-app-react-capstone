@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {resetSliceIndex} from '../actions/protected-data';
+import {resetSliceIndex} from '../actions/posts';
 
 import './Navigation.css'
 import LoggedOutNav from './LoggedOutNav'
@@ -13,12 +13,12 @@ export class Navigation extends React.Component {
         super(props)
 
         this.handleClick = this.handleClick.bind(this)
-    }
+    };
 
     handleClick() {
         this.props.dispatch(resetSliceIndex())
         this.props.history.push('/')
-    }
+    };
 
     render() {
         const navButtons = this.props.isLoggedIn ? <LoggedInNav {...this.props} /> : <LoggedOutNav {...this.props} />
@@ -36,9 +36,9 @@ export class Navigation extends React.Component {
                     </div>
                 </div>
             </nav>
-        )
-    }
-}
+        );
+    };
+};
 
 const mapStateToProps = state => ({
     isLoggedIn: state.auth.currentUser !== null

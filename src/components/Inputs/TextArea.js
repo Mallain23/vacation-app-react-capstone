@@ -5,7 +5,7 @@ export default class TextArea extends React.Component {
         if (!prevProps.meta.active && this.props.meta.active) {
             this.input.focus();
         }
-    }
+    };
 
     render() {
         let error;
@@ -19,7 +19,7 @@ export default class TextArea extends React.Component {
                 <div className="form-warning">{this.props.meta.warning}</div>
             );
         }
-          console.log(this.props)
+
         return (
 
             <div className="form-input">
@@ -33,12 +33,12 @@ export default class TextArea extends React.Component {
                     placeholder={this.props.placeholder}
                     id={this.props.input.name}
                     type={this.props.type}
-                  
+
                     ref={input => (this.input = input)}
                 />
                 {error}
                 {warning}
             </div>
         );
-    }
-}
+    };
+};

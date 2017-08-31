@@ -1,11 +1,12 @@
 import {  TOGGLE_EDIT_PROFILE,
           GET_USER_PROFILE_SUCCESS,
           EDIT_PROFILE_SUCCESS,
-          SET_EDIT_POST_TRUE,
           SET_EDIT_PROFILE_TRUE,
-          SET_EDIT_POST_TO_FALSE,
           SET_EDIT_PROFILE_TO_FALSE } from '../components/actions/profile'
-import { EDIT_POST_SUCCESS, GET_USERS_POSTS_SUCCESS, } from  '../components/actions/protected-data'
+import { EDIT_POST_SUCCESS,
+         GET_USERS_POSTS_SUCCESS,
+         SET_EDIT_POST_TRUE,
+         SET_EDIT_POST_TO_FALSE} from  '../components/actions/posts'
 
 const initialState = {
     editProfile: false,

@@ -2,8 +2,10 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom';
 
-import {fetchPosts, increaseSliceIndex, resetSliceIndex} from '../actions/protected-data';
-import { setEditPostToFalse, setEditProfileToFalse } from '../actions/profile';
+import { fetchPosts } from '../actions/ajaxCallsToPostRoute'
+import { increaseSliceIndex, resetSliceIndex } from '../actions/posts';
+
+
 import Post from './Post'
 import Pagination from './Pagination'
 
@@ -11,11 +13,6 @@ export class Home extends React.Component {
 
     componentDidMount() {
         this.props.dispatch(fetchPosts(this.props.sliceIndex))
-    };
-
-    componentWillUnmount() {
-        this.props.dispatch(setEditPostToFalse());
-        this.props.dispatch(setEditProfileToFalse());
     };
 
     render() {
@@ -43,26 +40,26 @@ export class Home extends React.Component {
         });
 
         return (
-            <div className='container'>
-                <div className='row main'>
-                    {formattedPosts}
-                </div>
-                <div className='row'>
-                    <Pagination searchFunction={fetchPosts} />
-                </div>
-            </div>
+          <div className='container'>
+              <div className='row main'>
+                  {formattedPosts}
+              </div>
+              <div className='row'>
+                  <Pagination searchFunction={fetchPosts} />
+              </div>
+          </div>
         );
     };
 };
 
 const mapStateToProps = state => {
     const { currentUser } = state.auth;
-    const { posts } = state.protectedData
+    const { posts, sliceIndex } = state.postData
 
     return {
         loggedIn: currentUser !== null,
         posts,
-        sliceIndex: state.protectedData.sliceIndex
+        sliceIndex
     };
 };
 

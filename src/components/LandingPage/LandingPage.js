@@ -6,10 +6,15 @@ import Header from './Header'
 import About from './About'
 import SignUp from './SignUp'
 import LoginModal from '../Login/LoginModal'
+import {testFunction} from '../actions/posts'
 
 export class LandingPage extends React.Component {
 
+    componentWillMount() {
+      this.props.dispatch(testFunction())
+    }
     render() {
+
 
       if (this.props.loggedIn) {
           return <Redirect to="/welcome" />;

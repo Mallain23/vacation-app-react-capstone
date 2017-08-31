@@ -5,22 +5,22 @@ import {Link} from 'react-router-dom';
 import TextArea from '../Inputs/TextArea'
 import Input from '../Inputs/Input'
 import {isNumber, isTrimmed, required, nonEmpty, validValue} from '../validators/validators'
-import {createPost, editPost, fetchSelectedPost} from '../actions/protected-data'
-import {setEditPostTrue} from '../actions/profile'
+import {createPost, editPost, fetchSelectedPost} from '../actions/ajaxCallsToPostRoute'
+import {setEditPostTrue} from '../actions/posts'
 
 export class PostForm extends React.Component {
     constructor(props) {
         super(props)
 
         this.handleCancel = this.handleCancel.bind(this)
-    }
+    };
 
     componentDidMount() {
         if (this.props.isEditing) {
               let postId = this.props.match.params.postId
 
               this.props.dispatch(fetchSelectedPost(postId))
-              .then(({post}) => this.handleInitialize(post))
+              .then(({ post }) => this.handleInitialize(post))
           }
       };
 
@@ -29,7 +29,6 @@ export class PostForm extends React.Component {
     };
 
     renderButtonText() {
-
       return this.props.isEditing ? 'Edit Post' : 'Create Post'
     };
 
@@ -96,7 +95,7 @@ export class PostForm extends React.Component {
                     name="activities"
                     placeholder='Tell us about the activities that you did! (e.g. Guided Tours, Hiking, Safaris, Zip-Lining ) Be as detailed and descriptive as possible!'
                 />
-                <label htmlFor="advice">Advice for other travels</label>
+                <label htmlFor="advice">Advice for other travelerss</label>
                 <Field
                     component={TextArea}
                     type="textbox"

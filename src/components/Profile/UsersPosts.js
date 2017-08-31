@@ -10,7 +10,7 @@ export function UserPosts (props) {
     if (props.posts) {
         const { username, currentUser, posts } = props
         const allowEdit = username === currentUser ? true : false;
-        console.log(posts)
+
         userPosts = posts.map(({ title, destination, postId, username, profileId, name }, index) => {
 
             return <div key={index}  className='col-xs-12 col-sm6 col-md-3'>
@@ -32,15 +32,13 @@ export function UserPosts (props) {
         <div className="users-posts">
           {userPosts}
         </div>
-    )
+    );
 };
 
 
 const mapStateToProps = state => ({
-
     posts: state.profile.usersPosts,
     currentUser: state.auth.currentUser.username
-
-})
+});
 
 export default connect(mapStateToProps)(UserPosts)

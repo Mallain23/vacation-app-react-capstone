@@ -1,8 +1,7 @@
 import React from 'react'
 import {Field, reduxForm, focus} from 'redux-form';
 
-import {editProfile} from '../actions/profile'
-import {fetchSelectedUser} from '../actions/protected-data'
+import {fetchSelectedUser, editProfile } from '../actions/ajaxCallsToUserRoute'
 import { required, nonEmpty } from '../validators/validators'
 import TextArea from '../Inputs/TextArea'
 import Input from '../Inputs/Input'

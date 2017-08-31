@@ -1,15 +1,15 @@
 import {
     FETCH_PROTECTED_DATA_SUCCESS,
     FETCH_PROTECTED_DATA_ERROR,
-    ADD_NEW_POST,
+    CREATE_POST_SUCCESS,
     FETCH_SELECTED_POST_SUCCESS,
-    UPDATE_VIEW_USER_DATA,
     SEARCH_FOR_POSTS_SUCCESS,
     EDIT_POST_SUCCESS,
     INCREASE_SLICE_INDEX,
     DECREASE_SLICE_INDEX,
     RESET_SLICE_INDEX,
-    SAVE_SEARCH_TERM} from '../components/actions/protected-data';
+    SAVE_SEARCH_TERM} from '../components/actions/posts';
+import { FETCH_SELECTED_USER_SUCCESS } from '../components/actions/profile'
 
 const initialState = {
     posts: [],
@@ -41,7 +41,7 @@ export default function reducer(state = initialState, action) {
           })
     }
 
-    else if (action.type === ADD_NEW_POST || action.type === EDIT_POST_SUCCESS) {
+    else if (action.type === CREATE_POST_SUCCESS || action.type === EDIT_POST_SUCCESS) {
 
         return Object.assign({}, state, {
               newlyAddedPost: action.post
@@ -55,7 +55,7 @@ export default function reducer(state = initialState, action) {
         })
     }
 
-    else if (action.type === UPDATE_VIEW_USER_DATA) {
+    else if (action.type === FETCH_SELECTED_USER_SUCCESS) {
 
           return Object.assign({}, state, {
             viewUser: action.user
@@ -93,5 +93,6 @@ export default function reducer(state = initialState, action) {
             searchTerm: action.searchTerm
         })
     }
+
     return state;
 };

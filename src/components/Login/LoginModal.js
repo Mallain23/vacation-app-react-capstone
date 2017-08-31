@@ -10,7 +10,7 @@ export class LoginModal extends React.Component {
         super(props)
 
         this.handleClick = this.handleClick.bind(this)
-    }
+    };
 
     handleClick(e) {
       e.preventDefault()
@@ -32,8 +32,8 @@ export class LoginModal extends React.Component {
                       </div>
                   </div>
               </div>
-        )
-    }
+        );
+    };
 };
 
 export default connect()(LoginModal)

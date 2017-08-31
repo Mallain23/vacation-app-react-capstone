@@ -1,8 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {deletePost} from '../actions/protected-data'
-import {setEditPostTrue} from '../actions/profile'
+import {deletePost} from '../actions/ajaxCallsToPostRoute'
+import {setEditPostTrue} from '../actions/posts'
 
 export class Post extends React.Component {
     constructor (props) {
@@ -10,7 +10,7 @@ export class Post extends React.Component {
 
         this.handleDeleteClick = this.handleDeleteClick.bind(this)
         this.handleEditClick = this.handleEditClick.bind(this)
-    }
+    };
 
     renderAdditionalButtons() {
         const { allowEdit } = this.props
@@ -18,7 +18,11 @@ export class Post extends React.Component {
 
             return (
                 <span>
-                    <button ref='btn' onClick={this.handleEditClick} disabled={false} className='oval-button'> Edit</button>
+                    <button ref='btn'
+                            onClick={this.handleEditClick}
+                            disabled={false}
+                            className='oval-button'>
+                     Edit</button>
                     <a className='oval-button' onClick={this.handleDeleteClick} > Delete </a>
                 </span>
             )
@@ -62,7 +66,6 @@ export class Post extends React.Component {
 };
 
 const mapStateToProps = state => {
-
     const { editPost } = state.profile
 
     return {

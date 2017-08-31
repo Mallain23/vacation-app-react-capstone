@@ -37,9 +37,8 @@ export class UserProfileSettings extends React.Component {
 };
 
 const mapStateToProps = state => ({
-
     currentUser: state.auth.currentUser.username,
     viewUser: state.profile.username
-})
+});
 
 export default connect(mapStateToProps)(UserProfileSettings)

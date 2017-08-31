@@ -1,10 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import { increaseSliceIndex,
+        decreaseSliceIndex } from '../actions/posts';
 import {fetchPosts,
         searchForPosts,
-        getUsersPosts,
-        increaseSliceIndex,
-        decreaseSliceIndex } from '../actions/protected-data';
+        getUsersPosts } from '../actions/ajaxCallsToPostRoute'
 
 export class Pagination extends React.Component {
     constructor(props) {
@@ -15,8 +15,8 @@ export class Pagination extends React.Component {
     }
 
     handleNextClick() {
-        let { sliceIndex, search, searchTerm, searchFunction } = this.props
-        let username = this.props
+        const { sliceIndex, searchTerm, searchFunction } = this.props
+        const username = this.props
 
         switch(searchFunction) {
 
@@ -37,35 +37,34 @@ export class Pagination extends React.Component {
                 .then(() => this.props.dispatch(increaseSliceIndex()))
 
                 break;
-        }
+        };
     };
 
     handlePrevClick() {
+        const { sliceIndex, search, searchTerm, searchFunction } = this.props
+        const username = this.props
 
-              let { sliceIndex, search, searchTerm, searchFunction } = this.props
-              let username = this.props
+        switch(searchFunction) {
 
-              switch(searchFunction) {
+            case fetchPosts:
 
-                  case fetchPosts:
+                this.props.dispatch(searchFunction(sliceIndex - 1))
+                .then(() => this.props.dispatch(decreaseSliceIndex()))
 
-                      this.props.dispatch(searchFunction(sliceIndex - 1))
-                      .then(() => this.props.dispatch(decreaseSliceIndex()))
+                break;
 
-                      break;
+            case searchForPosts:
+                this.props.dispatch(searchFunction(searchTerm, 20, sliceIndex - 1))
+                .then(() => this.props.dispatch(decreaseSliceIndex()))
 
-                  case searchForPosts:
-                      this.props.dispatch(searchFunction(searchTerm, 20, sliceIndex - 1))
-                      .then(() => this.props.dispatch(decreaseSliceIndex()))
+                break;
 
-                      break;
+            case getUsersPosts:
+                this.props.dispatch(searchFunction(username, sliceIndex - 1))
+                .then(() => this.props.dispatch(decreaseSliceIndex()))
 
-                  case getUsersPosts:
-                      this.props.dispatch(searchFunction(username, sliceIndex - 1))
-                      .then(() => this.props.dispatch(decreaseSliceIndex()))
-
-                      break;
-              }
+                break;
+        };
   };
 
     render() {
@@ -84,12 +83,12 @@ export class Pagination extends React.Component {
 };
 
 const mapStateToProps = state => {
-    const { sliceIndex, searchTerm } = state.protectedData
+    const { sliceIndex, searchTerm } = state.postData
 
     return {
         sliceIndex,
         searchTerm
-    }
-}
+    };
+};
 
 export default connect(mapStateToProps)(Pagination)

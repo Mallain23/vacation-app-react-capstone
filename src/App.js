@@ -4,7 +4,6 @@ import {Route, withRouter} from 'react-router-dom';
 import { ModalContainer, ModalRoute } from 'react-router-modal';
 import {connect} from 'react-redux'
 
-
 import Navigation from './components/Navigation/Navigation'
 import LandingPage from './components/LandingPage/LandingPage'
 import Home from './components/Home/Home'
