@@ -1,10 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { increaseSliceIndex,
-        decreaseSliceIndex } from '../actions/posts';
-import {fetchPosts,
-        searchForPosts,
-        getUsersPosts } from '../actions/ajaxCallsToPostRoute'
+// please indent as such
+import {
+    increaseSliceIndex,
+    decreaseSliceIndex
+} from '../actions/posts';
+import { fetchPosts,
+         searchForPosts,
+         getUsersPosts } from '../actions/ajaxCallsToPostRoute'
 
 export class Pagination extends React.Component {
     constructor(props) {
@@ -18,10 +21,22 @@ export class Pagination extends React.Component {
         const { sliceIndex, searchTerm, searchFunction } = this.props
         const username = this.props
 
-        switch(searchFunction) {
+        //can we please try to leave switch functins like this out of the coponent and
+        //into the action?
 
+        //waht if it was something like this?
+        //this.props.dispatch(getNextPageData(sliceIndex, searchType))
+
+        //and searchType prop was something like SearchTypes.BASIC, SearchTypes.SEARCH_TERM, SearchTypes.USER_POSTS
+        //then you could handle the increaseSliceIndex in the thunk
+        //also looks like you could perhaps do this switch
+
+
+        switch(searchFunction) {
+          //since sliceIndex + 1 is used in all of them, please create a constant at the top.
             case fetchPosts:
                 this.props.dispatch(searchFunction(sliceIndex + 1))
+                  //please indent .then's
                 .then(() => this.props.dispatch(increaseSliceIndex()))
 
                 break;

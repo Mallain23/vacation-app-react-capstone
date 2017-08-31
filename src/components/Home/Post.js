@@ -15,14 +15,16 @@ export class Post extends React.Component {
     renderAdditionalButtons() {
         const { allowEdit } = this.props
         if (allowEdit) {
-
+          //please format the button as follows:
+          //and please use constants instead of strings. maybe ButtonTypes.EDIT ButtonTypes.DELETE
             return (
                 <span>
                     <button ref='btn'
-                            onClick={this.handleEditClick}
-                            disabled={false}
-                            className='oval-button'>
-                     Edit</button>
+                        onClick={this.handleEditClick}
+                        disabled={false}
+                        className='oval-button'>
+                        Edit
+                    </button>
                     <a className='oval-button' onClick={this.handleDeleteClick} > Delete </a>
                 </span>
             )

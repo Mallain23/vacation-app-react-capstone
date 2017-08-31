@@ -21,14 +21,17 @@ export class LoginForm extends React.Component {
 
     render() {
 
-        let error;
-        if (this.props.error) {
-            error = (
-                <div className="form-error" aria-live="polite">
-                    {this.props.error}
-                </div>
-            );
-        }
+        const { error } = this.props
+
+        const error ? <FieldError text={error} /> : null;
+        // const error ? (
+        //         <div className="form-error" aria-live="polite">
+        //             {this.props.error}
+        //         </div>
+        //     );
+        // }
+
+        const buttonDisabled = this.props.pristine || this.props.submitting;
         return (
             <form
                 className="login-form"
@@ -52,7 +55,7 @@ export class LoginForm extends React.Component {
                     id="password"
                     validate={[required, nonEmpty]}
                 />
-                <button disabled={this.props.pristine || this.props.submitting}>
+                <button disabled={buttonDisabled}>
                     Log in
                 </button>
                 <button onClick={this.handleClick} disabled={this.props.submitting}>

@@ -21,19 +21,20 @@ export class Home extends React.Component {
         if (!loggedIn) {
             return <Redirect to="/" />;
         }
+        //please indent components as you would normal JS. i.e. line 31-37 should be intented 2 tabs more than <Post
 
        let formattedPosts = posts.map(({destination, postId, title, username, profileId, name}, index) => {
             return (
                <div key={index}  className='col-xs-12 col-sm6 col-md-3'>
                   <div className='post-box' key={index}>
                       <Post key={index}
-                      destination={destination}
-                      postId={postId}
-                      title={title}
-                      username={username}
-                      profileId={profileId}
-                      name={name}
-                      history={history} />
+                          destination={destination}
+                          postId={postId}
+                          title={title}
+                          username={username}
+                          profileId={profileId}
+                          name={name}
+                          history={history} />
                   </div>
               </div>
            );
