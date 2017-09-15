@@ -11,7 +11,7 @@ import ProfilePage from './components/Profile/ProfilePage'
 import SearchResults from './components/Home/SearchResults'
 import ViewPost from './components/Posts/ViewPost'
 import ManagePost from './components/Posts/ManagePost'
-
+import AuthModal from './components/Login/AuthModal'
 import {refreshAuthToken} from './components/actions/auth';
 
 
@@ -54,6 +54,7 @@ export class App extends React.Component {
         return (
                 <div>
                   <Route path='/' component={Navigation} />
+                  <AuthModal />
                   <Route exact path='/' component={LandingPage} />
                   <Route exact path='/welcome' component={Home} />
                   <Route exact path='/search' component={SearchResults} />
@@ -61,6 +62,7 @@ export class App extends React.Component {
                   <Route exact path='/create-post' component={ManagePost} />
                   <Route exact path='/post/:postId' component={ViewPost} />
                   <Route exact path='/edit/:postId' component={ManagePost} />
+
                 </div>
         )
     }

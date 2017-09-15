@@ -5,9 +5,10 @@ import {Redirect} from 'react-router-dom';
 import { fetchPosts } from '../actions/ajaxCallsToPostRoute'
 import { increaseSliceIndex, resetSliceIndex } from '../actions/posts';
 
-
 import Post from './Post'
 import Pagination from './Pagination'
+
+import './Home.css'
 
 export class Home extends React.Component {
 

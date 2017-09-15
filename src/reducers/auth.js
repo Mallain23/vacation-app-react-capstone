@@ -1,13 +1,13 @@
 import {SET_AUTH_TOKEN, SET_CURRENT_USER,} from '../components/actions/auth';
-import {TOGGLE_LOGIN} from '../components/actions/users'
+import {OPEN_LOGIN_FORM, OPEN_SIGNUP_FORM, CLOSE_AUTH_MODAL } from '../components/actions/users';
 
 const initialState = {
     authToken: null, // authToken !== null does not mean it has been validated
     currentUser: null,
-    showLogin: false
 };
 
 export default function reducer(state = initialState, action) {
+    
     if (action.type === SET_AUTH_TOKEN) {
 
           return Object.assign({}, state, {
@@ -22,9 +22,24 @@ export default function reducer(state = initialState, action) {
         });
     }
 
-    else if (action.type ===  TOGGLE_LOGIN) {
+    else if (action.type === CLOSE_AUTH_MODAL) {
         return Object.assign({}, state, {
-          showLogin: !state.showLogin
+              showAuthModal: false,
+              showLogin: false
+        });
+    }
+
+    else if (action.type ===  OPEN_LOGIN_FORM) {
+        return Object.assign({}, state, {
+          showLogin: true,
+          showAuthModal: true
+        })
+    }
+
+    else if (action.type ===  OPEN_SIGNUP_FORM) {
+        return Object.assign({}, state, {
+          showLogin: false,
+          showAuthModal: true
         })
     }
 

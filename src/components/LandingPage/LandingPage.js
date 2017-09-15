@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import Header from './Header'
 import About from './About'
 import SignUp from './SignUp'
-import LoginModal from '../Login/LoginModal'
+
 import {testFunction} from '../actions/posts'
 
 export class LandingPage extends React.Component {
@@ -20,10 +20,6 @@ export class LandingPage extends React.Component {
           return <Redirect to="/welcome" />;
       }
 
-      else if (this.props.showLogin) {
-        return <LoginModal />
-      }
-
         return (
             <div className='container'>
                 <header id='landing-page-header'>
@@ -34,7 +30,7 @@ export class LandingPage extends React.Component {
                       <About />
                     </section>
                     <section>
-                      Placeholder about using app
+
                     </section>
                     <section>
                       Placeholder about using app

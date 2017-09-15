@@ -26,7 +26,17 @@ export const registerUser = user => dispatch => {
         });
 };
 
-export const TOGGLE_LOGIN = 'TOGGLE_LOGIN'
-export const toggleLogin = () => ({
-    type: TOGGLE_LOGIN
+export const CLOSE_AUTH_MODAL = 'CLOSE_AUTH_MODAL';
+export const closeAuthModal = () => ({
+    type: CLOSE_AUTH_MODAL
+});
+
+export const OPEN_LOGIN_FORM = 'OPEN_LOGIN_FORM';
+export const openLoginForm = () => ({
+    type: OPEN_LOGIN_FORM
+});
+
+export const OPEN_SIGNUP_FORM = 'OPEN_SIGNUP_FORM';
+export const openSignupForm = () => ({
+    type: OPEN_SIGNUP_FORM
 });

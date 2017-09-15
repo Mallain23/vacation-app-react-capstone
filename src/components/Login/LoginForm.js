@@ -2,21 +2,17 @@ import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
 import Input from '../Inputs/Input';
 import { login } from '../actions/auth';
-import { toggleLogin } from '../actions/users'
+
 import {required, nonEmpty} from '../validators/validators';
 
 export class LoginForm extends React.Component {
     constructor(props) {
         super(props)
 
-        this.handleClick = this.handleClick.bind(this)
     }
 
     onSubmit(values) {
         return this.props.dispatch(login(values.username, values.password));
-    }
-    handleClick() {
-        this.props.dispatch(toggleLogin())
     }
 
     render() {
@@ -54,9 +50,6 @@ export class LoginForm extends React.Component {
                 />
                 <button disabled={this.props.pristine || this.props.submitting}>
                     Log in
-                </button>
-                <button onClick={this.handleClick} disabled={this.props.submitting}>
-                    Cancel
                 </button>
             </form>
         );

@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import {fetchSelectedPost, searchForPosts }  from '../actions/ajaxCallsToPostRoute'
 import { fetchSelectedUser } from '../actions/ajaxCallsToUserRoute'
 
+import './Post.css'
+
 
 export class Aside extends React.Component {
     constructor (props) {
@@ -19,7 +21,7 @@ export class Aside extends React.Component {
         this.props.history.push(`/post/${postId}`)
 
         this.props.dispatch(fetchSelectedPost(postId))
-        .then(({ post: {destination: destination} }) => this.props.dispatch(searchForPosts(destination, numberOfResults)))
+        .then(({ post: {destination}}) => this.props.dispatch(searchForPosts(destination, numberOfResults)))
 
     };
 
@@ -28,14 +30,14 @@ export class Aside extends React.Component {
         const numberOfResults = 6
 
         this.props.dispatch(fetchSelectedPost(postId))
-        .then(({ post: {destination: destination }}) => this.props.dispatch(searchForPosts(destination, numberOfResults)))
+        .then(({ post: {destination}}) => this.props.dispatch(searchForPosts(destination, numberOfResults)))
     };
 
     render() {
 
         let formattedPosts
         const { relatedPosts } = this.props
-        
+
         if (relatedPosts.length < 2 ) {
             formattedPosts = 'There are no related posts available'
         }
@@ -47,7 +49,7 @@ export class Aside extends React.Component {
             formattedPosts = filteredPosts.map(({postId, title}, index) => {
                 return (
                     <li key={index} className='related-posts'>
-                      <button value={postId} onClick={this.handleClick}>{title}</button>
+                      <button className='related-post-button' value={postId} onClick={this.handleClick}>{title}</button>
                     </li>
                 );
             });
@@ -55,7 +57,7 @@ export class Aside extends React.Component {
 
         return (
             <div className='col-xs-12 col-lg-4'>
-                <p>Related Posts</p>
+                <p className='related-post-heading'>Related Posts</p>
                 <ul>
                     {formattedPosts}
                 </ul>

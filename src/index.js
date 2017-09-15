@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
-import store from './Store';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-//import './grid.css'
-import './index.css';
 import App from './App';
-
+import store from './Store';
 import registerServiceWorker from './registerServiceWorker';
+
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import './index.css';
+
 
 ReactDOM.render(
 

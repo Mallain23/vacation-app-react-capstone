@@ -1,11 +1,12 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom'
-import {browserHistory} from 'react-router'
+import React from 'react';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
+import {browserHistory} from 'react-router';
 
-import {resetSliceIndex, saveSearchTerm} from '../actions/posts'
-import {searchForPosts} from '../actions/ajaxCallsToPostRoute'
-import './Navigation.css'
+import {resetSliceIndex, saveSearchTerm} from '../actions/posts';
+import {searchForPosts} from '../actions/ajaxCallsToPostRoute';
+
+import './Navigation.css';
 
 export class NavInput extends React.Component {
     constructor(props) {
@@ -31,10 +32,12 @@ export class NavInput extends React.Component {
 
     render() {
         return (
-            <form className='post-search' onSubmit={this.handleSubmit} >
-                <input type='text' id='search'   ref={input => (this.input = input)} placeholder='search for the perfect vacation...'  />
-                <button className='hide'></button>
-            </form>
+            <div className='col-xs-12 col-md-5'>
+                <form className='post-search nav-heading' onSubmit={this.handleSubmit} >
+                    <input type='text' id='search'   ref={input => (this.input = input)} placeholder='Search for the perfect vacation...'  />
+                    <button className='hide'></button>
+                </form>
+            </div>
         );
     };
 };

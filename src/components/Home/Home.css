@@ -1,0 +1,112 @@
+.post-box {
+    box-sizing: border-box;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    padding-right: .5rem;
+    padding-left: .5rem;
+}
+
+.main {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.box {
+    color: #54525e;
+    font-family: Open Sans,sans-serif;
+    -webkit-font-feature-settings: "kern","liga","pnum";
+    font-feature-settings: "kern","liga","pnum";
+    font-size: 1em;
+    line-height: 1.5;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,.2);
+    overflow: hidden;
+    display: block;
+    position: relative;
+    margin-bottom: 2rem;
+    min-height: 260px;
+}
+
+.divider {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 1.0rem;
+  height: 1.0rem;
+  border: none;
+  background-color: #88b2cc;
+  width: 60%;
+  margin: 1.5em 0;
+  overflow: visible;
+}
+
+.inner-box {
+  padding: 1rem;
+  padding-top: 0;
+}
+
+.post-heading {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 800;
+  font-family: Open Sans,sans-serif;
+  font-size: 1.3em;
+  line-height: 1.2;
+  margin: 0 0 .75em;
+}
+
+.author {
+    font-family: cursive;
+    font-size: 1.3em;
+    line-height: 1.5;
+}
+
+.box-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 10rem;
+  width: 100%;
+  padding: 0 1rem;
+  text-align: center;
+  background: linear-gradient(180deg,hsla(0,0%,100%,0),#fff 91%,#fff);
+  margin-bottom: 1.5rem;
+}
+
+.button-container {
+  display: block;
+-webkit-margin-before: 1em;
+-webkit-margin-after: 1em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+
+}
+
+.oval-button {
+  width: 100%;
+  display: block;
+  margin-top: 7rem;
+  padding-top: .3rem;
+  background-color: hsla(0,0%,100%,.3);
+  color: #88b2cc;
+  border: 1px solid #88b2cc;
+  padding: 1.0rem 3.75rem;
+  padding-bottom: 1.5rem;
+  height: 3.75rem;
+  border-radius: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all .25s ease;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.42857143;
+
+}
+
+.oval-button:hover {
+  background-color: #88b2cc;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}

@@ -1,0 +1,156 @@
+.back-nav-container {
+  min-height: 4rem;
+  background-color: #4a4756;
+  padding: 1rem 0;
+  vertical-align: middle;
+}
+
+
+
+.back-middle-xs {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -.5rem;
+    margin-left: -.5rem;
+    color: #54525e;
+   font-family: Open Sans,sans-serif;
+   -webkit-font-feature-settings: "kern","liga","pnum";
+   font-feature-settings: "kern","liga","pnum";
+   font-size: 1em;
+   line-height: 1.5;
+
+}
+
+.back-button {
+  background-color: #88b2cc;
+  border: 0;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Open Sans,sans-serif;
+  font-size: 7em;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 600;
+  line-height: 1;
+  padding: .75em 1.5em;
+  text-decoration: none;
+  transition: background-color .25s ease;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  font: 16px system-ui;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.back-button:hover {
+  background-color: #56739E;
+}
+
+.large-post {
+  color: #54525e;
+  font-family: Open Sans,sans-serif;
+  -webkit-font-feature-settings: "kern","liga","pnum";
+  font-feature-settings: "kern","liga","pnum";
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 200;
+}
+
+.bold {
+  font-weight: 900;
+}
+
+.related-post-heading {
+  font-family: Open Sans,sans-serif;
+  -webkit-font-feature-settings: "kern","liga","pnum";
+  font-feature-settings: "kern","liga","pnum";
+  font-size: 1.5em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 800;
+  color: #a6a5aa;
+}
+
+.related-posts {
+  list-style: none;
+}
+
+.related-post-button {
+  border: none;
+  background-color: transparent;
+  color: #88b2cc;
+  text-decoration: none;
+  transition: color .25s ease;
+  font-family: Open Sans,sans-serif;
+  -webkit-font-feature-settings: "kern","liga","pnum";
+  font-feature-settings: "kern","liga","pnum";
+  font-size: 1.2em;
+  line-height: 1.5;
+}
+
+.related-post-button:hover {
+  color: #56739E;
+}
+
+ul {
+  padding-left: 0;
+}
+
+.profile-link:hover {
+  text-decoration: none;
+}
+
+
+
+.post-button {
+  float: right;
+  margin: 1rem .5rem .5rem .5rem;
+  font-family: Open Sans,sans-serif;
+  font-size: 1em;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 600;
+  line-height: 1;
+  display: block;
+  width: 30%;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  padding: 1.0rem 4.25rem;
+  height: 4.25rem;
+  border-radius: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all .25s ease;
+}
+
+
+
+.delete {
+  color: #e67478;
+  border: 1px solid #e67478;
+  background-color: transparent;
+}
+
+.edit {
+  color: #79d1ad;
+  border: 1px solid #79d1ad;
+  background-color: transparent;
+}
