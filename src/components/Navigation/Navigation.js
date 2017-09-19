@@ -16,11 +16,11 @@ export class Navigation extends React.Component {
                                                    <LoggedOutNav {...this.props} />;
 
         return (
-            <nav className='navigation'>
+            <div className='navigation'>
                 <div className='container'>
                   {navButtons}
                 </div>
-            </nav>
+            </div>
         );
     };
 };

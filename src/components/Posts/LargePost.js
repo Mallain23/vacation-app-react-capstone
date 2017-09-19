@@ -22,8 +22,10 @@ export class LargePost extends React.Component {
     };
 
     renderPostButtons() {
+        const { currentUser, viewUser } = this.props;
 
-    }
+        return currentUser.username === viewUser.username ? <PostButtons {...this.props}/> : '';
+    };
 
     render() {
 
@@ -43,12 +45,13 @@ export class LargePost extends React.Component {
        } = this.props.currentPost
 
        const { avatar } = this.props.viewUser;
+
         return (
             <div className='row'>
                 <div className='col-xs-12 col-md-3'>
                    <Link to={`/profiles/${profileId}`}>{avatar}</Link>
                 </div>
-                <div className='col-xs-12 col-md-9'>
+                <div className='col-xs-12 col-md-9 post-container'>
                     <hr className='divider'/>
                     <h1 className='large-post-title post-heading'>{title}</h1>
                     <p className='font-accent author'>by  <Link className='profile-link' to={`/profile/${profileId}`}>{username}</Link></p>
@@ -59,7 +62,7 @@ export class LargePost extends React.Component {
                     <p className='large-post activities'><span className='bold'>Activities:</span> {activities}</p>
                     <p className='large-post advice'><span className='bold'>Advice:</span> {advice}</p>
                     <p className='large-post rating'><span className='bold'>Rating:</span> {rating}</p>
-                    <PostButtons />{this.renderPostButtons()}
+                    {this.renderPostButtons()}
                 </div>
 
             </div>
@@ -69,12 +72,14 @@ export class LargePost extends React.Component {
 
 const mapStateToProps = (state, props) => {
    const { currentPost, viewUser } = state.postData
+   const { currentUser } = state.auth
    const { editPost } = state.profile
 
    return  {
         currentPost,
         viewUser,
-        editPost
+        editPost,
+        currentUser
     };
 };
 

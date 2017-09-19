@@ -1,5 +1,6 @@
 import React from 'react';
 
+import './Input.css'
 
 export default class Input extends React.Component {
     componentDidUpdate(prevProps) {
@@ -37,8 +38,6 @@ export default class Input extends React.Component {
                     className={this.props.className}
                     ref={input => (this.input = input)}
                 />
-                {error}
-                {warning}
             </div>
         );
     }

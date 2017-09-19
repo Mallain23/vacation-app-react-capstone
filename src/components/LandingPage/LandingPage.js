@@ -2,9 +2,12 @@ import React from 'react'
 import {connect} from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import Header from './Header'
-import About from './About'
-import SignUp from './SignUp'
+import Header from './Header';
+import AppFeatures from './AppFeatures'
+import About from './About';
+import SignUp from './SignUp';
+
+import './LandingPage.css';
 
 import {testFunction} from '../actions/posts'
 
@@ -21,24 +24,27 @@ export class LandingPage extends React.Component {
       }
 
         return (
-            <div className='container'>
+          <div>
+          <div className='background-image-container'>
                 <header id='landing-page-header'>
                     <Header />
                 </header>
+            </div>
+                <div className='container'>
                 <main>
                     <section>
                       <About />
                     </section>
                     <section>
-
                     </section>
                     <section>
-                      Placeholder about using app
+                        <AppFeatures />
                     </section>
                     <section>
                       <SignUp />
                     </section>
                 </main>
+            </div>
             </div>
         )
     };

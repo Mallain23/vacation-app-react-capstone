@@ -43,19 +43,9 @@ export class LoggedInNav extends React.Component {
 
         return (
             <div className='row middle-xs'>
-                <NavHeader col='col-xs-12 col-md-2' {...this.props} />
-                <div className='col-xs-12 col-md-2'>
-                    <div className='dropdown sort-heading nav-heading'>
-                        <a href="" className="dropbtn nav-links">Sort Posts</a>
-                        <div className="dropdown-items">
-                            <DropdownLink value='Most Recent'id='most-recent'/>
-                            <DropdownLink value='Most Visited Destinations'id='most-visited'/>
-                            <DropdownLink value='Highest Rated Destinations'id='highest-rated'/>
-                        </div>
-                    </div>
-                </div>
+                <NavHeader col='col-sm-12 col-md-3' {...this.props} />
                 <NavInput />
-                <div className='col-xs-12 col-md-2'>
+                <div className='col-sm-12 col-md-2'>
                     <div className='dropdown nav-heading marg-left'>
                         <a href="javascript:void(0)" className="dropbtn nav-links right-side">{username}</a>
                         <div className="dropdown-items">

@@ -2,16 +2,17 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 
+import UserProfileSettings from './UserProfileSettings';
+import { getUserProfile } from '../actions/ajaxCallsToUserRoute';
+import { getUsersPosts } from '../actions/ajaxCallsToPostRoute';
+import { getAvatarString } from './utils';
+
 import EditProfile from './EditProfile';
 import UserProfile from './UserProfile';
 import UsersPosts from './UsersPosts';
-import Pagination from '../Home/Pagination'
-import UserProfileSettings from './UserProfileSettings'
-import { getUserProfile } from '../actions/ajaxCallsToUserRoute'
-import { getUsersPosts } from '../actions/ajaxCallsToPostRoute'
+import Pagination from '../Home/Pagination';
 
-
-import './ProfilePage.css'
+import './ProfilePage.css';
 
 export class ProfilePage extends React.Component {
 
@@ -35,45 +36,54 @@ export class ProfilePage extends React.Component {
           return <Redirect to={'/'}/>
         }
 
-        const { username, currentUser, avatar } = this.props
+        const { username, currentUser, firstName, lastName} = this.props
+
+        const avatarString = getAvatarString(firstName, lastName)
         const profileSettings = currentUser.username === username ? <UserProfileSettings /> : ''
 
         return (
             <div className='user-profile'>
                 <div className='container'>
                     <div className='row user-profile'>
-                        <div className='col-xs-12 col-md-4 user-profile-left'>
-                            <div className='box'>
+                        <div className='col-xs-12 upper-profile'>
+                            <div className='row'>
+                                <div className='col-xs-12'>
+                                    <div className='profile-avatar'>
+                                        {avatarString}
+                                    </div>
+                                </div>
+                                <div className='col-xs-12'>
+                                    {profileSettings}
+                                </div>
                             </div>
-                        </div>
-                        <div className='col-xs-12 col-md-8 user-profile-right'>
-                            <div className='box'>
-                                <img src={avatar} className='profile-avatar avatar-large'/>
-                                {profileSettings}
-                                {this.renderProfileComponent()}
+                            <div className='row'>
+                              {this.renderProfileComponent()}
                             </div>
                         </div>
                     </div>
                     <div className='row user-posts'>
                         <UsersPosts {...this.props} />
+                    </div>
+                    <div className='row'>
                         <Pagination username={username} searchFunction={getUsersPosts} />
                     </div>
                 </div>
             </div>
-        );
+        )
     };
 };
 
 const mapStateToProps = state => {
-
-    let { avatar, username } = state.profile.currentProfile
+    console.log(state)
+    let { username, firstName, lastName } = state.profile.currentProfile
     let { editProfile } = state.profile
 
     return {
         currentUser: state.auth.currentUser,
         loggedIn: state.auth.currentUser !== null,
         username,
-        avatar,
+        firstName,
+        lastName,
         editProfile
       };
 }

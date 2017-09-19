@@ -21,7 +21,7 @@ export class LoginButtons extends React.Component {
     };
 
     handleSignupClick (e) {
-        e.preventDefault
+        e.preventDefault()
 
         this.props.dispatch(openSignupForm())
     }

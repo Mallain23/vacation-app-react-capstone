@@ -26,12 +26,11 @@
     margin-right: -.5rem;
     margin-left: -.5rem;
     color: #54525e;
-   font-family: Open Sans,sans-serif;
-   -webkit-font-feature-settings: "kern","liga","pnum";
-   font-feature-settings: "kern","liga","pnum";
-   font-size: 1em;
-   line-height: 1.5;
-
+    font-family: Open Sans,sans-serif;
+    -webkit-font-feature-settings: "kern","liga","pnum";
+    font-feature-settings: "kern","liga","pnum";
+    font-size: 1em;
+    line-height: 1.5;
 }
 
 .back-button {
@@ -149,8 +148,66 @@ ul {
   background-color: transparent;
 }
 
+.delete:hover {
+  background-color: #e67478;
+}
+
 .edit {
   color: #79d1ad;
   border: 1px solid #79d1ad;
   background-color: transparent;
+}
+
+.edit:hover {
+  background-color: #79d1ad;
+}
+
+.create-post {
+  margin-top: 30px;
+  padding-left: 20px;
+}
+
+.form-heading {
+  text-transform: uppercase;
+  font-family: Open Sans,sans-serif;
+  color: #54525e;
+  letter-spacing: 2px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  font-size: 2rem;
+
+}
+
+.manage-post-form {
+  border-top: 1px-solid-#C0C0C0;
+}
+
+.edit-post-label {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 800;
+  font-family: Open Sans,sans-serif;
+  color: #54525e;
+  margin-left: 20px;
+  margin-bottom: 15px;
+
+}
+
+.post-container {
+  white-space: pre-wrap;
+}
+
+.create-edit-button-container {
+    text-align: center;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.create-edit-button {
+  display: inline-block;
+  width: 25%;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 12px;
+  padding: 5px;
 }

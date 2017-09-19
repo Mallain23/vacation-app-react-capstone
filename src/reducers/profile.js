@@ -32,7 +32,7 @@ export default function reducer(state = initialState, action) {
       }
 
       else if (action.type === EDIT_PROFILE_SUCCESS) {
-
+          console.log(action.profile)
           return Object.assign({}, state, {
               currentProfile: action.profile,
               editProfile: false

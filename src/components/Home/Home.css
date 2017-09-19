@@ -86,7 +86,7 @@
 .oval-button {
   width: 100%;
   display: block;
-  margin-top: 7rem;
+  margin-top: 1rem;
   padding-top: .3rem;
   background-color: hsla(0,0%,100%,.3);
   color: #88b2cc;
@@ -109,4 +109,33 @@
   color: white;
   text-decoration: none;
   cursor: pointer;
+}
+
+.pagination-button-container {
+  margin: auto;
+  text-align: center;
+  vertical-align: middle;
+  margin-bottom: 30px;
+  margin-top: 0px;
+}
+
+.prev, .next {
+  width: 20%;
+  display: inline-block;
+  font-size: 12px;
+}
+
+.prev {
+  margin-right: 10px;
+}
+
+.next {
+  margin-left: 10px;
+}
+
+.page-num {
+  font-family: Open Sans,sans-serif;
+  font-size: 16px;
+  color: #88b2cc;
+  font-weight: 600px;
 }

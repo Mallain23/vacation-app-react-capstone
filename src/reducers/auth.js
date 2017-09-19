@@ -1,5 +1,6 @@
 import {SET_AUTH_TOKEN, SET_CURRENT_USER,} from '../components/actions/auth';
 import {OPEN_LOGIN_FORM, OPEN_SIGNUP_FORM, CLOSE_AUTH_MODAL } from '../components/actions/users';
+import { EDIT_PROFILE_SUCCESS } from '../components/actions/profile'
 
 const initialState = {
     authToken: null, // authToken !== null does not mean it has been validated
@@ -7,7 +8,7 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-    
+
     if (action.type === SET_AUTH_TOKEN) {
 
           return Object.assign({}, state, {
@@ -41,6 +42,13 @@ export default function reducer(state = initialState, action) {
           showLogin: false,
           showAuthModal: true
         })
+    }
+
+    else if (action.type === EDIT_PROFILE_SUCCESS) {
+
+        return Object.assign({}, state, {
+            currentUser: action.profile
+        });
     }
 
     return state;

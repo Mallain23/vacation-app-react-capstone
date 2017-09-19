@@ -3,20 +3,24 @@ import PostForm from './PostForm'
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux'
 
+import './Post.css'
+
 export function ManagePost (props) {
 
     if (!props.isLoggedIn) {
         return <Redirect to={'/'} />
     }
 
-    let formHeading = props.isEditing ?  "Edit Form" : "Create Form";
+    let formHeading = props.isEditing ?  "Edit Post" : "Create New Post";
 
     return (
         <div className='container'>
             <div className='row'>
                 <div className='col-xs-12 col-lg-8'>
                     <div className='box create-post'>
-                        <h1 className='form-heading'>{formHeading}</h1>
+                        <div className='heading-container'>
+                            <h1 className='form-heading'>{formHeading}</h1>
+                        </div>
                         <PostForm {...props}/>
                     </div>
                 </div>

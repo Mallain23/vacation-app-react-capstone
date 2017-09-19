@@ -8,6 +8,8 @@ import {isNumber, isTrimmed, required, nonEmpty, validValue} from '../validators
 import {createPost, editPost, fetchSelectedPost} from '../actions/ajaxCallsToPostRoute'
 import {setEditPostTrue} from '../actions/posts'
 
+import './Post.css'
+
 export class PostForm extends React.Component {
     constructor(props) {
         super(props)
@@ -60,66 +62,80 @@ export class PostForm extends React.Component {
         return (
             <form
                 className="manage-post-form"
-                onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
-                >
-                <label htmlFor="title">Title of Post</label>
-                <Field component={Input} placeholder='My amazing trip two week trip to Hawaii!' type="text" name="title" validate={[required, nonEmpty]} />
-                <label htmlFor="destination">Where did you go?</label>
-                <Field component={Input} placeholder='Location (Can be City/State/Country)' type="text" name="destination" validate={[required, nonEmpty]} />
-                <label htmlFor="lodging">Where did you Stay?</label>
-                <Field
-                    component={TextArea}
-                    type="text"
-                    name="lodging"
-                    placeholder='Tell us about the place(s) you stayed! Be as detailed and descriptive as possible!'
-                />
-                <label htmlFor="dining">Where did you eat?</label>
-                <Field
-                    component={TextArea}
-                    className='textarea'
-                    type="textbox"
-                    name="dining"
-                    placeholder='Tell us about the place(s) you ate! Be as detailed and descriptive as possible!'
-                />
-                <label htmlFor="sites">What sites did you see?</label>
-                <Field
-                    component={TextArea}
-                    type="textbox"
-                    name="sites"
-                    placeholder='Tell us about the sites you saw! (e.g. Statue of Liberty, Empire State Building, Museums) Be as detailed and descriptive as possible!'
-                />
-                <label htmlFor="activities">What activities did you do?</label>
-                <Field
-                    component={TextArea}
-                    type="textbox"
-                    name="activities"
-                    placeholder='Tell us about the activities that you did! (e.g. Guided Tours, Hiking, Safaris, Zip-Lining ) Be as detailed and descriptive as possible!'
-                />
-                <label htmlFor="advice">Advice for other travelerss</label>
-                <Field
-                    component={TextArea}
-                    type="textbox"
-                    name="advice"
-                    placeholder='Use this section to give other travels advice and tips about traveling to this destination. (e.g. favorite or least favorite things, things to avoid, things you would have done differently or the same )'
-                />
-                <label htmlFor="rating">Rate your trip!</label>
+                onSubmit={this.props.handleSubmit(values => this.onSubmit(values))} >
+                <label className='edit-post-label' htmlFor="title">Title</label>
                 <Field
                     component={Input}
-                    type="number"
-                    name="rating"
-                    placeholder='Rate your trip on a scale of 1 to 10!'
-                    validate={[required, isNumber, validValue]}
-                />
-                <button
-                    type="submit"
-                    disabled={this.props.pristine || this.props.submitting}>
-                    {this.renderButtonText()}
-                </button>
-                <button
-                    disabled={this.props.submitting}
-                    onClick={this.handleCancel}>
-                    Cancel
-                </button>
+                    className='post-form-input'
+                    placeholder='Enter a Title for your Post'
+                    type="text"
+                    name="title"
+                    validate={[required, nonEmpty]} />
+                    <label className='edit-post-label' htmlFor="destination">Where did you go?</label>
+                    <Field
+                        component={Input}
+                        className='post-form-input'
+                        placeholder='Location (Can be City/State/Country)'
+                        type="text"
+                        name="destination"
+                        validate={[required, nonEmpty]} />
+                    <label className='edit-post-label' htmlFor="lodging">Where did you Stay?</label>
+                    <Field
+                        component={TextArea}
+                        className='post-form-input'
+                        type="text"
+                        name="lodging"
+                        placeholder='Tell us about the place(s) you stayed! Be as detailed and descriptive as possible!'/>
+                    <label className='edit-post-label' htmlFor="dining">Where did you eat?</label>
+                    <Field
+                        component={TextArea}
+                        className='post-form-input'
+                        type="textbox"
+                        name="dining"
+                        placeholder='Tell us about the place(s) you ate! Be as detailed and descriptive as possible!' />
+                    <label className='edit-post-label' htmlFor="sites">What sites did you see?</label>
+                    <Field
+                        component={TextArea}
+                        className='post-form-input'
+                        type="textbox"
+                        name="sites"
+                        placeholder='Tell us about the sites you saw! (e.g. Statue of Liberty, Empire State Building, Museums) Be as detailed and descriptive as possible!' />
+                    <label className='edit-post-label' htmlFor="activities">What activities did you do?</label>
+                    <Field
+                        component={TextArea}
+                        className='post-form-input'
+                        type="textbox"
+                        name="activities"
+                        placeholder='Tell us about the activities that you did! (e.g. Guided Tours, Hiking, Safaris, Zip-Lining ) Be as detailed and descriptive as possible!' />
+                    <label className='edit-post-label' htmlFor="advice">Advice for Other Travelers</label>
+                    <Field
+                        component={TextArea}
+                        className='post-form-input'
+                        type="textbox"
+                        name="advice"
+                        placeholder='Use this section to give other travels advice and tips about traveling to this destination. (e.g. favorite or least favorite things, things to avoid, things you would have done differently or the same )' />
+                    <label className='edit-post-label' htmlFor="rating">Rate your Trip!</label>
+                    <Field
+                        component={Input}
+                        className='post-form-input'
+                        type="number"
+                        name="rating"
+                        placeholder='Rate your trip on a scale of 1 to 10!'
+                        validate={[required, isNumber, validValue]} />
+                    <div className='create-edit-button-container'>
+                        <button
+                            type="submit"
+                            className='oval-button create-edit-button'
+                            disabled={this.props.pristine || this.props.submitting}>
+                            {this.renderButtonText()}
+                        </button>
+                        <button
+                            className='oval-button create-edit-button'
+                            disabled={this.props.submitting}
+                            onClick={this.handleCancel}>
+                            Cancel
+                        </button>
+                    </div>
                 </form>
         )
     }

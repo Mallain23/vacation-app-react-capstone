@@ -6,3 +6,108 @@
 .hide {
   display: none;
 }
+
+
+.upper-profile {
+  background-color: #4a4756;
+}
+
+.profile-info {
+  margin: auto;
+  text-align: center;
+  font-family: Open Sans,sans-serif;
+  font-feature-settings: "kern","liga","pnum";
+  font-size: 1.7em;
+  line-height: 1.5;
+
+}
+
+.profile-username {
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 800;
+  font-family: Open Sans,sans-serif;
+  font-size: 30px;
+  line-height: 1.2;
+  color: hsla(0,0%,100%,.75);
+
+}
+
+.user-bio, .favorite-destination {
+  font-size: 18px;
+  color: hsla(0,0%,100%,.75);
+}
+
+.name {
+  font-family: cursive;
+  color: hsla(0,0%,100%,.75);
+}
+
+.profile-avatar {
+  margin: auto;
+  text-align: center;
+  height: 150px;
+  width: 150px;
+  background-color: #FFA07A;
+  margin-top: 20px;
+  border-radius: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: center;
+  color: hsla(0,0%,100%,.75);
+  font-size: 50px;
+  padding-top: 40px;
+}
+
+.user-profile-settings {
+  margin: auto;
+  text-align: center;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.edit-profile {
+  margin: auto;
+  text-align: center;
+}
+
+.button-divider {
+    color: #337ab7;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.profile-settings {
+
+}
+.profile-settings:hover {
+  text-decoration: none;
+}
+
+.user-posts {
+  margin-top: 20px;
+}
+
+.edit-profile-form {
+  margin-top: 20px;
+}
+
+.edit-profile-label {
+  color: hsla(0,0%,100%,.75);
+  margin-bottom: 15px;
+}
+
+.profile-button-container {
+  margin: auto;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.edit-profile-button {
+  background-color: white;
+  width: 20%;
+  margin: auto;
+  margin-top: 15px;
+}

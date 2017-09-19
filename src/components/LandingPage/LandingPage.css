@@ -1,0 +1,125 @@
+#landing-page-header {
+  margin: auto;
+  text-align: right;
+  margin-top: 35px;
+  margin-right: 70px;
+}
+
+.background-image-container {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(https://wallpaperscraft.com/image/ocean_landscape_blue_nature_summer_94121_1920x1080.jpg);
+  height: 550px;
+  position: relative;
+  top: 15px;
+  z-index: 2;
+
+}
+.page-title {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 70px;
+  font-weight: 800;
+  font-family: Open Sans,sans-serif;
+  color: white;
+  font-size: 56px;
+}
+
+.catch-phrase {
+  font-size: 36px;
+  font-family: Open Sans,sans-serif;
+  color: white;
+  font-weight: 800px;
+}
+
+#about {
+  margin-top: 70px;
+}
+
+.seciton-title-container {
+  margin: auto;
+  text-align: center;
+}
+
+.section-title {
+  text-transform: uppercase;
+  color: #777;
+  font-weight: 800px;
+  font-size: 42px;
+
+}
+
+.overview-text, .search-text, .ideas-text, .share-text {
+    font-size: 20px;
+    line-height: 35px;
+    font-family: Open Sans,sans-serif;
+    color: #56739E
+}
+
+.overview-title, .search-title, .ideas-title, .share-title {
+  margin-bottom: 20px;
+  color: #56739E;
+  text-transform: uppercase;
+
+}
+
+#overview {
+  margin-left: 30px;
+}
+
+#about-img {
+  margin-top: 27px;
+  margin-left: 30px;
+}
+
+.overview-image {
+  height: 250px;
+  width: 300px;
+}
+
+#app-features {
+    display: block;
+    margin-bottom: 100px;
+    margin-top: 70px;
+}
+
+#ideas {
+  margin-top: 255px;
+}
+
+.signup-title {
+  margin: auto;
+  text-align: center;
+  color: #56739E;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  font-size: 42px;
+}
+
+.signup-btn {
+    background-color: hsla(0,0%,100%,.3);
+    color: #88b2cc;
+    border: 1px solid #88b2cc;
+    padding: 1.0rem 3.75rem;
+    padding-bottom: 1.5rem;
+    height: 3.75rem;
+    border-radius: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.signup-btn:hover {
+  background-color: #88b2cc;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.signup-button-container {
+    text-align: center;
+    margin: auto;
+    margin-bottom: 40px;
+}

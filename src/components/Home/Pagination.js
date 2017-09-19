@@ -6,6 +6,8 @@ import {fetchPosts,
         searchForPosts,
         getUsersPosts } from '../actions/ajaxCallsToPostRoute'
 
+import './Home.css'
+
 export class Pagination extends React.Component {
     constructor(props) {
         super(props)
@@ -73,10 +75,12 @@ export class Pagination extends React.Component {
         const disable = pageNumber === 1 ? true : false
 
         return (
-            <div className='col-xs-12 col-md-3'>
-                <button className='Prev' disabled={disable} ref='prev' onClick={this.handlePrevClick} > Previous Page </button>
-                {pageNumber}
-                <button className='Next' onClick={this.handleNextClick} > Next Page </button>
+            <div className='col-xs-12'>
+                <div className='pagination-button-container'>
+                    <button className='prev oval-button' disabled={disable} ref='prev' onClick={this.handlePrevClick} > Previous Page </button>
+                    <span className='page-num'>{pageNumber}</span>
+                    <button className='next oval-button' onClick={this.handleNextClick} > Next Page </button>
+                </div>
             </div>
         );
     };

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Input.css';
+
 export default class TextArea extends React.Component {
     componentDidUpdate(prevProps) {
         if (!prevProps.meta.active && this.props.meta.active) {
@@ -33,11 +35,9 @@ export default class TextArea extends React.Component {
                     placeholder={this.props.placeholder}
                     id={this.props.input.name}
                     type={this.props.type}
-
+                    className={this.props.className}
                     ref={input => (this.input = input)}
                 />
-                {error}
-                {warning}
             </div>
         );
     };

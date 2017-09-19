@@ -62,7 +62,6 @@ export class App extends React.Component {
                   <Route exact path='/create-post' component={ManagePost} />
                   <Route exact path='/post/:postId' component={ViewPost} />
                   <Route exact path='/edit/:postId' component={ManagePost} />
-
                 </div>
         )
     }

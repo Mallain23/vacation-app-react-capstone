@@ -1,13 +1,18 @@
-nav {
+.navigation {
   min-height: 5.0rem;
-  background: #5d5762;
+  background-color: #5d5762;
   font-family: Open Sans,sans-serif;
+  position: fixed;
+  top: 0px;
+  margin-top: 0px;
+  z-index: 3;
 
 }
 
 .container  {
   margin-right: auto;
   margin-left: auto;
+
 }
 
 .middle-xs {
@@ -16,7 +21,9 @@ nav {
       display: flex;
       align-items: center;
       vertical-align: middle;
+      background-color: #5d5762;
 }
+
 
 .box {
   font-size: 1em;
@@ -32,15 +39,20 @@ nav {
 
 .nav-app-title {
     color: white;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 24px;
     margin-top: .8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 
 }
 
 .title {
-  font-family: Arial Black;
   color: white;
+  font-family: Open Sans,sans-serif;
+  -webkit-font-feature-settings: "kern","liga","pnum";
+  font-feature-settings: "kern","liga","pnum";
+
 }
 
 .title:hover {
@@ -82,7 +94,7 @@ nav {
 }
 
 .nav-links {
-  font-size: 16px;
+  font-size: 14px;
   font-family: Open Sans,sans-serif;
   -webkit-font-feature-settings: "kern","liga","pnum";
   font-feature-settings: "kern","liga","pnum";

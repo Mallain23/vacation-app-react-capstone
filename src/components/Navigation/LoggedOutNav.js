@@ -14,12 +14,11 @@ export class LoggedOutNav extends React.Component {
         return (
             <div className='row middle-xs'>
                 <NavHeader col='col-xs-12 col-md-3' {...this.props}/>
-                <div className='col-xs-12 col-md-10'>
+                <div className='col-xs-12 col-md-8'>
                    <Link className='nav-links marg-right' to='/home#overview'>Overview</Link>
-                   <Link className='nav-links marg-right' to='/home#destination'>Where to go</Link>
-                   <Link className='nav-links marg-right' to='/home#lodging'>Where to stay</Link>
-                   <Link className='nav-links marg-right' to='/home#acitvities' >What to do</Link>
-               </div>
+                   <Link className='nav-links marg-right' to='/home#destination'>App Features</Link>
+                   <Link className='nav-links marg-right' to='/home#lodging'>Demo App</Link>
+                </div>
                <LoginButtons />
             </div>
         );
