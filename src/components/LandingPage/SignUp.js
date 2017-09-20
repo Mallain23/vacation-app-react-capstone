@@ -1,11 +1,10 @@
 import React from 'react';
-import RegistrationForm from './RegistrationForm';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import { openLoginForm, openSignupForm } from '../actions/users'
+import { openLoginForm, openSignupForm } from '../actions/users';
 
-import './LandingPage.css'
+import './LandingPage.css';
 
 export class SignUp extends React.Component {
     constructor(props) {

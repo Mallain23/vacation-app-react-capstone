@@ -1,3 +1,7 @@
+.top-container {
+  margin-top: 70px;
+}
+
 .post-box {
     box-sizing: border-box;
     -webkit-box-flex: 0;
@@ -104,6 +108,10 @@
 
 }
 
+.oval-button-post {
+  margin-top: 6.5rem;
+}
+
 .oval-button:hover {
   background-color: #88b2cc;
   color: white;
@@ -133,9 +141,55 @@
   margin-left: 10px;
 }
 
+.prev:disabled, .next:disabled {
+  cursor: not-allowed;
+}
+
 .page-num {
   font-family: Open Sans,sans-serif;
   font-size: 16px;
   color: #88b2cc;
   font-weight: 600px;
+}
+
+.next-long, .prev-long {
+  display: inline-block;;
+}
+
+.next-short, .prev-short {
+  display: none;
+}
+
+@media only screen and (max-width: 1200px) {
+    .top-container {
+      margin-top: 170px;
+    }
+
+    .next-long, .prev-long {
+      display: none;
+    }
+
+    .next-short, .prev-short {
+      display: inline-block;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .prev, .next  {
+      width: 40%;
+    }
+
+}
+
+@media only screen and (max-width: 200px) {
+    .prev, .next  {
+      width: 90%;
+      display: block;
+    }
+
+    .prev {
+      margin-left: 7px;
+      margin-bottom: 7px;
+    }
+
 }

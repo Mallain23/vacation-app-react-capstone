@@ -31,7 +31,7 @@ export class PostForm extends React.Component {
     };
 
     renderButtonText() {
-      return this.props.isEditing ? 'Edit Post' : 'Create Post'
+      return this.props.isEditing ? 'Edit' : 'Create'
     };
 
     onSubmit(values) {
@@ -125,12 +125,12 @@ export class PostForm extends React.Component {
                     <div className='create-edit-button-container'>
                         <button
                             type="submit"
-                            className='oval-button create-edit-button'
+                            className='oval-button create-edit-button create'
                             disabled={this.props.pristine || this.props.submitting}>
                             {this.renderButtonText()}
                         </button>
                         <button
-                            className='oval-button create-edit-button'
+                            className='oval-button create-edit-button cancel'
                             disabled={this.props.submitting}
                             onClick={this.handleCancel}>
                             Cancel

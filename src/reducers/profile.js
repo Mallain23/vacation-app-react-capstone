@@ -26,13 +26,15 @@ export default function reducer(state = initialState, action) {
 
       else if (action.type === GET_USERS_POSTS_SUCCESS) {
 
+            const usersPosts = action.usersPosts.posts
+          
             return Object.assign({}, state, {
-              usersPosts: action.usersPosts
+              usersPosts
             })
       }
 
       else if (action.type === EDIT_PROFILE_SUCCESS) {
-          console.log(action.profile)
+
           return Object.assign({}, state, {
               currentProfile: action.profile,
               editProfile: false

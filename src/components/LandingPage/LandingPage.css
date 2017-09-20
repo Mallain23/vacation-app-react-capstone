@@ -16,6 +16,7 @@
   z-index: 2;
 
 }
+
 .page-title {
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -73,9 +74,9 @@
   margin-left: 30px;
 }
 
-.overview-image {
-  height: 250px;
-  width: 300px;
+.overview-image, .travel-img {
+  height: 300px;
+  width: 350px;
 }
 
 #app-features {
@@ -85,7 +86,7 @@
 }
 
 #ideas {
-  margin-top: 255px;
+  margin-top: 100px;
 }
 
 .signup-title {
@@ -122,4 +123,9 @@
     text-align: center;
     margin: auto;
     margin-bottom: 40px;
+}
+
+.signup-register-button {
+  width: 25%;
+
 }

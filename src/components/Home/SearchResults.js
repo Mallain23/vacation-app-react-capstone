@@ -25,6 +25,7 @@ export class SearchResults extends React.Component {
 
         if (posts.length < 1) {
             alert("There were no results that matched your search criteria, please refine your search!")
+
             return <Redirect to="/welcome" />
         }
 
@@ -44,7 +45,7 @@ export class SearchResults extends React.Component {
         })
 
         return (
-            <div className='container'>
+            <div className='container top-container'>
                 <div className='row main'>
                     {formattedPosts}
                     <Pagination searchFunction={searchForPosts}  />

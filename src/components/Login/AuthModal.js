@@ -5,8 +5,10 @@ import {connect} from 'react-redux';
 import { LOGIN_TITLE, SIGNUP_TITLE } from './utils';
 import { closeAuthModal } from '../actions/users';
 
-import RegistrationForm from '../LandingPage/RegistrationForm';
+import RegistrationForm from './RegistrationForm';
 import LoginForm from './LoginForm';
+
+import './Modal.css'
 
 export class AuthModal extends React.Component {
     constructor(props) {
@@ -15,8 +17,8 @@ export class AuthModal extends React.Component {
         this.handleClose = this.handleClose.bind(this);
     };
 
-    handleClose(e) {
-        e.preventDefault();
+    handleClose() {
+
         this.props.dispatch(closeAuthModal());
     };
 
@@ -42,20 +44,22 @@ export class AuthModal extends React.Component {
                          onHide={this.handleClose}
                          container={this}
                          aria-labelledby="auth-modal">
-                      <Modal.Header className='modal-header' closeButton>
-                          <Modal.Title id="edit-page-modal">{this.renderTitle()} </Modal.Title>
-                      </Modal.Header>
+                          <div className='modal-header' closeButton>
+                              <div className='modal-title' id="edit-page-modal">
+                                  {this.renderTitle()}
+                              </div>
+                          </div>
                       <Modal.Body className='modal-body'>
                           {this.renderForm()}
                       </Modal.Body>
-                      <Modal.Footer className='moda-footer'>
-                          <Button
+                      <div className='modal-footer'>
+                          <button
                               disabled={this.props.submitting}
                               onClick={this.handleClose}
-                              className='modal-button'>
+                              className='oval-button auth-close-button'>
                               Cancel
-                          </Button>
-                    </Modal.Footer>
+                          </button>
+                    </div>
                 </Modal>
               </div>
         );
@@ -64,7 +68,7 @@ export class AuthModal extends React.Component {
 
 const mapStateToProps = state => {
     const { showLogin, showAuthModal } = state.auth
-    console.log(state)
+
     return {
       showLogin,
       showAuthModal

@@ -1,9 +1,11 @@
 .navigation {
-  min-height: 5.0rem;
+  min-height: 60px;
   background-color: #5d5762;
   font-family: Open Sans,sans-serif;
   position: fixed;
   top: 0px;
+  right: 0px;
+  left: 0px;
   margin-top: 0px;
   z-index: 3;
 
@@ -15,8 +17,8 @@
 
 }
 
-.middle-xs {
-    display: -webkit-flex;
+.nav-row {
+      display: -webkit-flex;
       -webkit-align-items: center;
       display: flex;
       align-items: center;
@@ -52,12 +54,16 @@
   font-family: Open Sans,sans-serif;
   -webkit-font-feature-settings: "kern","liga","pnum";
   font-feature-settings: "kern","liga","pnum";
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 10px;
 
 }
 
 .title:hover {
   text-decoration: none;
   cursor: pointer;
+
 }
 .dropdown {
     display: inline-block;
@@ -105,8 +111,11 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   vertical-align: middle;
+  display: inline-block;
   margin-top: 10px;
 }
+
+
 
 .marg-right {
   margin-right: 30px;
@@ -174,8 +183,8 @@
     cursor: pointer;
     background-color: #88b2cc;
     display: inline-block;
-    width: 46px;
-    height: 46px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     transition: all .25s ease;
     font-weight: 800;
@@ -184,6 +193,7 @@
     font-size: 1.5rem;
     line-height: 2.75rem;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .round-button:hover {
@@ -201,4 +211,36 @@
   margin-top: 7px;
   vertical-align: middle;
   text-align: center;
+}
+
+.profile-btn {
+  margin-top: 0px;
+}
+
+@media only screen and (max-width: 64em) {
+    .navigation {
+        padding: .5rem;
+        display: block;
+    }
+
+    .nav-row {
+        box-sizing: border-box;
+        align-items: center;
+        box-sizing: border-box;
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-flex: 0;
+        flex: 0 1 auto;
+        -webkit-box-direction: normal;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-right: -.5rem;
+        margin-left: -.5rem;
+    }
+
+    .dropdown,  .marg-left, .nav-drop {
+      display: inline-block;
+      margin-left: 5px;
+      margin-right: 0px;
+    }
 }

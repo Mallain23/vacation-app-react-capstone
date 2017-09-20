@@ -16,6 +16,8 @@ export class LandingPage extends React.Component {
     componentWillMount() {
       this.props.dispatch(testFunction())
     }
+
+
     render() {
 
 
@@ -25,26 +27,26 @@ export class LandingPage extends React.Component {
 
         return (
           <div>
-          <div className='background-image-container'>
-                <header id='landing-page-header'>
-                    <Header />
-                </header>
-            </div>
-                <div className='container'>
-                <main>
-                    <section>
-                      <About />
-                    </section>
-                    <section>
-                    </section>
-                    <section>
-                        <AppFeatures />
-                    </section>
-                    <section>
-                      <SignUp />
-                    </section>
-                </main>
-            </div>
+              <div className='background-image-container'>
+                    <header id='landing-page-header'>
+                        <Header />
+                    </header>
+                </div>
+                    <div className='container'>
+                    <main>
+                        <section>
+                          <About />
+                        </section>
+                        <section>
+                        </section>
+                        <section>
+                            <AppFeatures />
+                        </section>
+                        <section>
+                          <SignUp />
+                        </section>
+                    </main>
+                </div>
             </div>
         )
     };

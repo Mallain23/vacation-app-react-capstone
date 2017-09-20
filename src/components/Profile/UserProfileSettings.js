@@ -32,8 +32,8 @@ export class UserProfileSettings extends React.Component {
 
     render() {
         const { editProfile } = this.props
-        const settingButton = editProfile ? <a onClick={this.handleCancelClick} className='cancel profile-settings'>Cancel </a> :
-                                        <a onClick={this.handleEdit} className="edit-profile profile-settings">Edit</a>
+        const settingButton = editProfile ? <a onClick={this.handleCancelClick} className='profile-settings'>Cancel </a> :
+                                            <a onClick={this.handleEdit} className="edit-profile profile-settings">Edit</a>
 
         return (
             <div className='user-profile-settings'>

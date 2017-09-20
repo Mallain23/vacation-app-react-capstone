@@ -6,6 +6,8 @@ import {registerUser} from '../actions/users';
 import {login} from '../actions/auth';
 import {required, nonEmpty, matches, length, isTrimmed} from '../validators/validators';
 
+import './Modal.css'
+
 export class RegistrationForm extends React.Component {
     onSubmit(values) {
          const {username, password, firstName, lastName} = values;
@@ -24,25 +26,25 @@ export class RegistrationForm extends React.Component {
               onSubmit={this.props.handleSubmit(values =>
                   this.onSubmit(values)
               )}>
-              <label htmlFor="firstName">First name</label>
+              <label className='auth-label' htmlFor="firstName">First name</label>
               <Field component={Input} type="text" name="firstName" />
-              <label htmlFor="lastName">Last name</label>
+              <label className='auth-label' htmlFor="lastName">Last name</label>
               <Field component={Input} type="text" name="lastName" />
-              <label htmlFor="username">Username</label>
+              <label className='auth-label' htmlFor="username">Username</label>
               <Field
                   component={Input}
                   type="text"
                   name="username"
                   validate={[required, nonEmpty, isTrimmed]}
               />
-              <label htmlFor="password">Password</label>
+              <label className='auth-label' htmlFor="password">Password</label>
               <Field
                   component={Input}
                   type="password"
                   name="password"
                   validate={[required, length({min: 10, max: 72}), isTrimmed]}
               />
-              <label htmlFor="passwordConfirm">Confirm password</label>
+              <label className='auth-label' htmlFor="passwordConfirm">Confirm password</label>
               <Field
                   component={Input}
                   type="password"
@@ -51,6 +53,7 @@ export class RegistrationForm extends React.Component {
               />
               <button
                   type="submit"
+                  className='oval-button register-button'
                   disabled={this.props.pristine || this.props.submitting}>
                   Register
               </button>

@@ -24,7 +24,7 @@ export class Post extends React.Component {
                     <p className='font-accent author'>by  <Link to={`/profile/${profileId}`}>{username}</Link></p>
                     <p className='post-destination'>{destination}</p>
                     <div className='box-bottom'>
-                        <p className='button-container'><Link to={`/post/${postId}`} className='oval-button'>Read</Link></p>
+                        <p className='button-container'><Link to={`/post/${postId}`} className='oval-button oval-button-post'>Read</Link></p>
                     </div>
                 </div>
             </article>

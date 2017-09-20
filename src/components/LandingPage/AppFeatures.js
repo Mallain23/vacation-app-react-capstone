@@ -7,12 +7,12 @@ export default function AppFeatures(props) {
         <div id='app-features'>
             <div className='row'>
                 <div className='col-xs-12 col-md-4'>
-                    <img src='' />
+                    <img className='travel-img' src='http://static.atimes.com/uploads/2015/10/Khajuraho-Temple-3.jpg' />
                 </div>
                 <div className='col-xs-12 col-md-6'>
                     <div id='search'>
                         <h2 className='search-title'>Search for Posts</h2>
-                        <p className='search-text'>Vacay Away has a great search feature, which allows users to search for posts by keywords. This makes its quick and easy to find posts that are relevant to what your interested in!</p>
+                        <p className='search-text'>Vacay Away has a great search feature, which allows users to search for posts by keywords. This makes its quick and easy to find posts that are relevant to what you are interested in!</p>
                     </div>
                 </div>
             </div>
@@ -24,11 +24,12 @@ export default function AppFeatures(props) {
                     </div>
                 </div>
                 <div className='col-xs-12 col-md-4'>
+                    <img className='travel-img' src='https://kauaivacationtours.com/files/2011/01/Kauai-Zipline-n-Dip-Tour.jpg'/>
                 </div>
             </div>
             <div className='row'>
                 <div className='col-xs-12 col-md-4'>
-                    <img src='' />
+                    <img className='travel-img' src='http://travel-wise.com/wp-content/uploads/2016/06/Instagram.jpg' />
                 </div>
                 <div className='col-xs-12 col-md-6'>
                     <div id='share'>

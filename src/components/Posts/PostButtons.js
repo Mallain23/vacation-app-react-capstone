@@ -38,11 +38,13 @@ export class PostButtons extends React.Component {
                 <button onClick={this.handleEditClick}
                         ref='btn'
                         className='oval-button post-button edit'>
-                        Edit
+                        <span className='edit-long-text'>Edit</span>
+                        <span className='edit-short-text'>E</span>
                 </button>
                 <button onClick={this.handleDeleteClick}
                         className='oval-button post-button delete'>
-                        Delete
+                        <span className='delete-long-text'>Delete</span>
+                        <span className='delete-short-text'>D</span>
                 </button>
             </div>
         );

@@ -11,9 +11,10 @@ import { fetchProtectedDataError,
 
 
 //this function gets the most recent posts to display when user logins
-export const fetchPosts = sliceIndex => (dispatch, getState) => {
+export const fetchPosts = (sliceIndex, amount) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
-    return fetch(`${API_BASE_URL}/protected/posts/${sliceIndex}`, {
+
+    return fetch(`${API_BASE_URL}/protected/posts/${sliceIndex}/?amount=${amount}`, {
         method: 'GET',
         headers: {
             // Provide our auth token as credentials
@@ -48,10 +49,10 @@ export const searchForPosts = (searchTerm, amount, searchIndex) => (dispatch, ge
 };
 
 //this function returns all the posts by a given user (to display when they are looking at profile)
-export const getUsersPosts = (username, sliceIndex) => (dispatch, getState) => {
+export const getUsersPosts = (username, sliceIndex, amount) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
 
-    return fetch(`${API_BASE_URL}/protected/posts/${sliceIndex}/?username=${username}`, {
+    return fetch(`${API_BASE_URL}/protected/posts/${sliceIndex}/?amount=${amount}&username=${username}`, {
         method: 'GET',
         headers: {
             // Provide our auth token as credentials

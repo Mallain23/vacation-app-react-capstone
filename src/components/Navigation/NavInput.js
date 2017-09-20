@@ -32,7 +32,7 @@ export class NavInput extends React.Component {
 
     render() {
         return (
-            <div className='col-sm-12 col-md-7'>
+            <div className='col-xs-12 col-md-7'>
                 <form className='post-search nav-heading' onSubmit={this.handleSubmit} >
                     <input type='text' id='search' ref={input => (this.input = input)} placeholder='Search for the perfect vacation...'  />
                     <button className='hide'></button>

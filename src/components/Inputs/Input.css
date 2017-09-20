@@ -9,18 +9,21 @@ input, textarea {
 
 }
 
+label.post-form-input {
+  border: none;
+}
 .post-form-input {
   border-bottom: 4px solid #d7d8da;
   border-radius: 0%;
   width: 85%;
   margin-left: 10px;
   margin-right: 10px;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.42;
   text-align: left;
   white-space: pre-wrap;
   word-wrap: break-word;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 
 }
 
@@ -48,4 +51,11 @@ input:focus, textarea:focus {
   -webkit-font-feature-settings: "kern","liga","pnum";
   font-feature-settings: "kern","liga","pnum";
 
+}
+
+.auth-label {
+  color: hsla(0,0%,100%,.75);
+  font-size: 22px;
+  margin-left: 15px;
+  margin-bottom: 10px;
 }

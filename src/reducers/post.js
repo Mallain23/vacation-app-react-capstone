@@ -8,7 +8,8 @@ import {
     INCREASE_SLICE_INDEX,
     DECREASE_SLICE_INDEX,
     RESET_SLICE_INDEX,
-    SAVE_SEARCH_TERM} from '../components/actions/posts';
+    SAVE_SEARCH_TERM,
+    GET_USERS_POSTS_SUCCESS } from '../components/actions/posts';
 import { FETCH_SELECTED_USER_SUCCESS } from '../components/actions/profile'
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
     currentPost: {},
     viewUser: {},
     sliceIndex: 0,
+    final: false,
     error: null,
     searchTerm: null
 };
@@ -25,18 +27,25 @@ const initialState = {
 export default function reducer(state = initialState, action) {
 
     if (action.type === FETCH_PROTECTED_DATA_SUCCESS) {
-      //  let posts = action.data.length > 16 ? action.data.slice(sliceIndex * 16, (state.sliceIndex * 16) + 16) : action.data
+
+        const final = action.data.final
+        const posts = action.data.posts
 
         return Object.assign({}, state, {
-            posts: action.data,
+            posts,
+            final,
             error: null
         });
     }
 
     else if (action.type === SEARCH_FOR_POSTS_SUCCESS) {
 
+          const final = action.data.final
+          const searchResultPosts= action.data.posts
+
           return Object.assign({}, state, {
-              searchResultPosts: action.data,
+              searchResultPosts,
+              final,
               error: null
           })
     }
@@ -94,5 +103,13 @@ export default function reducer(state = initialState, action) {
         })
     }
 
+    else if (action.type === GET_USERS_POSTS_SUCCESS) {
+        const final = action.usersPosts.final
+
+        return Object.assign({}, state,  {
+            final
+        });
+    }
+    
     return state;
 };

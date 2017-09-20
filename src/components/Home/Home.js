@@ -13,7 +13,14 @@ import './Home.css'
 export class Home extends React.Component {
 
     componentDidMount() {
-        this.props.dispatch(fetchPosts(this.props.sliceIndex))
+        this.props.dispatch(fetchPosts(this.props.sliceIndex, 20))
+
+        window.scrollTo(0,0);
+
+    };
+
+    componentDidUpdate() {
+        window.scrollTo(0,0);  
     };
 
     render() {
@@ -24,6 +31,7 @@ export class Home extends React.Component {
         }
 
        let formattedPosts = posts.map(({destination, postId, title, username, profileId, name}, index) => {
+
             return (
                <div key={index}  className='col-xs-12 col-sm6 col-md-3'>
                   <div className='post-box' key={index}>
@@ -41,11 +49,11 @@ export class Home extends React.Component {
         });
 
         return (
-          <div className='container'>
+          <div className='container top-container'>
               <div className='row main'>
                   {formattedPosts}
               </div>
-              <div className='row'>
+              <div className='row '>
                   <Pagination searchFunction={fetchPosts} />
               </div>
           </div>

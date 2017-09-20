@@ -3,6 +3,7 @@
   background-color: #4a4756;
   padding: 1rem 0;
   vertical-align: middle;
+  margin-top: 63px;
 }
 
 
@@ -86,7 +87,7 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 800;
-  color: #a6a5aa;
+  color: #5d5762;
 }
 
 .related-posts {
@@ -96,7 +97,7 @@
 .related-post-button {
   border: none;
   background-color: transparent;
-  color: #88b2cc;
+  color: #56739E;
   text-decoration: none;
   transition: color .25s ease;
   font-family: Open Sans,sans-serif;
@@ -107,7 +108,18 @@
 }
 
 .related-post-button:hover {
-  color: #56739E;
+  color: #5d5762;
+}
+
+.no-related {
+  font-family: Open Sans,sans-serif;
+  -webkit-font-feature-settings: "kern","liga","pnum";
+  font-feature-settings: "kern","liga","pnum";
+  text-transform: uppercase;
+  color: #e67478;
+  font-size: 22px;
+  font-weight: 800px;
+
 }
 
 ul {
@@ -118,6 +130,10 @@ ul {
   text-decoration: none;
 }
 
+.new-post-container {
+    margin-top: 70px;
+    margin-bottom: 30px;
+}
 
 
 .post-button {
@@ -165,6 +181,7 @@ ul {
 .create-post {
   margin-top: 30px;
   padding-left: 20px;
+
 }
 
 .form-heading {
@@ -195,6 +212,8 @@ ul {
 
 .post-container {
   white-space: pre-wrap;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .create-edit-button-container {
@@ -210,4 +229,82 @@ ul {
   margin-right: 10px;
   font-size: 12px;
   padding: 5px;
+}
+
+.edit-long-text, .delete-long-text {
+    display: inline;
+}
+
+.edit-short-text, .delete-short-text {
+  display: none;
+}
+
+.large-avatar {
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 35px;
+}
+
+.post-buttons {
+  margin-right: 10px;
+}
+
+.create {
+  border: 1px solid #79d1ad;
+  color: #79d1ad;
+}
+
+.create:hover {
+  background-color: #79d1ad;
+}
+
+.cancel {
+  border: 1px solid #e67478;
+  color: #e67478;
+}
+
+.cancel:hover {
+  background-color: #e67478;
+}
+
+@media only screen and (max-width: 64em) {
+    .new-post-container {
+      margin-top: 170px;
+    }
+
+    .post-button {
+        display: block;
+        width: 40%;
+    }
+
+    .post-container {
+      margin-left: 10px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .create-edit-button {
+      width: 50%;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .post-button {
+        display: block;
+        width: 70%;
+    }
+    .edit-long-text, .delete-long-text {
+        display: none;
+    }
+
+    .edit-short-text, .delete-short-text {
+      display: inline;
+    }
+
+}
+
+@media only screen and (max-width: 200px) {
+    .create-edit-button {
+      color: transparent;
+    }
 }

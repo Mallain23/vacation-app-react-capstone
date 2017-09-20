@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 
 import { fetchSelectedPost } from '../actions/ajaxCallsToPostRoute'
 import {  fetchSelectedUser } from '../actions/ajaxCallsToUserRoute'
+import { getAvatarString } from '../Profile/utils'
 
 import PostButtons from './PostButtons'
 
@@ -44,12 +45,15 @@ export class LargePost extends React.Component {
 
        } = this.props.currentPost
 
-       const { avatar } = this.props.viewUser;
+       const { firstName, lastName } = this.props;
+       const avatarString = getAvatarString(firstName, lastName)
 
         return (
             <div className='row'>
                 <div className='col-xs-12 col-md-3'>
-                   <Link to={`/profiles/${profileId}`}>{avatar}</Link>
+                    <div className='profile-avatar large-avatar'>
+                        {avatarString}
+                    </div>
                 </div>
                 <div className='col-xs-12 col-md-9 post-container'>
                     <hr className='divider'/>
@@ -72,12 +76,16 @@ export class LargePost extends React.Component {
 
 const mapStateToProps = (state, props) => {
    const { currentPost, viewUser } = state.postData
+   const { username, firstName, lastName } = state.postData.viewUser
    const { currentUser } = state.auth
    const { editPost } = state.profile
 
    return  {
         currentPost,
         viewUser,
+        firstName: firstName || '',
+        lastName: lastName || '',
+        username,
         editPost,
         currentUser
     };

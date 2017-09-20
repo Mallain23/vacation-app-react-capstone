@@ -42,12 +42,12 @@ export class LoggedInNav extends React.Component {
         const username = this.props.currentUser.username.toUpperCase()
 
         return (
-            <div className='row middle-xs'>
-                <NavHeader col='col-sm-12 col-md-3' {...this.props} />
-                <NavInput />
-                <div className='col-sm-12 col-md-2'>
+            <div className='row nav-row'>
+                <NavHeader col='col-sm-12 col-md-3 profile-btn' {...this.props} />
+                <NavInput {...this.props}/>
+                <div className='col-sm-3 col-md-3 nav-drop'>
                     <div className='dropdown nav-heading marg-left'>
-                        <a href="javascript:void(0)" className="dropbtn nav-links right-side">{username}</a>
+                        <a href="javascript:void(0)" className="dropbtn nav-links right-side profile-btn">{username}</a>
                         <div className="dropdown-items">
                             <a className='nav-links' onClick={this.handleEditProfileClick} id='edit-profile'> Edit Profile</a>
                             <a className='log-out nav-links' onClick={this.handleLogOutClick} id='log-out'>Log Out</a>

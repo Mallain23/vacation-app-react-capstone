@@ -22,7 +22,7 @@ export class Circle extends React.Component {
     render() {
 
         return (
-            <div className='col-xs-12 col-md-1 cirlce-container'>
+            <div className='col-xs-3 col-md-1 cirlce-container'>
                 <a onClick={this.handleCreatePostClick} className='round-button nav-heading nav-links right-side'><div className='plus'>+</div></a>
             </div>
 

@@ -14,7 +14,7 @@ export function ManagePost (props) {
     let formHeading = props.isEditing ?  "Edit Post" : "Create New Post";
 
     return (
-        <div className='container'>
+        <div className='container new-post-container'>
             <div className='row'>
                 <div className='col-xs-12 col-lg-8'>
                     <div className='box create-post'>

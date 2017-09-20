@@ -52,7 +52,7 @@ export class App extends React.Component {
     render() {
 
         return (
-                <div>
+                <div >
                   <Route path='/' component={Navigation} />
                   <AuthModal />
                   <Route exact path='/' component={LandingPage} />

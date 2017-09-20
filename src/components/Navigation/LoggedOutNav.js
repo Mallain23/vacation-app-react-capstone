@@ -2,22 +2,34 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
+import { login } from '../actions/auth';
+import { DEMO_PASSWORD, DEMO_USERNAME } from './utils';
+
 import LoginButtons from './LoginButtons';
 import NavHeader from './NavHeader';
 
 import './Navigation.css'
 
 export class LoggedOutNav extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.handleDemoClick = this.handleDemoClick.bind(this);
+    };
+
+    handleDemoClick() {
+        this.props.dispatch(login(DEMO_USERNAME, DEMO_PASSWORD));
+    };
 
     render() {
 
         return (
-            <div className='row middle-xs'>
+            <div className='row nav-row'>
                 <NavHeader col='col-xs-12 col-md-3' {...this.props}/>
                 <div className='col-xs-12 col-md-8'>
-                   <Link className='nav-links marg-right' to='/home#overview'>Overview</Link>
-                   <Link className='nav-links marg-right' to='/home#destination'>App Features</Link>
-                   <Link className='nav-links marg-right' to='/home#lodging'>Demo App</Link>
+                   <a className='nav-links marg-right' href='/#about'>Overview</a>
+                   <a className='nav-links marg-right' href='/#app-features'>App Features</a>
+                   <a className='nav-links marg-right' onClick={this.handleDemoClick}>Demo App</a>
                 </div>
                <LoginButtons />
             </div>

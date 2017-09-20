@@ -27,7 +27,7 @@ export class ProfilePage extends React.Component {
 
           this.props.dispatch(getUserProfile(profileId))
           .then(({profile: {username}}) => {
-            this.props.dispatch(getUsersPosts(username, sliceIndex))
+            this.props.dispatch(getUsersPosts(username, sliceIndex, 8))
           })
     };
 
@@ -42,7 +42,7 @@ export class ProfilePage extends React.Component {
         const profileSettings = currentUser.username === username ? <UserProfileSettings /> : ''
 
         return (
-            <div className='user-profile'>
+            <div className='user-profile profile-marg'>
                 <div className='container'>
                     <div className='row user-profile'>
                         <div className='col-xs-12 upper-profile'>
@@ -74,7 +74,7 @@ export class ProfilePage extends React.Component {
 };
 
 const mapStateToProps = state => {
-    console.log(state)
+
     let { username, firstName, lastName } = state.profile.currentProfile
     let { editProfile } = state.profile
 
@@ -82,8 +82,8 @@ const mapStateToProps = state => {
         currentUser: state.auth.currentUser,
         loggedIn: state.auth.currentUser !== null,
         username,
-        firstName,
-        lastName,
+        firstName: firstName || '',
+        lastName: lastName || '',
         editProfile
       };
 }

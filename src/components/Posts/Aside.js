@@ -39,7 +39,7 @@ export class Aside extends React.Component {
         const { relatedPosts } = this.props
 
         if (relatedPosts.length < 2 ) {
-            formattedPosts = 'There are no related posts available'
+            formattedPosts = <p className='no-related'>There are no related posts available.</p>
         }
 
         else {
