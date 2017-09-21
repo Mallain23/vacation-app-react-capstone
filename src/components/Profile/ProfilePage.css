@@ -20,6 +20,7 @@
   font-size: 1.7em;
   line-height: 1.5;
 
+
 }
 
 .profile-username {
@@ -37,7 +38,14 @@
 .user-bio, .favorite-destination {
   font-size: 18px;
   color: hsla(0,0%,100%,.75);
+  margin-left: 300px;
+  margin-right: 300px;
+  white-space: pre-wrap;
+  overflow: scroll;
+  max-height: 150px;
+  margin-bottom: 10px;
 }
+
 
 .name {
   font-family: cursive;
@@ -63,8 +71,9 @@
 .user-profile-settings {
   margin: auto;
   text-align: center;
-  font-size: 18px;
-  margin-top: 10px;
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .edit-profile {
@@ -93,6 +102,15 @@
   margin-top: 20px;
 }
 
+.user-bio, .favorite-destination {
+  font-weight: 200px;
+}
+
+.profile-bold {
+  font-weight: 900;
+  font-size: 20px;
+}
+
 .edit-profile-label {
   color: hsla(0,0%,100%,.75);
   margin-bottom: 15px;
@@ -116,9 +134,57 @@
   margin-top: 90px;
 }
 
+.profile-post-btn {
+  display: inline-block;
+  width: 25%;
+  margin-bottom: 25px;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.favorites-short-text, .post-short-text {
+  display: none;
+}
+
+.user-favorites-btn:disabled, .user-posts-btn:disabled {
+    cursor: not-allowed;
+    background-color: #0099cc;
+
+}
+
+.no-posts {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 800;
+  font-family: Open Sans,sans-serif;
+  font-size: 30px;
+  line-height: 1.2;
+  color: #e67478;
+
+}
+
 @media only screen and (max-width: 1000px) {
     .profile-marg  {
       margin-top: 180px;
     }
 
+    .favorites-short-text, .post-short-text {
+      display: inline;
+    }
+
+    .favorites-long-text, .post-long-text {
+      display: none;
+    }
+
+}
+@media only screen and (max-width: 600px) {
+      .profile-post-btn {
+        width: 35%;
+    }
+}
+
+@media only screen and (max-width: 300px) {
+  .favorites-short-text, .post-short-text, .favorites-long-text, .post-long-text {
+    display: none;
+  }
 }

@@ -1,32 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
+import { formatPosts, postLanguage } from './utils'
+
 import Post from '../Home/Post'
 
 export function UserPosts (props) {
 
-    let userPosts
+    const { posts, newPropObj } = props
 
-    if (props.posts) {
-        const { username, currentUser, posts } = props
-        const allowEdit = username === currentUser ? true : false;
-
-        userPosts = posts.map(({ title, destination, postId, username, profileId, name }, index) => {
-
-            return <div key={index}  className='col-xs-12 col-sm6 col-md-3'>
-                  <div className='post-box' key={index}>
-                      <Post allowEdit={allowEdit}
-                            key={index} postId={postId}
-                            {...props}
-                            username={username}
-                            profileId={profileId}
-                            title={title}
-                            destination={destination}
-                            name={name} />
-                  </div>
-              </div>
-        });
-    }
+    const userPosts = formatPosts(posts, newPropObj, postLanguage)
 
     return (
         <div className="users-posts">
@@ -36,9 +19,16 @@ export function UserPosts (props) {
 };
 
 
-const mapStateToProps = state => ({
-    posts: state.profile.usersPosts,
-    currentUser: state.auth.currentUser.username
-});
+const mapStateToProps = (state, props) => {
+    const newPropObj = Object.assign({}, props)
+    const { usersPosts: posts } =  state.profile
+    const { currentUser } = state.auth.currentUser
+
+    return {
+      newPropObj,
+      posts,
+      currentUser
+    };
+};
 
 export default connect(mapStateToProps)(UserPosts)

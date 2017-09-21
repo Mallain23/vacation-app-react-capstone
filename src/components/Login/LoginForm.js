@@ -3,6 +3,7 @@ import {Field, reduxForm, focus} from 'redux-form';
 
 import {required, nonEmpty} from '../validators/validators';
 import { login } from '../actions/auth';
+import { getCurrentUserProfile } from '../actions/ajaxCallsToUserRoute'
 
 import Input from '../Inputs/Input';
 
@@ -15,7 +16,10 @@ export class LoginForm extends React.Component {
     }
 
     onSubmit(values) {
-        return this.props.dispatch(login(values.username, values.password));
+        this.props.dispatch(login(values.username, values.password))
+        .then(() => {
+          console.log('here')
+          this.props.dispatch(getCurrentUserProfile())});
     }
 
     render() {

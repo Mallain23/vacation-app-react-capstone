@@ -38,8 +38,6 @@ export const fetchSelectedPostSuccess = post => ({
     post
 });
 
-
-
 export const INCREASE_SLICE_INDEX = 'INCREASE_SLICE_INDEX'
 export const increaseSliceIndex = () => ({
     type: INCREASE_SLICE_INDEX
@@ -76,6 +74,8 @@ export const SET_EDIT_POST_TO_FALSE = 'SET_EDIT_POST_TO_FALSE'
 export const setEditPostToFalse = () => ({
     type: SET_EDIT_POST_TO_FALSE
 });
+
+
 
 
 export const testFunction = () => (dispatch, getState) => {

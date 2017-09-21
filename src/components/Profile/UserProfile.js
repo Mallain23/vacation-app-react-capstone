@@ -1,28 +1,39 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
+import { getUsersPosts } from '../actions/ajaxCallsToPostRoute'
+import { getUserProfile } from '../actions/ajaxCallsToUserRoute'
+import ProfileButtons from './ProfileButtons'
+import { sliceIndex, amount, POST } from './utils'
+
 import './ProfilePage.css'
 
-export function UserProfile (props) {
-    const {username, bio, name, favorite } = props
+export class UserProfile extends React.Component {
+  
+    render() {
 
-    return (
-        <div className='col-xs-12 profile-info'>
-            <h1 className='profile-username'>{username}</h1>
-            <p className='name'>{name}</p>
-            <p className='user-bio'><span className='profile-bold'>Bio:</span> {bio}</p>
-            <p className='favorite-destination'><span className='profile-bold'>Favorite Destination: </span> {favorite}</p>
-        </div>
-    )
+        const {username, bio, name, favorite } = this.props
+
+        return (
+            <div className='col-xs-12 profile-info'>
+                <h1 className='profile-username'>{username}</h1>
+                <p className='name'>{name}</p>
+                <p className='user-bio'><span className='profile-bold'>Bio:</span> {bio}</p>
+                <p className='favorite-destination'><span className='profile-bold'>Favorite Destination: </span> {favorite}</p>
+                <ProfileButtons />
+            </div>
+        )
+    };
 };
 
 const mapStateToProps = state => {
-    let {bio, username, firstName, lastName, favorite } = state.profile.currentProfile
+    let {bio, username, firstName, lastName, favorite, profileView } = state.profile.currentProfile
 
     return {
           bio,
           username,
           favorite,
+          profileView,
           name: `${firstName} ${lastName}`
     };
 }

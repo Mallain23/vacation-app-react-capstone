@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import { login } from '../actions/auth';
+import { getCurrentUserProfile } from '../actions/ajaxCallsToUserRoute'
 import { DEMO_PASSWORD, DEMO_USERNAME } from './utils';
 
 import LoginButtons from './LoginButtons';
@@ -18,7 +19,8 @@ export class LoggedOutNav extends React.Component {
     };
 
     handleDemoClick() {
-        this.props.dispatch(login(DEMO_USERNAME, DEMO_PASSWORD));
+        this.props.dispatch(login(DEMO_USERNAME, DEMO_PASSWORD))
+        .then(() => this.props.dispatch(getCurrentUserProfile()));
     };
 
     render() {

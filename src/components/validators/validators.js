@@ -20,10 +20,13 @@ export const isTrimmed = value =>
         value.trim() === value ? undefined : 'Cannot start or end with whitespace';
 
 export const length = length => value => {
-    if (length.min && value.length < length.min) {
+
+  let valueArray =  value ? value.split('') : ['']
+
+    if (length.min && valueArray.length < length.min) {
         return `Must be at least ${length.min} characters long`;
     }
-    if (length.max && value.length > length.max) {
+    if (length.max && valueArray.length > length.max) {
         return `Must be at most ${length.max} characters long`;
     }
 };

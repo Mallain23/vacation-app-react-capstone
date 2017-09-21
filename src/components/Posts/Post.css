@@ -3,7 +3,7 @@
   background-color: #4a4756;
   padding: 1rem 0;
   vertical-align: middle;
-  margin-top: 63px;
+  margin-top: 60px;
 }
 
 
@@ -267,6 +267,37 @@ ul {
   background-color: #e67478;
 }
 
+.my-profile-btn {
+  margin-left: 15px;
+}
+
+.add-btn {
+  border: 1px solid #79d1ad;
+  color: #79d1ad;
+}
+
+.add-btn:hover {
+    background-color: #79d1ad
+}
+
+.remove {
+  border: 1px solid #e67478;
+  color: #e67478;
+}
+
+.remove:hover {
+  background-color:  #e67478;
+}
+
+.post-button {
+    width: 40%;
+    font: 12px;
+}
+
+.add-short-text, .remove-short-text {
+  display: none;
+}
+
 @media only screen and (max-width: 64em) {
     .new-post-container {
       margin-top: 170px;
@@ -280,11 +311,30 @@ ul {
     .post-container {
       margin-left: 10px;
     }
+
+    .extra-nav{
+      display: none;
+    }
+    .back-nav-container {
+      margin-top: 120px;
+    }
 }
 
 @media only screen and (max-width: 600px) {
     .create-edit-button {
       width: 50%;
+    }
+
+    .add-short-text, .remove-short-text {
+      display: inline;
+    }
+
+    .add-long-text, .remove-long-text {
+      display: none;
+    }
+
+    .post-button {
+      width: 20%;
     }
 }
 

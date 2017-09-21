@@ -61,8 +61,7 @@ export const getUsersPosts = (username, sliceIndex, amount) => (dispatch, getSta
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then(data => {
-          dispatch(getUsersPostsSuccess(data))})
+        .then(data => dispatch(getUsersPostsSuccess(data)))
         .catch(err => {
             dispatch(fetchProtectedDataError(err));
         });

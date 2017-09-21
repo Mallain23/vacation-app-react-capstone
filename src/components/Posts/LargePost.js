@@ -1,18 +1,24 @@
-import React from 'react'
+import React from 'react';
 import {Link} from 'react-router-dom';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
 
-import { fetchSelectedPost } from '../actions/ajaxCallsToPostRoute'
-import {  fetchSelectedUser } from '../actions/ajaxCallsToUserRoute'
-import { getAvatarString } from '../Profile/utils'
+import { fetchSelectedPost, getUsersPosts  } from '../actions/ajaxCallsToPostRoute';
+import {  fetchSelectedUser, getUserProfile } from '../actions/ajaxCallsToUserRoute';
+import { getAvatarString } from '../Profile/utils';
+import { sliceIndex, amount } from '../Home/utils'
 
-import PostButtons from './PostButtons'
+import PostButtons from './PostButtons';
+import FavoriteButtons from './FavoriteButtons';
 
-import '../Home/Home.css'
-import './Post.css'
+import '../Home/Home.css';
+import './Post.css';
 
 export class LargePost extends React.Component {
+    constructor(props) {
+        super(props)
 
+        this.handleClick = this.handleClick.bind(this)
+    }
     componentWillMount() {
         let postId = this.props.match.params.postId
 
@@ -25,7 +31,15 @@ export class LargePost extends React.Component {
     renderPostButtons() {
         const { currentUser, viewUser } = this.props;
 
-        return currentUser.username === viewUser.username ? <PostButtons {...this.props}/> : '';
+        return currentUser.username === viewUser.username ? <PostButtons {...this.props}/> : <FavoriteButtons {...this.props} />;
+    };
+    handleClick(e) {
+        e.preventDefault()
+        const { profileId } = this.props
+
+        this.props.dispatch(getUserProfile(profileId))
+        .then(({profile: {username}}) => this.props.dispatch(getUsersPosts(username, sliceIndex, amount)))
+        .then(() => this.props.history.push(`/profile/${profileId}`))
     };
 
     render() {
@@ -58,7 +72,7 @@ export class LargePost extends React.Component {
                 <div className='col-xs-12 col-md-9 post-container'>
                     <hr className='divider'/>
                     <h1 className='large-post-title post-heading'>{title}</h1>
-                    <p className='font-accent author'>by  <Link className='profile-link' to={`/profile/${profileId}`}>{username}</Link></p>
+                    <p className='font-accent author'>by  <a className='profile-link' onClick={this.handleClick}>{username}</a></p>
                     <p className='large-post destination'><span className='bold'>Destination:</span> {destination}</p>
                     <p className='large-post lodging'><span className='bold'>Lodging:</span> {lodging}</p>
                     <p className='large-post dining'><span className='bold'>Dining:</span> {dining}</p>

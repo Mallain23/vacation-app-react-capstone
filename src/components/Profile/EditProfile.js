@@ -2,7 +2,7 @@ import React from 'react'
 import {Field, reduxForm, focus} from 'redux-form';
 
 import {fetchSelectedUser, editProfile } from '../actions/ajaxCallsToUserRoute'
-import { required, nonEmpty } from '../validators/validators'
+import { required, nonEmpty, length } from '../validators/validators'
 import TextArea from '../Inputs/TextArea'
 import Input from '../Inputs/Input'
 import ImageInput from './ImageInput'
@@ -44,14 +44,16 @@ export class EditProfile extends React.Component {
                         component={TextArea}
                         type="text"
                         name="bio"
-                        placeholder='Tell us about yourself!'
+                        validate={[required, length({max: 150})]}
+                        placeholder='Tell us about yourself! (Max 150 Characters)'
                     />
                     <label className='edit-profile-label' htmlFor="favorite">Favorite Destination</label>
                     <Field
-                        component={TextArea}
+                        component={Input}
                         type="text"
                         name="favorite"
-                        placeholder="Where is your favorite travel destination?"
+                        validate={[required, length({max: 25})]}
+                        placeholder="Where is your favorite travel destination? (Max 25 Characters)"
                     />
                     <div className='profile-button-container'>
                         <button
