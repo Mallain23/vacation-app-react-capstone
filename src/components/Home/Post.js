@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import { getUsersPosts } from '../actions/ajaxCallsToPostRoute';
 import { getUserProfile} from '../actions/ajaxCallsToUserRoute'
 import { sliceIndex, amount } from './utils'
+
 import './Home.css'
 
 export class Post extends React.Component {

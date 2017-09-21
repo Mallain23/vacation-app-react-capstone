@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import { setEditProfileTrue } from '../actions/profile';
@@ -53,8 +53,8 @@ export class LoggedInNav extends React.Component {
                     <div className='dropdown nav-heading marg-left'>
                         <a href="javascript:void(0)" className="dropbtn nav-links right-side profile-btn">{username}</a>
                         <div className="dropdown-items">
-                            <a className='nav-links' onClick={this.handleClick} id='edit-profile'> My Profile</a>
-                            <a className='log-out nav-links' onClick={this.handleLogOutClick} id='log-out'>Log Out</a>
+                            <a className='nav-links drop-down-font' onClick={this.handleClick} id='edit-profile'> My Profile</a>
+                            <a className='log-out nav-links drop-down-font' onClick={this.handleLogOutClick} id='log-out'>Log Out</a>
                         </div>
                     </div>
                 </div>

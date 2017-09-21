@@ -40,10 +40,10 @@ export default function reducer(state = initialState, action) {
       else if (action.type === GET_USERS_POSTS_SUCCESS) {
 
             const usersPosts = action.usersPosts.posts
-            console.log(action)
+
             return Object.assign({}, state, {
               usersPosts,
-              profileView: POSTS,
+              profileView: POSTS
             })
       }
 

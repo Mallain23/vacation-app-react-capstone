@@ -6,6 +6,7 @@ import { fetchSelectedPost, getUsersPosts  } from '../actions/ajaxCallsToPostRou
 import {  fetchSelectedUser, getUserProfile } from '../actions/ajaxCallsToUserRoute';
 import { getAvatarString } from '../Profile/utils';
 import { sliceIndex, amount } from '../Home/utils'
+import { POSTS } from '../Navigation/utils'
 
 import PostButtons from './PostButtons';
 import FavoriteButtons from './FavoriteButtons';

@@ -4,7 +4,7 @@ import './LandingPage.css';
 
 export default function About (props) {
     return (
-        <div id='about'>
+        <div className='about-top' id='about'>
             <div className='row'>
                 <div className='col-xs-12 col-md-6'>
                     <div id='overview'>

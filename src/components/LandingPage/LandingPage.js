@@ -9,14 +9,7 @@ import SignUp from './SignUp';
 
 import './LandingPage.css';
 
-import {testFunction} from '../actions/posts'
-
 export class LandingPage extends React.Component {
-
-    componentWillMount() {
-      this.props.dispatch(testFunction())
-    }
-
 
     render() {
 
@@ -26,7 +19,7 @@ export class LandingPage extends React.Component {
       }
 
         return (
-          <div>
+          <div className='outer-container'>
               <div className='background-image-container'>
                     <header id='landing-page-header'>
                         <Header />
@@ -36,8 +29,6 @@ export class LandingPage extends React.Component {
                     <main>
                         <section>
                           <About />
-                        </section>
-                        <section>
                         </section>
                         <section>
                             <AppFeatures />

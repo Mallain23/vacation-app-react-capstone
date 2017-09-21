@@ -65,6 +65,10 @@
 
 }
 
+.share-text, .share-title, .search-text, .search-title {
+  margin-left: 40px;
+}
+
 #overview {
   margin-left: 30px;
 }
@@ -127,5 +131,139 @@
 
 .signup-register-button {
   width: 25%;
+
+}
+
+.share-row {
+  margin-top: 40px;
+}
+
+
+@media only screen and (max-width: 64em) {
+  .header {
+    margin-top: 40px;
+    margin-left: 50px;
+  }
+
+  #ideas {
+    margin-top: 200px;
+    margin-bottom: 40px
+  }
+
+  #share {
+    margin-left: 15px;
+  }
+
+
+}
+
+@media only screen and (max-width: 900px) {
+    .page-title {
+        font-size: 42px;
+    }
+
+    .catch-phrase {
+      font-size: 30px;
+    }
+
+    .travel-img {
+      margin-left: 60px;
+    }
+
+    .ideas-title, .ideas-text {
+      margin-left: 40px;
+
+    }
+
+    #share {
+      margin-left: 0px;
+      margin-top: 40px;
+    }
+
+}
+
+@media only screen and (max-width: 710px) {
+    .page-title {
+        font-size: 32px;
+    }
+
+      .catch-phrase {
+        font-size: 22px;
+
+    }
+
+    .overview-text, .search-text, .ideas-text, .share-text {
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    .overview-title, .search-title, .ideas-title, .share-title {
+      font-size: 32px;
+
+  }
+}
+
+@media only screen and (max-width: 500px) {
+
+  .page-title {
+      font-size: 24px;
+  }
+
+  .catch-phrase {
+    font-size: 16px;
+}
+
+  .header {
+    margin-top: 65px;
+  }
+
+  #ideas{
+    margin-top: 250px;
+  }
+
+  .overview-image, .travel-img {
+    width: 200px;
+    height: 150px;
+  }
+
+
+}
+
+@media only screen and (max-width: 400px) {
+  .background-image-container {
+    width: 400px;
+    height: 400px;
+    background-size: contain;
+    margin-top: 0px;
+  }
+
+    #about {
+      width: 350px;
+    }
+
+
+    .overview-text, .search-text, .ideas-text, .share-text {
+        font-size: 14px;
+        line-height: 22px;
+        min-width: 250px;
+    }
+
+    .overview-title, .search-title, .ideas-title, .share-title {
+      font-size: 26px;
+      min-width: 250px;
+
+  }
+
+}
+
+@media only screen and (max-width: 150px) {
+  .overview-text, .search-text, .ideas-text, .share-text, .overview-title, .search-title, .ideas-title, .share-title {
+      min-width: 200px;
+  }
+
+  #ideas {
+    margin-top: 250px;
+  }
+
 
 }

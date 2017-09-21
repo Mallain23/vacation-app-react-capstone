@@ -38,7 +38,7 @@ export class ViewPost extends React.Component {
         }
 
         return (
-          <div>
+          <div className='out-container'>
           <nav className='back-nav-container'>
               <div className='container extra-nav'>
                   <div className='row back-middle-xs'>

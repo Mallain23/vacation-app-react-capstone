@@ -1,10 +1,8 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import { increaseSliceIndex,
-        decreaseSliceIndex } from '../actions/posts';
-import {fetchPosts,
-        searchForPosts,
-        getUsersPosts } from '../actions/ajaxCallsToPostRoute'
+import React from 'react';
+import {connect} from 'react-redux';
+
+import { increaseSliceIndex, decreaseSliceIndex } from '../actions/posts';
+import { fetchPosts, searchForPosts, getUsersPosts } from '../actions/ajaxCallsToPostRoute';
 
 import './Home.css'
 

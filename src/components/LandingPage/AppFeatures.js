@@ -27,7 +27,7 @@ export default function AppFeatures(props) {
                     <img className='travel-img' src='https://kauaivacationtours.com/files/2011/01/Kauai-Zipline-n-Dip-Tour.jpg'/>
                 </div>
             </div>
-            <div className='row'>
+            <div className='row share-row'>
                 <div className='col-xs-12 col-md-4'>
                     <img className='travel-img' src='http://travel-wise.com/wp-content/uploads/2016/06/Instagram.jpg' />
                 </div>

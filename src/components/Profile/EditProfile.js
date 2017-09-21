@@ -5,7 +5,6 @@ import {fetchSelectedUser, editProfile } from '../actions/ajaxCallsToUserRoute'
 import { required, nonEmpty, length } from '../validators/validators'
 import TextArea from '../Inputs/TextArea'
 import Input from '../Inputs/Input'
-import ImageInput from './ImageInput'
 
 import './ProfilePage.css'
 

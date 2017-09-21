@@ -74,26 +74,3 @@ export const SET_EDIT_POST_TO_FALSE = 'SET_EDIT_POST_TO_FALSE'
 export const setEditPostToFalse = () => ({
     type: SET_EDIT_POST_TO_FALSE
 });
-
-
-
-
-export const testFunction = () => (dispatch, getState) => {
-    const authToken = getState().auth.authToken;
-
-      return fetch(`${API_BASE_URL}/protected/sort`, {
-      method: 'GET',
-      headers: {
-          // Provide our auth token as credentials
-          Authorization: `Bearer ${authToken}`
-      }
-  })
-      .then(res => normalizeResponseErrors(res))
-      .then(res => res.json())
-      .then(data => {
-        dispatch(getUsersPostsSuccess(data))})
-      .catch(err => {
-          dispatch(fetchProtectedDataError(err));
-      });
-
-}

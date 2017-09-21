@@ -17,9 +17,7 @@ import './ProfilePage.css';
 
 export class ProfilePage extends React.Component {
 
-    componentDidUpdate() {
-        window.scrollTo(0,0);
-    };
+
 
     renderProfileComponent() {
         const { username } = this.props.currentUser
@@ -67,7 +65,7 @@ export class ProfilePage extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className='row user-posts'>
+                    <div className='row user-posts' id='posts'>
                         {this.renderPosts()}
                     </div>
                     <div className='row'>
