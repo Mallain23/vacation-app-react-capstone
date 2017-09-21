@@ -32,9 +32,10 @@ const storeAuthInfo = (authToken, dispatch) => {
 export const login = (username, password) => dispatch => {
     // Base64 encode the string username:password, used in the basic
     // auth field
+    console.log(API_BASE_URL, 'https://still-oasis-57332.herokuapp.com/')
     const token = btoa(`${username}:${password}`);
     return (
-        fetch(`${API_BASE_URL}/auth/login`, {
+        fetch(`https://still-oasis-57332.herokuapp.com/auth/login`, {
             method: 'POST',
             headers: {
                 // Provide our username and password as login credentials
