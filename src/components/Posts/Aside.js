@@ -18,19 +18,21 @@ export class Aside extends React.Component {
     handleClick(e) {
         const postId = e.target.value
         const numberOfResults = 6
+        const sliceIndex = 0
         this.props.history.push(`/post/${postId}`)
 
         this.props.dispatch(fetchSelectedPost(postId))
-        .then(({ post: {destination}}) => this.props.dispatch(searchForPosts(destination, numberOfResults)))
+        .then(({ post: {destination}}) => this.props.dispatch(searchForPosts(destination, numberOfResults, sliceIndex)))
 
     };
 
     componentWillMount() {
         const postId = this.props.match.params.postId
         const numberOfResults = 6
+        const sliceIndex = 0
 
         this.props.dispatch(fetchSelectedPost(postId))
-        .then(({ post: {destination}}) => this.props.dispatch(searchForPosts(destination, numberOfResults)))
+        .then(({ post: {destination}}) => this.props.dispatch(searchForPosts(destination, numberOfResults, sliceIndex)))
     };
 
     render() {

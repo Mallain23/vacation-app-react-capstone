@@ -19,7 +19,8 @@ export class Navigation extends React.Component {
             <div className='navigation'>
                 <div className='container'>
                   {navButtons}
-                </div>
+                 </div>
+
             </div>
         );
     };

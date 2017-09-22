@@ -20,7 +20,7 @@ export default function AppFeatures(props) {
                 <div className='col-xs-12 col-md-6'>
                     <div id='ideas'>
                         <h2 className='ideas-title'>Find Ideas For Your Next Trip</h2>
-                        <p className='ideas-text'> Every post has a section which highlight ...  This way other users can use this advice to plan the vacation of their dreams!</p>
+                        <p className='ideas-text'> Every post contains details about where apeople went, were they ate, where they stayed, what they did, and what they liked and did not like about their trip. Users can save userful posts to their favorites, and use this advice to plan the vacation of their dreams!</p>
                     </div>
                 </div>
                 <div className='col-xs-12 col-md-4'>
@@ -29,7 +29,7 @@ export default function AppFeatures(props) {
             </div>
             <div className='row share-row'>
                 <div className='col-xs-12 col-md-4'>
-                    <img className='travel-img' src='http://travel-wise.com/wp-content/uploads/2016/06/Instagram.jpg' />
+                    <img className='travel-img' src='http://cdn.toplisttips.com/wp-content/uploads/2014/11/Taking-picture-everywhere.jpg' />
                 </div>
                 <div className='col-xs-12 col-md-6'>
                     <div id='share'>

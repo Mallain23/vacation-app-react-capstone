@@ -48,16 +48,16 @@ export class LoggedInNav extends React.Component {
         return (
             <div className='row nav-row'>
                 <NavHeader col='col-sm-12 col-md-3' {...this.props} />
-                <NavInput {...this.props}/>
-                <div className='col-sm-3 col-md-3 nav-drop'>
-                    <div className='dropdown nav-heading marg-left'>
-                        <a href="javascript:void(0)" className="dropbtn nav-links right-side profile-btn">{username}</a>
-                        <div className="dropdown-items">
-                            <a className='nav-links drop-down-font' onClick={this.handleClick} id='edit-profile'> My Profile</a>
-                            <a className='log-out nav-links drop-down-font' onClick={this.handleLogOutClick} id='log-out'>Log Out</a>
+                    <NavInput {...this.props}/>
+                    <div className='col-sm-3 col-md-3 nav-drop'>
+                        <div className='dropdown nav-heading marg-left'>
+                            <a href="javascript:void(0)" className="dropbtn nav-links right-side profile-btn">{username}</a>
+                            <div className="dropdown-items">
+                                <a className='nav-links drop-down-font' onClick={this.handleClick} id='edit-profile'> My Profile</a>
+                                <a className='log-out nav-links drop-down-font' onClick={this.handleLogOutClick} id='log-out'>Log Out</a>
+                            </div>
                         </div>
                     </div>
-                </div>
                 <Circle {...this.props}/>
             </div>
         );

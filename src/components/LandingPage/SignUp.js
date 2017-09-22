@@ -38,7 +38,7 @@ export class SignUp extends React.Component {
                 <div className='row'>
                     <div className='col-xs-12'>
                         <div className='signup-button-container'>
-                            <button className='signup-btn' onClick={this.handleSignupClick}>Sign Up</button>
+                            <button className='signup-btn marg-right' onClick={this.handleSignupClick}>Sign Up</button>
                             <button className='signup-btn' onClick={this.handleLoginClick}>Login</button>
                         </div>
                     </div>
