@@ -1,5 +1,7 @@
-import {normalizeResponseErrors} from './utils';
 import { SubmissionError } from 'redux-form';
+
+import {normalizeResponseErrors} from './utils';
+import {API_BASE_URL} from '../config';
 import { fetchProtectedDataError,
          fetchProtectedDataSuccess,
          fetchSelectedPostSuccess,
@@ -7,8 +9,6 @@ import { fetchProtectedDataError,
          searchForPostsSuccess,
          createPostSuccess,
          editPostSuccess } from './posts'
-         
-const API_BASE_URL = 'https://thawing-crag-61618.herokuapp.com/api'
 
 //this function gets the most recent posts to display when user logins
 export const fetchPosts = (sliceIndex, amount) => (dispatch, getState) => {

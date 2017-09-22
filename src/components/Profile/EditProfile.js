@@ -1,26 +1,26 @@
-import React from 'react'
+import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
 
-import {fetchSelectedUser, editProfile } from '../actions/ajaxCallsToUserRoute'
-import { required, nonEmpty, length } from '../validators/validators'
-import TextArea from '../Inputs/TextArea'
-import Input from '../Inputs/Input'
+import {fetchSelectedUser, editProfile } from '../actions/ajaxCallsToUserRoute';
+import { required, nonEmpty, length } from '../validators/validators';
+import TextArea from '../Inputs/TextArea';
+import Input from '../Inputs/Input';
 
-import './ProfilePage.css'
+import './ProfilePage.css';
 
 export class EditProfile extends React.Component {
 
     componentDidMount() {
         this.props.dispatch(fetchSelectedUser(this.props.username))
-        .then(({ user }) => this.handleInitialize(user))
+        .then(({ user }) => this.handleInitialize(user));
     };
 
     handleInitialize(postObj) {
-        this.props.initialize(postObj)
+        this.props.initialize(postObj);
     };
 
     onSubmit (values) {
-        this.props.dispatch(editProfile(values))
+        this.props.dispatch(editProfile(values));
     };
 
     render() {
@@ -35,17 +35,24 @@ export class EditProfile extends React.Component {
                         <Field component={Input} type="text" name="username" />
                     </span>
                     <label className='edit-profile-label' htmlFor="firstName">First Name</label>
-                    <Field component={Input} type="text" name="firstName" validate={[required, nonEmpty]} />
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="firstName"
+                        validate={[required, nonEmpty]} />
                     <label className='edit-profile-label'  htmlFor="lastName">Last Name</label>
-                    <Field component={Input} type="text" name="lastName" validate={[required, nonEmpty]} />
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="lastName" v
+                        alidate={[required, nonEmpty]} />
                     <label className='edit-profile-label'  htmlFor="bio">Bio</label>
                     <Field
                         component={TextArea}
                         type="text"
                         name="bio"
                         validate={[required, length({max: 150})]}
-                        placeholder='Tell us about yourself! (Max 150 Characters)'
-                    />
+                        placeholder='Tell us about yourself! (Max 150 Characters)' />
                     <label className='edit-profile-label' htmlFor="favorite">Favorite Destination</label>
                     <Field
                         component={Input}

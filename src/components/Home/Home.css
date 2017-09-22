@@ -1,5 +1,6 @@
 .top-container {
   margin-top: 70px;
+  min-height: 650px;
 }
 
 .post-box {

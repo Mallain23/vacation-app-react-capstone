@@ -1,11 +1,12 @@
 import jwtDecode from 'jwt-decode';
 import {SubmissionError} from 'redux-form';
 
+import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 import { closeAuthModal }  from './users';
 import {saveAuthToken, clearAuthToken} from '../local-storage';
 
-const API_BASE_URL = 'https://thawing-crag-61618.herokuapp.com/api'
+
 
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = authToken => ({
@@ -32,7 +33,7 @@ const storeAuthInfo = (authToken, dispatch) => {
 export const login = (username, password) => dispatch => {
     // Base64 encode the string username:password, used in the basic
     // auth field
-    console.log(API_BASE_URL,  'https://still-oasis-57332.herokuapp.com/')
+
     const token = btoa(`${username}:${password}`);
     return (
         fetch(`${API_BASE_URL}/auth/login`, {
