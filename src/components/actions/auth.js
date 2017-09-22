@@ -1,11 +1,11 @@
 import jwtDecode from 'jwt-decode';
 import {SubmissionError} from 'redux-form';
 
-import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 import { closeAuthModal }  from './users';
 import {saveAuthToken, clearAuthToken} from '../local-storage';
 
+const API_BASE_URL = 'https://thawing-crag-61618.herokuapp.com/api'
 
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = authToken => ({
@@ -35,7 +35,7 @@ export const login = (username, password) => dispatch => {
     console.log(API_BASE_URL,  'https://still-oasis-57332.herokuapp.com/')
     const token = btoa(`${username}:${password}`);
     return (
-        fetch('https://still-oasis-57332.herokuapp.com/api/auth/login', {
+        fetch(`${API_BASE_URL}/auth/login`, {
             method: 'POST',
             headers: {
                 // Provide our username and password as login credentials

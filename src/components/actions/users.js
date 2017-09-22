@@ -1,7 +1,8 @@
 import {SubmissionError} from 'redux-form';
 
-import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
+
+const API_BASE_URL = 'https://thawing-crag-61618.herokuapp.com/api'
 
 export const registerUser = user => dispatch => {
     return fetch(`${API_BASE_URL}/users`, {

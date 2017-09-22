@@ -1,4 +1,3 @@
-import { API_BASE_URL } from '../config';
 import { normalizeResponseErrors } from './utils';
 import { SubmissionError } from 'redux-form';
 import { fetchProtectedDataError, FETCH_PROTECTED_DATA_ERROR } from './posts'
@@ -8,6 +7,8 @@ import { fetchSelectedUserSuccess,
          addPostToFavoritesSuccess,
          deletePostFromFavoriteSuccess,
          getCurrentUserProfileSuccess} from './profile'
+
+const API_BASE_URL = 'https://thawing-crag-61618.herokuapp.com/api'
 
 
 //this function will get user data for a selected user (viewing profile)
