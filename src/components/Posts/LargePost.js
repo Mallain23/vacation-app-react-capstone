@@ -1,12 +1,12 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import { fetchSelectedPost, getUsersPosts  } from '../actions/ajaxCallsToPostRoute';
-import {  fetchSelectedUser, getUserProfile } from '../actions/ajaxCallsToUserRoute';
+import { fetchSelectedPost, getUsersPosts } from '../actions/ajaxCallsToPostRoute';
+import {  fetchSelectedUser, getUserProfile, removePostFromFavorites  } from '../actions/ajaxCallsToUserRoute';
+import { resetSliceIndex } from '../actions/posts'
 import { getAvatarString } from '../Profile/utils';
-import { sliceIndex, amount } from '../Home/utils'
-import { POSTS } from '../Navigation/utils'
+import { sliceIndex, amount } from '../Home/utils';
+import { REMOVED_LANGUAGE } from './utils'
 
 import PostButtons from './PostButtons';
 import FavoriteButtons from './FavoriteButtons';
@@ -18,15 +18,21 @@ export class LargePost extends React.Component {
     constructor(props) {
         super(props)
 
-        this.handleClick = this.handleClick.bind(this)
+        this.handleClick = this.handleClick.bind(this);
     }
     componentWillMount() {
-        let postId = this.props.match.params.postId
+        const postId = this.props.match.params.postId;
+        const { username } = this.props.currentUser;
 
         this.props.dispatch(fetchSelectedPost(postId))
-        .then(({post: {username}}) => {
+        .then(({post}) => {
+          if (!post.postId) {
+              alert(REMOVED_LANGUAGE)
+              this.props.dispatch(removePostFromFavorites(postId, username))
+              .then(() => this.props.history.push('/'));
+          }
 
-          this.props.dispatch(fetchSelectedUser(username))})
+          this.props.dispatch(fetchSelectedUser(post.username))});
     };
 
     renderPostButtons() {
@@ -34,20 +40,21 @@ export class LargePost extends React.Component {
 
         return currentUser.username === viewUser.username ? <PostButtons {...this.props}/> : <FavoriteButtons {...this.props} />;
     };
-    handleClick(e) {
-        e.preventDefault()
-        const { profileId } = this.props
 
+    handleClick(e) {
+        e.preventDefault();
+        const { profileId } = this.props;
+
+        this.props.dispatch(resetSliceIndex());
         this.props.dispatch(getUserProfile(profileId))
         .then(({profile: {username}}) => this.props.dispatch(getUsersPosts(username, sliceIndex, amount)))
-        .then(() => this.props.history.push(`/profile/${profileId}`))
+        .then(() => this.props.history.push(`/profile/${profileId}`));
     };
 
     render() {
 
         const {
             title,
-            profileId,
             destination,
             lodging,
             dining,
@@ -55,10 +62,9 @@ export class LargePost extends React.Component {
             activities,
             advice,
             rating,
-            username,
-            postId,
+            username
 
-       } = this.props.currentPost
+       } = this.props.currentPost;
 
        const { firstName, lastName } = this.props;
        const avatarString = getAvatarString(firstName, lastName)
@@ -106,4 +112,4 @@ const mapStateToProps = (state, props) => {
     };
 };
 
-export default connect(mapStateToProps)(LargePost)
+export default connect(mapStateToProps)(LargePost);

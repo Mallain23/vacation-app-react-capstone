@@ -7,7 +7,7 @@ export default function AppFeatures(props) {
         <div id='app-features'>
             <div className='row'>
                 <div className='col-xs-12 col-md-4'>
-                    <img className='travel-img' src='http://static.atimes.com/uploads/2015/10/Khajuraho-Temple-3.jpg' />
+                    <img className='travel-img' alt='travel' src='http://static.atimes.com/uploads/2015/10/Khajuraho-Temple-3.jpg' />
                 </div>
                 <div className='col-xs-12 col-md-6'>
                     <div id='search'>
@@ -24,12 +24,12 @@ export default function AppFeatures(props) {
                     </div>
                 </div>
                 <div className='col-xs-12 col-md-4'>
-                    <img className='travel-img' src='https://kauaivacationtours.com/files/2011/01/Kauai-Zipline-n-Dip-Tour.jpg'/>
+                    <img className='travel-img' alt='travel' src='https://kauaivacationtours.com/files/2011/01/Kauai-Zipline-n-Dip-Tour.jpg'/>
                 </div>
             </div>
             <div className='row share-row'>
                 <div className='col-xs-12 col-md-4'>
-                    <img className='travel-img' src='http://cdn.toplisttips.com/wp-content/uploads/2014/11/Taking-picture-everywhere.jpg' />
+                    <img className='travel-img' alt='travel' src='http://cdn.toplisttips.com/wp-content/uploads/2014/11/Taking-picture-everywhere.jpg' />
                 </div>
                 <div className='col-xs-12 col-md-6'>
                     <div id='share'>

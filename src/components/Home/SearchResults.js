@@ -1,14 +1,23 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import React from 'react';
+import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
-import Pagination from './Pagination'
 import { setEditProfileToFalse } from '../actions/profile';
-import { setEditPostToFalse } from '../actions/posts'
-import {searchForPosts}  from '../actions/ajaxCallsToPostRoute'
-import Post from './Post'
+import { setEditPostToFalse } from '../actions/posts';
+import {searchForPosts}  from '../actions/ajaxCallsToPostRoute';
+
+import Pagination from './Pagination';
+import Post from './Post';
 
 export class SearchResults extends React.Component {
+
+    componentWillMount(){
+        window.scrollTo(0,0);
+    };
+
+    componentDidUpdate() {
+      window.scrollTo(0,0);
+    };
 
     componentWillUnMount () {
       this.props.dispatch(setEditPostToFalse());
@@ -21,7 +30,7 @@ export class SearchResults extends React.Component {
             return <Redirect to="/" />;
         }
 
-        const { posts } = this.props
+        const { posts, history} = this.props;
 
         if (posts.length < 1) {
             alert("There were no results that matched your search criteria, please refine your search!")
@@ -38,6 +47,7 @@ export class SearchResults extends React.Component {
                           title={title}
                           username={username}
                           profileId={profileId}
+                          history={history}
                           destination={destination}
                           name={name} />
                 </div>
@@ -48,6 +58,8 @@ export class SearchResults extends React.Component {
             <div className='container top-container'>
                 <div className='row main'>
                     {formattedPosts}
+                </div>
+                <div className='row'>
                     <Pagination searchFunction={searchForPosts}  />
                 </div>
             </div>
@@ -64,4 +76,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(SearchResults)
+export default connect(mapStateToProps)(SearchResults);

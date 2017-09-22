@@ -47,28 +47,28 @@ export default function reducer(state = initialState, action) {
               searchResultPosts,
               final,
               error: null
-          })
+          });
     }
 
     else if (action.type === CREATE_POST_SUCCESS || action.type === EDIT_POST_SUCCESS) {
 
         return Object.assign({}, state, {
               newlyAddedPost: action.post
-        })
+        });
     }
 
     else if (action.type === FETCH_SELECTED_POST_SUCCESS) {
 
         return Object.assign({}, state, {
             currentPost: action.post
-        })
+        });
     }
 
     else if (action.type === FETCH_SELECTED_USER_SUCCESS) {
 
           return Object.assign({}, state, {
             viewUser: action.user
-          })
+          });
     }
 
     else if (action.type === FETCH_PROTECTED_DATA_ERROR) {
@@ -95,12 +95,12 @@ export default function reducer(state = initialState, action) {
     else if (action.type === RESET_SLICE_INDEX) {
         return Object.assign({}, state, {
             sliceIndex: 0
-        })
+        });
     }
     else if (action.type === SAVE_SEARCH_TERM) {
         return Object.assign({}, state, {
             searchTerm: action.searchTerm
-        })
+        });
     }
 
     else if (action.type === GET_USERS_POSTS_SUCCESS) {
@@ -110,6 +110,6 @@ export default function reducer(state = initialState, action) {
             final
         });
     }
-    
+
     return state;
 };

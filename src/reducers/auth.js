@@ -34,14 +34,14 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, {
           showLogin: true,
           showAuthModal: true
-        })
+        });
     }
 
     else if (action.type ===  OPEN_SIGNUP_FORM) {
         return Object.assign({}, state, {
           showLogin: false,
           showAuthModal: true
-        })
+        });
     }
 
     else if (action.type === EDIT_PROFILE_SUCCESS) {

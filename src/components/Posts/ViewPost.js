@@ -1,16 +1,17 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom'
+import React from 'react';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 
 import { getUsersPosts } from '../actions/ajaxCallsToPostRoute';
-import { getUserProfile} from '../actions/ajaxCallsToUserRoute'
-import { sliceIndex, amount } from '../Home/utils'
+import { getUserProfile} from '../actions/ajaxCallsToUserRoute';
+import { sliceIndex, amount } from '../Home/utils';
+import { resetSliceIndex } from '../actions/posts';
 
-import LargePost from './LargePost'
-import Aside from './Aside'
+import LargePost from './LargePost';
+import Aside from './Aside';
 
-import './Post.css'
-import '../Home/Home.css'
+import './Post.css';
+import '../Home/Home.css';
 
 export class ViewPost extends React.Component {
     constructor(props) {
@@ -20,18 +21,29 @@ export class ViewPost extends React.Component {
         this.handleProfileClick = this.handleProfileClick.bind(this);
     };
 
+    componentDidMount() {
+    window.scrollTo(0,0);
+    };
+
+    componentDidUpdate() {
+        window.scrollTo(0,0);
+    };
     handleClick() {
-        this.props.history.push('/')
+        this.props.dispatch(resetSliceIndex());
+        this.props.history.push('/');
     };
 
     handleProfileClick(e) {
-          e.preventDefault()
-          const { profileId } = this.props
+          e.preventDefault();
 
+          const { profileId } = this.props;
+
+          this.props.dispatch(resetSliceIndex());
           this.props.dispatch(getUserProfile(profileId))
           .then(({profile: {username}}) => this.props.dispatch(getUsersPosts(username, sliceIndex, amount)))
-          .then(() => this.props.history.push(`/profile/${profileId}`))
-    }
+          .then(() => this.props.history.push(`/profile/${profileId}`));
+    };
+
     render() {
         if (!this.props.isLoggedIn) {
             return <Redirect to={'/'} />
@@ -75,6 +87,6 @@ export class ViewPost extends React.Component {
 const mapStateToProps = state => ({
     isLoggedIn: state.auth.currentUser !== null,
     profileId: state.profile.myProfile.profileId
-})
+});
 
-export default connect(mapStateToProps)(ViewPost)
+export default connect(mapStateToProps)(ViewPost);

@@ -3,15 +3,12 @@ import {connect} from 'react-redux';
 
 import { formatPosts, favoritesLanguage } from './utils';
 
-import ProfileButtons from './ProfileButtons';
-import Post from '../Home/Post';
-
 import './ProfilePage.css';
 
 export function UserFavorites (props) {
 
-    const { favorites, newPropObj } = props
-    const userFavorites = formatPosts(favorites, newPropObj, favoritesLanguage)
+    const { favorites, newPropObj } = props;
+    const userFavorites = formatPosts(favorites, newPropObj, favoritesLanguage);
 
     return (
         <div className='col-xs-12'>
@@ -33,6 +30,6 @@ const mapStateToProps = (state, props) => {
         newPropObj,
         username
     };
-}
+};
 
-export default connect(mapStateToProps)(UserFavorites)
+export default connect(mapStateToProps)(UserFavorites);

@@ -1,16 +1,13 @@
 import React from 'react';
-import {Link, Redirect} from 'react-router-dom';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-import { setEditProfileTrue } from '../actions/profile';
-import { setEditPostToFalse } from '../actions/posts';
+import { resetSliceIndex } from '../actions/posts';
 import { setCurrentUser, setAuthToken } from '../actions/auth';
-import {clearAuthToken} from '../local-storage';
-import { fetchSelectedPost, getUsersPosts  } from '../actions/ajaxCallsToPostRoute';
-import {  fetchSelectedUser, getUserProfile } from '../actions/ajaxCallsToUserRoute';
+import { clearAuthToken } from '../local-storage';
+import { getUsersPosts } from '../actions/ajaxCallsToPostRoute';
+import { getUserProfile } from '../actions/ajaxCallsToUserRoute';
 import { sliceIndex, amount } from '../Home/utils'
 
-import DropdownLink from './DropdownLink';
 import NavInput from './NavInput';
 import Circle from './Circle';
 import NavHeader from './NavHeader';
@@ -21,13 +18,16 @@ export class LoggedInNav extends React.Component {
     constructor (props) {
         super(props)
 
-        this.handleClick = this.handleClick.bind(this)
-        this.handleLogOutClick = this.handleLogOutClick.bind(this)
+        this.handleClick = this.handleClick.bind(this);
+        this.handleLogOutClick = this.handleLogOutClick.bind(this);
     };
 
     handleClick(e) {
-        e.preventDefault()
-        const { profileId } = this.props
+        e.preventDefault();
+
+        const { profileId } = this.props;
+
+        this.props.dispatch(resetSliceIndex())
 
         this.props.dispatch(getUserProfile(profileId))
         .then(({profile: {username}}) => this.props.dispatch(getUsersPosts(username, sliceIndex, amount)))
@@ -35,7 +35,8 @@ export class LoggedInNav extends React.Component {
     };
 
     handleLogOutClick (e) {
-       e.preventDefault()
+       e.preventDefault();
+
        this.props.dispatch(setCurrentUser(null));
        this.props.dispatch(setAuthToken(null));
 
@@ -43,7 +44,7 @@ export class LoggedInNav extends React.Component {
     };
 
     render() {
-        const username = this.props.currentUser.username.toUpperCase()
+        const username = this.props.currentUser.username.toUpperCase();
 
         return (
             <div className='row nav-row'>
@@ -75,4 +76,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(LoggedInNav)
+export default connect(mapStateToProps)(LoggedInNav);

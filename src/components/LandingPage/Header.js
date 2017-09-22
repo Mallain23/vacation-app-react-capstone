@@ -10,5 +10,5 @@ export default function Header (props) {
                   <p className='catch-phrase'>Start Planning.</p>
             </div>
         </div>
-    )
-}
+    );
+};

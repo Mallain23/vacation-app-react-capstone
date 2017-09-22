@@ -1,8 +1,8 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import React from 'react';
+import {connect} from 'react-redux';
 
-import { setCurrentUser, setAuthToken } from '../actions/auth'
-import {setEditProfileTrue, setEditProfileToFalse} from '../actions/profile'
+import { setCurrentUser, setAuthToken } from '../actions/auth';
+import {setEditProfileTrue, setEditProfileToFalse} from '../actions/profile';
 import {clearAuthToken} from '../local-storage';
 
 export class UserProfileSettings extends React.Component {
@@ -15,8 +15,8 @@ export class UserProfileSettings extends React.Component {
     }
 
     handleEdit(e) {
-        e.preventDefault()
-        this.props.dispatch(setEditProfileTrue())
+        e.preventDefault();
+        this.props.dispatch(setEditProfileTrue());
     };
 
     handleLogOut(e) {
@@ -31,7 +31,7 @@ export class UserProfileSettings extends React.Component {
     };
 
     render() {
-        const { editProfile } = this.props
+        const { editProfile } = this.props;
         const settingButton = editProfile ? <a onClick={this.handleCancelClick} className='profile-settings'>Cancel </a> :
                                             <a onClick={this.handleEdit} className="edit-profile profile-settings">Edit</a>
 
@@ -41,7 +41,7 @@ export class UserProfileSettings extends React.Component {
                 <span className='button-divider'>|</span>
                 <a onClick={this.handleLogOut} className="logout profile-settings">Log Out</a>
             </div>
-        )
+        );
     };
 };
 
@@ -51,4 +51,4 @@ const mapStateToProps = state => ({
     editProfile: state.profile.editProfile
 });
 
-export default connect(mapStateToProps)(UserProfileSettings)
+export default connect(mapStateToProps)(UserProfileSettings);

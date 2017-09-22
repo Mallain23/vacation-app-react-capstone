@@ -1,39 +1,38 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
+import { connect } from 'react-redux';
 
 import { getUsersPosts } from '../actions/ajaxCallsToPostRoute';
-import { getFavoritePosts } from '../actions/profile'
-import { resetSliceIndex } from '../actions/posts'
-import { sliceIndex, amount } from './utils'
+import { getFavoritePosts } from '../actions/profile';
+import { resetSliceIndex } from '../actions/posts';
+import { sliceIndex, amount } from './utils';
 
 export class ProfileButtons extends React.Component {
     constructor(props) {
         super(props)
 
         this.handleViewUserPostsClick = this.handleViewUserPostsClick.bind(this);
-        this.handleGetFavoritesClick = this.handleGetFavoritesClick.bind(this)
+        this.handleGetFavoritesClick = this.handleGetFavoritesClick.bind(this);
     }
 
     handleViewUserPostsClick(e) {
         e.preventDefault();
         const { username } = this.props;
 
-        this.props.dispatch(resetSliceIndex())
+        this.props.dispatch(resetSliceIndex());
         this.props.dispatch(getUsersPosts(username, sliceIndex, amount));
     };
 
     handleGetFavoritesClick(e) {
         e.preventDefault();
-        const { currentProfile } = this.props
 
         this.props.dispatch(getFavoritePosts(sliceIndex, sliceIndex + 1));
     };
 
     render() {
-        const { profileView } = this.props
+        const { profileView } = this.props;
 
-        const postDisabled = profileView === 'POSTS' ? true : false
-        const favoritesDisabled = profileView === 'FAVORITES' ?  true : false
+        const postDisabled = profileView === 'POSTS' ? true : false;
+        const favoritesDisabled = profileView === 'FAVORITES' ?  true : false;
 
         return (
             <div className='prof-btn-container'>
@@ -57,8 +56,8 @@ export class ProfileButtons extends React.Component {
 };
 
 const mapStateToProps = state => {
-    const { username } = state.profile.currentProfile
-    const { currentProfile, profileView } = state.profile
+    const { username } = state.profile.currentProfile;
+    const { currentProfile, profileView } = state.profile;
 
 
     return {
@@ -68,4 +67,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(ProfileButtons)
+export default connect(mapStateToProps)(ProfileButtons);;

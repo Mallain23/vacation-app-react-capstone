@@ -1,10 +1,9 @@
-import React from 'react'
-import {Link} from 'react-router-dom';
+import React from 'react';
 import { connect } from 'react-redux';
 
-import { openLoginForm, openSignupForm } from '../actions/users'
+import { openLoginForm, openSignupForm } from '../actions/users';
 
-import './Navigation.css'
+import './Navigation.css';
 
 export class LoginButtons extends React.Component {
     constructor (props) {
@@ -21,10 +20,10 @@ export class LoginButtons extends React.Component {
     };
 
     handleSignupClick (e) {
-        e.preventDefault()
+        e.preventDefault();
 
-        this.props.dispatch(openSignupForm())
-    }
+        this.props.dispatch(openSignupForm());
+    };
 
     render() {
         return (
@@ -32,8 +31,8 @@ export class LoginButtons extends React.Component {
                     <a className='nav-links right-side'onClick={this.handleSignupClick}>Signup</a>
                     <a className='nav-links right-side' onClick={this.handleLoginClick}>Login</a>
                </div>
-        )
+        );
     };
 };
 
-export default connect()(LoginButtons)
+export default connect()(LoginButtons);

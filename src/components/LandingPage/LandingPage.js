@@ -9,43 +9,39 @@ import SignUp from './SignUp';
 
 import './LandingPage.css';
 
-export class LandingPage extends React.Component {
+export function LandingPage (props) {
 
-    render() {
-
-
-      if (this.props.loggedIn) {
+      if (props.loggedIn) {
           return <Redirect to="/welcome" />;
       }
 
-        return (
-          <div className='outer-container'>
-              <div className='background-image-container'>
-                    <header id='landing-page-header'>
-                        <Header />
-                    </header>
-                </div>
-                    <div className='container'>
-                    <main>
-                        <section>
-                          <About />
-                        </section>
-                        <section>
-                            <AppFeatures />
-                        </section>
-                        <section>
-                          <SignUp />
-                        </section>
-                    </main>
-                </div>
+    return (
+        <div className='outer-container'>
+            <div className='background-image-container'>
+                <header id='landing-page-header'>
+                    <Header />
+                </header>
             </div>
-        )
-    };
+                <div className='container'>
+                <main>
+                    <section id='overview-mark'>
+                        <About />
+                    </section>
+                    <section>
+                        <AppFeatures />
+                    </section>
+                    <section>
+                        <SignUp />
+                    </section>
+                </main>
+            </div>
+        </div>
+    );
 };
 
 const mapStateToProps = state => ({
   loggedIn: state.auth.currentUser !== null,
   showLogin: state.auth.showLogin
-})
+});
 
 export default connect(mapStateToProps)(LandingPage);

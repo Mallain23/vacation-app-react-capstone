@@ -2,9 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
+import { resetSliceIndex } from '../actions/posts'
 import { getUsersPosts } from '../actions/ajaxCallsToPostRoute';
-import { getUserProfile} from '../actions/ajaxCallsToUserRoute'
-import { sliceIndex, amount } from './utils'
+import { getUserProfile} from '../actions/ajaxCallsToUserRoute';
+import { sliceIndex, amount } from './utils';
 
 import './Home.css'
 
@@ -12,26 +13,28 @@ export class Post extends React.Component {
     constructor(props) {
         super(props)
 
-        this.handleClick = this.handleClick.bind(this)
-    }
+        this.handleClick = this.handleClick.bind(this);
+    };
 
     handleClick(e) {
-      e.preventDefault()
-      const { profileId } = this.props
+      e.preventDefault();
+
+      const { profileId } = this.props;
+
+      this.props.dispatch(resetSliceIndex());
 
       this.props.dispatch(getUserProfile(profileId))
       .then(({profile: {username}}) => this.props.dispatch(getUsersPosts(username, sliceIndex, amount)))
-      .then(() => this.props.history.push(`/profile/${profileId}`))
+      .then(() => this.props.history.push(`/profile/${profileId}`));
     };
 
     render() {
         const {
             title,
-            profileId,
             destination,
             postId,
             username
-        } = this.props
+        } = this.props;
 
         return (
             <article className='box'>
@@ -58,4 +61,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(Post)
+export default connect(mapStateToProps)(Post);

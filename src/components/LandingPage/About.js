@@ -14,10 +14,10 @@ export default function About (props) {
                 </div>
                 <div className='col-xs-12 col-md-4'>
                     <div id='about-img'>
-                        <img className='overview-image' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcQqQ9TseVsm43zotZSlIm5D_ANXpMKmBCbaGvjXR4rFsnQZWh' />
+                        <img className='overview-image' alt='travel' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcQqQ9TseVsm43zotZSlIm5D_ANXpMKmBCbaGvjXR4rFsnQZWh' />
                     </div>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

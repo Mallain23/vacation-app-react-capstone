@@ -1,10 +1,11 @@
 import React from 'react';
 import  { connect } from 'react-redux';
-import {Link} from 'react-router-dom';
 
-import './Post.css'
+import { addPostToFavorites, removePostFromFavorites } from '../actions/ajaxCallsToUserRoute';
+import { ADD_TO_FAVORITE_LANGUAGE,
+         REMOVE_FROM_FAVORITES_LANGUAGE } from './utils';
 
-import { addPostToFavorites, removePostFromFavorites } from '../actions/ajaxCallsToUserRoute'
+import './Post.css';
 
 export class FavoriteButtons extends React.Component {
     constructor(props) {
@@ -13,20 +14,23 @@ export class FavoriteButtons extends React.Component {
         this.handleRemoveFromFavoritesClick = this.handleRemoveFromFavoritesClick.bind(this);
         this.handleAddToFavoritesClick = this.handleAddToFavoritesClick.bind(this);
     };
+
     handleAddToFavoritesClick(e) {
         e.preventDefault();
         const { username, currentPost } = this.props;
 
         this.props.dispatch(addPostToFavorites(currentPost, username))
+        .then(() => alert(ADD_TO_FAVORITE_LANGUAGE));
     };
 
     handleRemoveFromFavoritesClick(e) {
         e.preventDefault();
 
-        const { username, profileId } = this.props;
+        const { username } = this.props;
         const { postId } = this.props.currentPost;
 
         this.props.dispatch(removePostFromFavorites(postId, username))
+        .then(() => alert(REMOVE_FROM_FAVORITES_LANGUAGE))
     };
 
     render() {
@@ -60,7 +64,7 @@ export class FavoriteButtons extends React.Component {
 };
 
 const mapStateToProps = state => {
-  console.log(state.profile)
+
     const { currentPost } = state.postData;
     const { username } = state.auth.currentUser;
     const { favoritePosts } = state.profile.myProfile;
@@ -73,4 +77,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(FavoriteButtons)
+export default connect(mapStateToProps)(FavoriteButtons);

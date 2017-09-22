@@ -1,44 +1,40 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
+import { connect } from 'react-redux';
 
-import { Link } from 'react-router-dom'
-import {fetchSelectedPost, searchForPosts }  from '../actions/ajaxCallsToPostRoute'
-import { fetchSelectedUser } from '../actions/ajaxCallsToUserRoute'
+import {fetchSelectedPost, searchForPosts }  from '../actions/ajaxCallsToPostRoute';
+import { sliceIndex, numberOfResults } from './utils'
 
-import './Post.css'
+import './Post.css';
 
 
 export class Aside extends React.Component {
     constructor (props) {
         super(props)
 
-        this.handleClick = this.handleClick.bind(this)
+        this.handleClick = this.handleClick.bind(this);
     };
 
     handleClick(e) {
-        const postId = e.target.value
-        const numberOfResults = 6
-        const sliceIndex = 0
-        this.props.history.push(`/post/${postId}`)
+        const postId = e.target.value;
+
+        this.props.history.push(`/post/${postId}`);
 
         this.props.dispatch(fetchSelectedPost(postId))
-        .then(({ post: {destination}}) => this.props.dispatch(searchForPosts(destination, numberOfResults, sliceIndex)))
+        .then(({ post: {destination}}) => this.props.dispatch(searchForPosts(destination, numberOfResults, sliceIndex)));
 
     };
 
     componentWillMount() {
-        const postId = this.props.match.params.postId
-        const numberOfResults = 6
-        const sliceIndex = 0
+        const postId = this.props.match.params.postId;
 
         this.props.dispatch(fetchSelectedPost(postId))
-        .then(({ post: {destination}}) => this.props.dispatch(searchForPosts(destination, numberOfResults, sliceIndex)))
+        .then(({ post: {destination}}) => this.props.dispatch(searchForPosts(destination, numberOfResults, sliceIndex)));
     };
 
     render() {
 
-        let formattedPosts
-        const { relatedPosts } = this.props
+        let formattedPosts;
+        const { relatedPosts } = this.props;
 
         if (relatedPosts.length < 2 ) {
             formattedPosts = <p className='no-related'>There are no related posts available.</p>
@@ -76,4 +72,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(Aside)
+export default connect(mapStateToProps)(Aside);

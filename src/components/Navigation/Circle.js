@@ -9,14 +9,15 @@ export class Circle extends React.Component {
     constructor (props) {
           super(props)
 
-          this.handleCreatePostClick = this.handleCreatePostClick.bind(this)
+          this.handleCreatePostClick = this.handleCreatePostClick.bind(this);
     };
 
     handleCreatePostClick (e) {
       e.preventDefault();
+
       this.props.dispatch(setEditPostToFalse());
 
-      this.props.history.push(`../create-post`)
+      this.props.history.push(`../create-post`);
     };
 
     render() {
@@ -30,4 +31,4 @@ export class Circle extends React.Component {
     };
 };
 
-export default connect()(Circle)
+export default connect()(Circle);

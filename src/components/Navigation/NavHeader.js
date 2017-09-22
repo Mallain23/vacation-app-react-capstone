@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { resetSliceIndex } from '../actions/posts';
 
-import './Navigation.css'
+import './Navigation.css';
 
 export class NavHeader extends React.Component {
     constructor(props) {
@@ -14,7 +14,7 @@ export class NavHeader extends React.Component {
 
     handleClick(e) {
         e.preventDefault();
-        console.log(this.props);
+
         this.props.dispatch(resetSliceIndex());
         this.props.history.push('/');
   };

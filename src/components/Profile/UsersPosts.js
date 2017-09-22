@@ -1,15 +1,13 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import React from 'react';
+import {connect} from 'react-redux';
 
-import { formatPosts, postLanguage } from './utils'
-
-import Post from '../Home/Post'
+import { formatPosts, postLanguage } from './utils';
 
 export function UserPosts (props) {
 
-    const { posts, newPropObj } = props
+    const { posts, newPropObj } = props;
 
-    const userPosts = formatPosts(posts, newPropObj, postLanguage)
+    const userPosts = formatPosts(posts, newPropObj, postLanguage);
 
     return (
         <div className="users-posts">
@@ -31,4 +29,4 @@ const mapStateToProps = (state, props) => {
     };
 };
 
-export default connect(mapStateToProps)(UserPosts)
+export default connect(mapStateToProps)(UserPosts);

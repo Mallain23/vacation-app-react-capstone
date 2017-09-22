@@ -1,8 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
-import {browserHistory} from 'react-router';
 
+import { sliceIndex, numberOfResults } from './utils';
 import {resetSliceIndex, saveSearchTerm} from '../actions/posts';
 import {searchForPosts} from '../actions/ajaxCallsToPostRoute';
 
@@ -12,15 +11,13 @@ export class NavInput extends React.Component {
     constructor(props) {
           super(props)
 
-          this.handleSubmit = this.handleSubmit.bind(this)
+          this.handleSubmit = this.handleSubmit.bind(this);
     };
 
     handleSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
 
-        const sliceIndex = 0
-        const numberOfResults = 20
-        const searchTerm = this.input.value
+        const searchTerm = this.input.value;
 
         this.input.value = '';
 
@@ -42,4 +39,4 @@ export class NavInput extends React.Component {
     };
 };
 
-export default connect()(NavInput)
+export default connect()(NavInput);

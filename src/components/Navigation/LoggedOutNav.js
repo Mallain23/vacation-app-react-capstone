@@ -1,15 +1,14 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
+import { getCurrentUserProfile } from '../actions/ajaxCallsToUserRoute';
 import { login } from '../actions/auth';
-import { getCurrentUserProfile } from '../actions/ajaxCallsToUserRoute'
 import { DEMO_PASSWORD, DEMO_USERNAME } from './utils';
 
 import LoginButtons from './LoginButtons';
 import NavHeader from './NavHeader';
 
-import './Navigation.css'
+import './Navigation.css';
 
 export class LoggedOutNav extends React.Component {
     constructor(props) {
@@ -29,7 +28,7 @@ export class LoggedOutNav extends React.Component {
             <div className='row nav-row'>
                 <NavHeader col='col-xs-12 col-md-3' {...this.props}/>
                 <div className='col-xs-12 col-md-8'>
-                   <a className='nav-links marg-right' href='/#about'>Overview</a>
+                   <a className='nav-links marg-right' href='/#overview-mark'>Overview</a>
                    <a className='nav-links marg-right' href='/#app-features'>App Features</a>
                    <a className='nav-links marg-right' onClick={this.handleDemoClick}>Demo App</a>
                 </div>

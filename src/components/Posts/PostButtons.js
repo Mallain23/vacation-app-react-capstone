@@ -1,9 +1,9 @@
 import React from 'react';
 import  { connect } from 'react-redux';
-import {Link} from 'react-router-dom';
 
 import {deletePost} from '../actions/ajaxCallsToPostRoute';
 import {setEditPostTrue} from '../actions/posts';
+import { DELETE_LANGUAGE } from './utils'
 
 
 export class PostButtons extends React.Component {
@@ -19,13 +19,14 @@ export class PostButtons extends React.Component {
         const{ postId, username } = this.props.currentPost;
 
         this.props.dispatch(deletePost(postId, username));
-        this.props.history.push('/')
+        alert(DELETE_LANGUAGE);
+        this.props.history.push('/');
     };
 
     handleEditClick(e) {
         e.preventDefault();
 
-        const postId = this.props.match.params.postId
+        const postId = this.props.match.params.postId;
         this.refs.btn.setAttribute("disabled", "disabled");;
 
         this.props.dispatch(setEditPostTrue());
@@ -60,4 +61,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(PostButtons)
+export default connect(mapStateToProps)(PostButtons);

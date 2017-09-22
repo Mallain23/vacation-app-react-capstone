@@ -1,37 +1,37 @@
-import React from 'react'
+import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
-import {Link} from 'react-router-dom';
 
-import TextArea from '../Inputs/TextArea'
-import Input from '../Inputs/Input'
-import {isNumber, isTrimmed, required, nonEmpty, validValue} from '../validators/validators'
-import {createPost, editPost, fetchSelectedPost} from '../actions/ajaxCallsToPostRoute'
-import {setEditPostTrue} from '../actions/posts'
 
-import './Post.css'
+import TextArea from '../Inputs/TextArea';
+import Input from '../Inputs/Input';
+import {isNumber, required, nonEmpty, validValue} from '../validators/validators';
+import {createPost, editPost, fetchSelectedPost} from '../actions/ajaxCallsToPostRoute';
+import {setEditPostTrue} from '../actions/posts';
+
+import './Post.css';
 
 export class PostForm extends React.Component {
     constructor(props) {
         super(props)
 
-        this.handleCancel = this.handleCancel.bind(this)
+        this.handleCancel = this.handleCancel.bind(this);
     };
 
     componentDidMount() {
         if (this.props.isEditing) {
-              let postId = this.props.match.params.postId
+              let postId = this.props.match.params.postId;
 
               this.props.dispatch(fetchSelectedPost(postId))
-              .then(({ post }) => this.handleInitialize(post))
+              .then(({ post }) => this.handleInitialize(post));
           }
       };
 
     handleInitialize(postObj) {
-        this.props.initialize(postObj)
+        this.props.initialize(postObj);
     };
 
     renderButtonText() {
-      return this.props.isEditing ? 'Edit' : 'Create'
+      return this.props.isEditing ? 'Edit' : 'Create';
     };
 
     onSubmit(values) {
@@ -54,7 +54,7 @@ export class PostForm extends React.Component {
     };
 
     handleCancel() {
-        this.props.dispatch(setEditPostTrue())
+        this.props.dispatch(setEditPostTrue());
         this.props.history.push(`/`);
     };
 
@@ -137,8 +137,8 @@ export class PostForm extends React.Component {
                         </button>
                     </div>
                 </form>
-        )
-    }
+        );
+    };
 };
 
 export default PostForm = reduxForm({

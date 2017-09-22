@@ -210,7 +210,8 @@
   display: inline-block;
   font-size: 24px;
   font-weight: 600px;
-  margin-top: 7px;
+  margin-top: 5px;
+  margin-left: 1px;
   vertical-align: middle;
   text-align: center;
 }

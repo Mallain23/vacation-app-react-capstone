@@ -1,5 +1,5 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import React from 'react';
+import {connect} from 'react-redux';
 import { getFavoritePosts } from '../actions/profile';
 
 
@@ -58,4 +58,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(FavoritesPagination)
+export default connect(mapStateToProps)(FavoritesPagination);;

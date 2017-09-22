@@ -66,6 +66,7 @@
 
 }
 
+
 .share-text, .share-title, .search-text, .search-title {
   margin-left: 40px;
 }
@@ -93,7 +94,11 @@
 }
 
 #ideas {
-  margin-top: 100px;
+  margin-top: 65px;
+}
+
+#overview-mark {
+  padding-top: 10px;
 }
 
 .signup-title {
@@ -169,9 +174,10 @@
       font-size: 30px;
     }
 
-    .travel-img {
-      margin-left: 60px;
+    .travel-img, #about-img {
+      margin-left: 120px;
     }
+
 
     .ideas-title, .ideas-text {
       margin-left: 40px;
@@ -206,6 +212,12 @@
   }
 }
 
+@media only screen and (max-width: 650px) {
+    .travel-img, #about-img {
+      margin-left: 80px;
+
+    }
+}
 @media only screen and (max-width: 500px) {
 
   .page-title {
@@ -229,6 +241,9 @@
     height: 150px;
   }
 
+  .travel-img, #about-img {
+    margin-left: 90px;
+  }
 
 }
 

@@ -1,30 +1,29 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import React from 'react';
+import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
-import { fetchPosts } from '../actions/ajaxCallsToPostRoute'
-import { increaseSliceIndex, resetSliceIndex } from '../actions/posts';
+import { fetchPosts } from '../actions/ajaxCallsToPostRoute';
 
-import Post from './Post'
-import Pagination from './Pagination'
+import Post from './Post';
+import Pagination from './Pagination';
 
-import './Home.css'
+import './Home.css';
 
 export class Home extends React.Component {
 
     componentDidMount() {
-        this.props.dispatch(fetchPosts(this.props.sliceIndex, 20))
+        this.props.dispatch(fetchPosts(this.props.sliceIndex, 20));
 
         window.scrollTo(0,0);
 
     };
 
     componentDidUpdate() {
-        window.scrollTo(0,0);  
+        window.scrollTo(0,0);
     };
 
     render() {
-        const { loggedIn, posts, history } = this.props
+        const { loggedIn, posts, history } = this.props;
 
         if (!loggedIn) {
             return <Redirect to="/" />;
@@ -72,4 +71,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(Home);

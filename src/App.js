@@ -1,7 +1,8 @@
 import React from 'react';
 import {Route, withRouter} from 'react-router-dom';
-
 import {connect} from 'react-redux';
+
+import {refreshAuthToken} from './components/actions/auth';
 
 import Navigation from './components/Navigation/Navigation';
 import LandingPage from './components/LandingPage/LandingPage';
@@ -11,7 +12,7 @@ import SearchResults from './components/Home/SearchResults';
 import ViewPost from './components/Posts/ViewPost';
 import ManagePost from './components/Posts/ManagePost';
 import AuthModal from './components/Login/AuthModal';
-import {refreshAuthToken} from './components/actions/auth';
+
 
 
 export class App extends React.Component {

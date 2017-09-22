@@ -79,7 +79,6 @@ export const editProfile = values => (dispatch, getState) => {
     });
 };
 
-
 export const addPostToFavorites = (post, username) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
 
@@ -130,8 +129,6 @@ export const getCurrentUserProfile = () => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then(data => {
-          console.log(data)
-          dispatch(getCurrentUserProfileSuccess(data))})
+        .then(data => dispatch(getCurrentUserProfileSuccess(data)))
         .catch(err => dispatch(fetchProtectedDataError(err)));
 };

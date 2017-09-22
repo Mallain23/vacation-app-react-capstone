@@ -1,18 +1,15 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import React from 'react';
+import {connect} from 'react-redux';
 
-import { getUsersPosts } from '../actions/ajaxCallsToPostRoute'
-import { getUserProfile } from '../actions/ajaxCallsToUserRoute'
-import ProfileButtons from './ProfileButtons'
-import { sliceIndex, amount, POST } from './utils'
+import ProfileButtons from './ProfileButtons';
 
-import './ProfilePage.css'
+import './ProfilePage.css';
 
 export class UserProfile extends React.Component {
-  
+
     render() {
 
-        const {username, bio, name, favorite } = this.props
+        const {username, bio, name, favorite } = this.props;
 
         return (
             <div className='col-xs-12 profile-info'>
@@ -36,6 +33,6 @@ const mapStateToProps = state => {
           profileView,
           name: `${firstName} ${lastName}`
     };
-}
+};
 
-export default connect(mapStateToProps)(UserProfile)
+export default connect(mapStateToProps)(UserProfile);

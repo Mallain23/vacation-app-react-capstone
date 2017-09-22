@@ -1,9 +1,9 @@
-import React from 'react'
-import PostForm from './PostForm'
+import React from 'react';
+import PostForm from './PostForm';
 import {Redirect} from 'react-router-dom';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
 
-import './Post.css'
+import './Post.css';
 
 export function ManagePost (props) {
 
@@ -26,7 +26,7 @@ export function ManagePost (props) {
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 const mapStateToProps = state => {
@@ -38,7 +38,7 @@ const mapStateToProps = state => {
         name: `${firstName} ${lastName}`,
         profileId,
         isEditing: state.profile.editPost
-    }
-}
+    } ;
+};
 
-export default connect(mapStateToProps)(ManagePost)
+export default connect(mapStateToProps)(ManagePost);

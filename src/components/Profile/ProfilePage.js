@@ -1,23 +1,21 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom'
+import React from 'react';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 
 import UserProfileSettings from './UserProfileSettings';
 import { getUsersPosts } from '../actions/ajaxCallsToPostRoute';
-import { getAvatarString, sliceIndex, amount } from './utils'
+import { getAvatarString } from './utils'
 
 import EditProfile from './EditProfile';
 import UserProfile from './UserProfile';
 import UsersPosts from './UsersPosts';
 import UserFavorites from './UserFavorites'
 import Pagination from '../Home/Pagination';
-import FavoritesPagination from './FavoritesPagination'
+import FavoritesPagination from './FavoritesPagination';
 
 import './ProfilePage.css';
 
 export class ProfilePage extends React.Component {
-
-
 
     renderProfileComponent() {
         const { username } = this.props.currentUser
@@ -40,9 +38,9 @@ export class ProfilePage extends React.Component {
           return <Redirect to={'/'}/>
         }
 
-        const { username, currentUser, firstName, lastName, pageId} = this.props
+        const { username, currentUser, firstName, lastName } = this.props;
 
-        const avatarString = getAvatarString(firstName, lastName)
+        const avatarString = getAvatarString(firstName, lastName);
         const profileSettings = currentUser.username === username ? <UserProfileSettings /> : ''
 
         return (
@@ -79,9 +77,8 @@ export class ProfilePage extends React.Component {
 
 const mapStateToProps = (state, props) => {
 
-    let { username, firstName, lastName } = state.profile.currentProfile
-    let { editProfile, profileView } = state.profile
-    const pageId = props.match.params.profileId
+    const { username, firstName, lastName } = state.profile.currentProfile;
+    const { editProfile, profileView } = state.profile;
 
     return {
         currentUser: state.auth.currentUser,
@@ -91,8 +88,7 @@ const mapStateToProps = (state, props) => {
         lastName: lastName || '',
         editProfile,
         profileView,
-        pageId
       };
 }
 
-export default connect(mapStateToProps)(ProfilePage)
+export default connect(mapStateToProps)(ProfilePage);;

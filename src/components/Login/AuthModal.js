@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import {connect} from 'react-redux';
 
 import { LOGIN_TITLE, SIGNUP_TITLE } from './utils';
@@ -36,7 +36,6 @@ export class AuthModal extends React.Component {
 
     render() {
         const { showAuthModal } = this.props;
-        console.log(showAuthModal)
 
         return (
               <div className="authentication-modal">

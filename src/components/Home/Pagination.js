@@ -4,19 +4,19 @@ import {connect} from 'react-redux';
 import { increaseSliceIndex, decreaseSliceIndex } from '../actions/posts';
 import { fetchPosts, searchForPosts, getUsersPosts } from '../actions/ajaxCallsToPostRoute';
 
-import './Home.css'
+import './Home.css';
 
 export class Pagination extends React.Component {
     constructor(props) {
         super(props)
 
-        this.handleNextClick = this.handleNextClick.bind(this)
-        this.handlePrevClick = this.handlePrevClick.bind(this)
-    }
+        this.handleNextClick = this.handleNextClick.bind(this);
+        this.handlePrevClick = this.handlePrevClick.bind(this);
+    };
 
     handleNextClick() {
-        const { sliceIndex, searchTerm, searchFunction } = this.props
-        const  { username } = this.props
+        const { sliceIndex, searchTerm, searchFunction } = this.props;
+        const  { username } = this.props;
 
         switch(searchFunction) {
 
@@ -41,8 +41,7 @@ export class Pagination extends React.Component {
     };
 
     handlePrevClick() {
-        const { sliceIndex, search, searchTerm, searchFunction } = this.props
-        const { username } = this.props
+        const { sliceIndex, username, searchTerm, searchFunction } = this.props;
 
         switch(searchFunction) {
 
@@ -69,6 +68,7 @@ export class Pagination extends React.Component {
 
     render() {
         const  { sliceIndex, final } = this.props;
+        
         const pageNumber = sliceIndex + 1;
         const prevDisable = pageNumber === 1 ? true : false;
         const nextDisable = final ? true : false;
