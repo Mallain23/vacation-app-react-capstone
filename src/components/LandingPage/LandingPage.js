@@ -22,9 +22,9 @@ export function LandingPage (props) {
                     <Header />
                 </header>
             </div>
-                <div className='container'>
+                <div className='container' id='overview-mark'>
                 <main>
-                    <section id='overview-mark'>
+                    <section>
                         <About />
                     </section>
                     <section>

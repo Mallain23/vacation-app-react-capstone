@@ -59,3 +59,15 @@ input:focus, textarea:focus {
   margin-left: 15px;
   margin-bottom: 10px;
 }
+
+@media only screen and (max-width: 550px) {
+  input::placeholder, textarea::placeholder {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  input::placeholder, textarea::placeholder {
+    font-size: 10px;
+  }
+}

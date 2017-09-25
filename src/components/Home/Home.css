@@ -63,9 +63,9 @@
 }
 
 .author {
-    font-family: cursive;
     font-size: 1.3em;
     line-height: 1.5;
+    font-family: Open Sans,sans-serif;
 }
 
 .box-bottom {
@@ -97,16 +97,17 @@
   background-color: hsla(0,0%,100%,.3);
   color: #88b2cc;
   border: 1px solid #88b2cc;
-  padding: 1.0rem 3.75rem;
+  padding: .80rem 3.75rem;
   padding-bottom: 1.5rem;
   height: 3.75rem;
-  border-radius: 2.5rem;
+  border-radius: 1.0rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   transition: all .25s ease;
   text-decoration: none;
   font-size: 14px;
   line-height: 1.42857143;
+  vertical-align: middle;
 
 }
 
@@ -133,6 +134,7 @@
   width: 20%;
   display: inline-block;
   font-size: 12px;
+  padding: 1.00rem 3.75rem;
 }
 
 .prev {
@@ -152,6 +154,10 @@
   font-size: 16px;
   color: #88b2cc;
   font-weight: 600px;
+  display: inline-block;
+  vertical-align: middle;
+  height: 30px;
+  padding-top: 10px;
 }
 
 .next-long, .prev-long {

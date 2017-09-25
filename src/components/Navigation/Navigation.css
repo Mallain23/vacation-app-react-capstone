@@ -63,6 +63,7 @@
 .title:hover {
   text-decoration: none;
   cursor: pointer;
+  color: #88b2cc;
 
 }
 .dropdown {
@@ -130,6 +131,7 @@
 .nav-links:hover {
   text-decoration: none;
   cursor: pointer;
+  color: #88b2cc;
 
 }
 
@@ -158,12 +160,13 @@
  font-size: 16px;
 }
 
-#search::placeholder:focus {
-  color: #777;
+#search:focus::placeholder {
+  color:  #5d5762;
 }
 
 #search:focus {
   background-color: white;
+  color:  #5d5762;
 }
 .nav-heading {
   display: inline-block;

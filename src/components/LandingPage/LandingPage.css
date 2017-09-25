@@ -52,6 +52,8 @@
 
 }
 
+
+
 .overview-text, .search-text, .ideas-text, .share-text {
     font-size: 20px;
     line-height: 35px;
@@ -73,6 +75,7 @@
 
 #overview {
   margin-left: 30px;
+  margin-top: 60px;
 }
 
 #about-img {
@@ -90,16 +93,14 @@
 #app-features {
     display: block;
     margin-bottom: 100px;
-    margin-top: 70px;
+    margin-top: 25px;
 }
 
 #ideas {
   margin-top: 65px;
 }
 
-#overview-mark {
-  padding-top: 10px;
-}
+
 
 .signup-title {
   margin: auto;

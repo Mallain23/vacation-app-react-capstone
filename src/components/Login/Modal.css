@@ -13,26 +13,16 @@
 .auth-button {
   width: 25%;
   margin-left: 15px;
-  border: 1px solid #79d1ad;
-  color: #79d1ad;
   text-align: center;
 }
 
-.auth-button:hover,.register-button:hover {
-  background-color: #79d1ad;
-}
 
 .auth-close-button {
   width: 25%;
   margin-left: 15px;
-  border: 1px solid #e67478;
-  color: #e67478;
   float: right;
 }
 
-.auth-close-button:hover {
-  background-color: #e67478
-}
 
 .modal-header, .modal-footer {
   background-color: #4a4756;
@@ -42,8 +32,6 @@
 
 .register-button {
   width: 30%;
-  border: 1px solid #79d1ad;
-  color: #79d1ad;
   margin-left: 15px;
 }
 

@@ -148,34 +148,33 @@ ul {
   width: 30%;
   margin-bottom: 20px;
   margin-right: 10px;
-  padding: 1.0rem 4.25rem;
+  padding: .65rem 4.25rem;
   height: 4.25rem;
-  border-radius: 2.5rem;
+  border-radius: 1.0rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   transition: all .25s ease;
+  vertical-align: middle;
 }
 
 
 
 .delete {
-  color: #e67478;
-  border: 1px solid #e67478;
+
   background-color: transparent;
 }
 
 .delete:hover {
-  background-color: #e67478;
+
 }
 
 .edit {
-  color: #79d1ad;
-  border: 1px solid #79d1ad;
+
   background-color: transparent;
 }
 
 .edit:hover {
-  background-color: #79d1ad;
+
 }
 
 .create-post {
@@ -271,23 +270,7 @@ ul {
   margin-left: 15px;
 }
 
-.add-btn {
-  border: 1px solid #79d1ad;
-  color: #79d1ad;
-}
 
-.add-btn:hover {
-    background-color: #79d1ad
-}
-
-.remove {
-  border: 1px solid #e67478;
-  color: #e67478;
-}
-
-.remove:hover {
-  background-color:  #e67478;
-}
 
 .post-button {
     width: 40%;
