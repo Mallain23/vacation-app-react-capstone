@@ -16,7 +16,7 @@ export default function AppFeatures(props) {
                     </div>
                 </div>
             </div>
-            <div className='row'>
+            <div className='row find-ideas-row'>
                 <div className='col-xs-12 col-md-6'>
                     <div id='ideas'>
                         <h2 className='ideas-title'>Find Ideas For Your Next Trip</h2>
